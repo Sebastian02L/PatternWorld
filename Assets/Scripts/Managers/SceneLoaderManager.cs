@@ -72,6 +72,12 @@ public class SceneLoaderManager : MonoBehaviour
         fadeIn = true;
     }
 
+    public void SetNextScene(string sceneName)
+    {
+        nextScene = sceneName;
+        EnableFadeIn();
+
+    }
     void StartSceneLoading()
     {
         if(isLoadingBarNecessary) loadingBar.gameObject.SetActive(true);
