@@ -17,6 +17,17 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     List<List<bool>> minigamesData = new List<List<bool>>(numberOfMinigames);
     List<bool> medals = new List<bool>(numberOfMinigames);
 
+    //Getters
+    public float GetGlobalVolume => globalVolume;
+    public float GetSoundEffectsVolume => soundEffectsVolume;
+    public float GetMusicVolume => musicVolume;
+    public List<bool> GetMedals => medals;
+
+    public List<bool> GetMinigameRounds(int minigameID)
+    {
+        return minigamesData[minigameID];
+    }
+
     public void Start()
     {
         //PlayerPrefs.DeleteAll();
@@ -97,16 +108,14 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     {
         PlayerPrefs.DeleteAll();
         minigamesData.Clear();
+
+        ResetStructure();
+    }
+    //Creates the default structure when you are in the Settings UI, then makes other scritps execute the code that reads the new structure.
+    void ResetStructure()
+    {
         Start();
         SettingsManager.Instance.Start();
-    }
-    public List<bool> GetMinigameRounds(int minigameID)
-    {
-        return minigamesData[minigameID];
-    }
-    public List<bool> GetMinigameMedals()
-    {
-        return medals;
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////
@@ -208,15 +217,5 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     string CreateStringFromList(List<bool> roundList)
     {
         return string.Join(".", roundList);
-    }
-
-    //////////////////////////////////////
-    /// Update related store data elements
-    public void LoadSaveSettings()
-    {
-        SettingsManager.Instance.masterSlider.value = globalVolume;
-        SettingsManager.Instance.soundEffectSlider.value = soundEffectsVolume;
-        SettingsManager.Instance.musicSlider.value = musicVolume;
-    }
-    
+    } 
 }

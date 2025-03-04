@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class SettingsManager : Singleton<SettingsManager>
+public class SettingsManager : GlobalAccess<SettingsManager>
 {
     [SerializeField] AudioMixerGroup masterAudioMixer;
     [SerializeField] AudioMixerGroup soundEffectsMixer;
@@ -14,7 +14,7 @@ public class SettingsManager : Singleton<SettingsManager>
 
     public void Start()
     {
-        PlayerDataManager.Instance.LoadSaveSettings();
+        UpdateSlidersValue();
     }
 
     public void OnGlobalVolumeChange(float value)
@@ -33,5 +33,12 @@ public class SettingsManager : Singleton<SettingsManager>
     {
         musicMixer.audioMixer.SetFloat("MusicVolume", value);
         PlayerDataManager.Instance.SetMusicVolume(value);
+    }
+
+    void UpdateSlidersValue()
+    {
+        masterSlider.value = PlayerDataManager.Instance.GetGlobalVolume;
+        soundEffectSlider.value = PlayerDataManager.Instance.GetSoundEffectsVolume;
+        musicSlider.value = PlayerDataManager.Instance.GetMusicVolume;
     }
 }
