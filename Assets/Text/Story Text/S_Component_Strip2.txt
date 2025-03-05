@@ -1,0 +1,1 @@
+Los primeros androides fueron construidos combinando todo el código fuente en un núcleo central, de manera que se abarataban los costes de la fabricación al estar todo en un único punto, pero esto complicaba de manera excesiva el mantenimiento y reducía la capacidad de trabajo en paralelo de los trabajadores.
