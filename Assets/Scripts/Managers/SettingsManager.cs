@@ -14,6 +14,8 @@ public class SettingsManager : GlobalAccess<SettingsManager>
 
     public void Start()
     {
+        //Set target frame rate to 60 FPS
+        Application.targetFrameRate = 60;
         UpdateSlidersValue();
     }
 
