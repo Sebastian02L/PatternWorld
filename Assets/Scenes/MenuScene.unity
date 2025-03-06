@@ -3996,12 +3996,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadePanel: {fileID: 1411059256}
-  fadeDuration: 1
+  fadeDuration: 0.5
   fadeImage: {fileID: 1355320104}
   loadingBar: {fileID: 1114901242}
   currentScene: TitleScene
   nextScene: 
-  isLoadingBarNecessary: 0
+  isLoadingBarNecessary: 1
 --- !u!4 &468381766
 Transform:
   m_ObjectHideFlags: 0
@@ -8444,7 +8444,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &856899212
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20094,7 +20094,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: ComponentMinigame
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1852097403
