@@ -37,7 +37,7 @@ public class AudioManager : GlobalAccess<AudioManager>
             musicDict[clip.name] = clip;
         }
 
-        PlayMusic("SpaceAtmospheric", 1f, false, true);
+        //PlayMusic("SpaceAtmospheric", 1f, false, true);
     }
 
     //The sound effects played by this method cant be replayed or stopped.
