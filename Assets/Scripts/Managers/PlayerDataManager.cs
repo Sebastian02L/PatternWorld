@@ -23,13 +23,14 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     public float GetMusicVolume => musicVolume;
     public List<bool> GetMedals => medals;
 
-    public List<bool> GetMinigameRounds(int minigameID)
+    public List<List<bool>> GetMinigameRounds()
     {
-        return minigamesData[minigameID];
+        return minigamesData;
     }
 
     public void Start()
     {
+        //TEMPORARY INSTRUCTIONS TO DELETE ALL DATA
         //PlayerPrefs.DeleteAll();
         //return;
 
@@ -52,7 +53,7 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
             SetGlobalVolumeData(globalVolume);
             SetSoundEffectsVolumeData(soundEffectsVolume);
             SetMusicVolumeData(musicVolume);
-            SetMinigamesData();
+            SetMinigameRoundData();
             SetMedalsData();
             SaveData();
 
@@ -88,6 +89,11 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
 
             Debug.Log("Data succesfully loaded!");
         }
+
+        //TEMPORARY INSTRUCTONS TO MODIFY DATA
+
+        //SetMinigameRound(0, new List<bool>() { true, true, true });
+        //SetMinigameRound(1, new List<bool>() { true, true, true });
     }
 
     ///////////////////////////
@@ -115,7 +121,7 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     void ResetStructure()
     {
         Start();
-        SettingsManager.Instance.Start();
+        GameObject.FindAnyObjectByType<SceneLoaderManager>().SetNextScene("MenuScene");
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////
@@ -145,10 +151,10 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         SetMusicVolumeData(musicVolume);
         SaveData();
     }
-    public void SetMinigames(int minigameCode, List<bool> list)
+    public void SetMinigameRound(int minigameCode, List<bool> list)
     {
         minigamesData[minigameCode] = list;
-        SetMinigamesData(minigameCode);
+        SetMinigameRoundData(minigameCode);
         SaveData();
     }
     public void SetMedals(int minigameCode, bool value)
@@ -177,7 +183,7 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     {
         PlayerPrefs.SetFloat("MusicVolume", value);
     }
-    void SetMinigamesData(int minigameCode = -1)
+    void SetMinigameRoundData(int minigameCode = -1)
     {
         //-1 means that we need to create the default structure.
         if (minigameCode == -1)

@@ -70,6 +70,7 @@ public class StoryManager : MonoBehaviour
     }
     public void DestroyStripPanel()
     {
+        //Temporary hide call
         GameObject.Find("@CursorVisibilityManager").GetComponent<CursorVisibility>()?.HideCursor();
         gameObject.SetActive(false);
         Destroy(gameObject);

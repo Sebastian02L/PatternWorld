@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - MainMenuPanel
+  - LockImage
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - LockImage
   - Water
   - UI
   - 
