@@ -15,13 +15,11 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     float musicVolume;
     //For each minigame, we store a list of bools that represent the rounds that have been completed.
     List<List<bool>> minigamesData = new List<List<bool>>(numberOfMinigames);
-    List<bool> medals = new List<bool>(numberOfMinigames);
 
     //Getters
     public float GetGlobalVolume => globalVolume;
     public float GetSoundEffectsVolume => soundEffectsVolume;
     public float GetMusicVolume => musicVolume;
-    public List<bool> GetMedals => medals;
 
     public List<List<bool>> GetMinigameRounds()
     {
@@ -54,7 +52,6 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
             SetSoundEffectsVolumeData(soundEffectsVolume);
             SetMusicVolumeData(musicVolume);
             SetMinigameRoundData();
-            SetMedalsData();
             SaveData();
 
             Debug.Log("Default data structure created!");
@@ -79,21 +76,12 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
                 minigamesData[i] = minigameBool;
             }
 
-           
-            string medalsString = PlayerPrefs.GetString("Medals");
-            List<string> medalStringList = medalsString.Split('.').ToList();
-            foreach (string medal in medalStringList)
-            {
-                medals.Add(bool.Parse(medal));
-            }
-
             Debug.Log("Data succesfully loaded!");
         }
 
         //TEMPORARY INSTRUCTONS TO MODIFY DATA
-
-        //SetMinigameRound(0, new List<bool>() { true, true, true });
-        //SetMinigameRound(1, new List<bool>() { true, true, true });
+        SetMinigameRound(0, new List<bool>() { true, true, true });
+        SetMinigameRound(1, new List<bool>() { true, true, true });
     }
 
     ///////////////////////////
@@ -157,12 +145,6 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         SetMinigameRoundData(minigameCode);
         SaveData();
     }
-    public void SetMedals(int minigameCode, bool value)
-    {
-        medals[minigameCode] = value;
-        SetMedalsData(minigameCode);
-        SaveData();
-    }
 
     //////////////////////////////////////////////////////////////////////////////
     /// This methods are used to update stored data. Invoked by the methods above.
@@ -199,22 +181,6 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         else //Update data of a specific minigame.
         {
             PlayerPrefs.SetString("Minigame" + minigameCode, CreateStringFromList(minigamesData[minigameCode]));
-        }
-    }
-    void SetMedalsData(int minigameCode = -1)
-    {
-        //-1 means that we need to create the default structure.
-        if (minigameCode == -1)
-        {
-            for (int i = 0; i < numberOfMinigames; i++)
-            {
-                medals.Add(false);
-            }
-            PlayerPrefs.SetString("Medals", CreateStringFromList(medals));
-        }
-        else //Update data of a specific minigame.
-        {
-            PlayerPrefs.SetString("Medals", CreateStringFromList(medals));
         }
     }
 

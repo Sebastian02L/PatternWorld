@@ -43,4 +43,9 @@ public class SettingsManager : GlobalAccess<SettingsManager>
         soundEffectSlider.value = PlayerDataManager.Instance.GetSoundEffectsVolume;
         musicSlider.value = PlayerDataManager.Instance.GetMusicVolume;
     }
+
+    private void OnDestroy()
+    {
+        SettingsManager.Instance.CleanMemory();
+    }
 }

@@ -11,22 +11,14 @@ public class BookEntryController : MonoBehaviour
     bool unlocked = false;
     public bool MinigameUnlocked => unlocked;
 
-    private void Start()
-    {
-        gameObject.GetComponent<Button>().onClick.AddListener(OnEntryButtonClick);
-    }
-
-    private void OnDestroy()
-    {
-        gameObject.GetComponent<Button>().onClick.RemoveListener(OnEntryButtonClick);
-    }
     public void SetUnlocked(bool value)
     {
         unlocked = value;
         buttonText.text = minigameName;
     }
 
-    void OnEntryButtonClick()
+    //Suscribed in the Inspector
+    public void OnEntryButtonClick()
     {
         if (!unlocked)
         { 

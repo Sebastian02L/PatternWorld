@@ -25,4 +25,9 @@ public class BookManager : GlobalAccess<BookManager>
         usagesImage.sprite = Resources.Load<Sprite>($"{minigameName}" + "Usages");
         diagramImage.sprite = Resources.Load<Sprite>($"{minigameName}" + "Diagram");
     }
+
+    private void OnDestroy()
+    {
+        BookManager.Instance.CleanMemory();
+    }
 }

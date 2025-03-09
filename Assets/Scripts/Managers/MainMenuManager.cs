@@ -8,7 +8,7 @@ public class MainMenuManager : GlobalAccess<MainMenuManager>
     [SerializeField] List<GameModePanelController> gameModePanels;
     [SerializeField] List<Button> gameModeAccessButtons;
 
-    public void Start()
+    void Start()
     {
         List<List<bool>> minigamesRounds = PlayerDataManager.Instance.GetMinigameRounds();
 
@@ -26,8 +26,17 @@ public class MainMenuManager : GlobalAccess<MainMenuManager>
             {
                 gameModeAccessButtons[i].interactable = true;
                 BookManager.Instance.UnlockBookEntry(i);
+                PocketManager.Instance.UnlockMinigameMedal(i);
             }
         }
+        //TEMPORARY CODE TO TEST GENERIC TIMER
+        GameObject.FindAnyObjectByType<TimerComponent>().onTimerEnd += OnTimerEnd;
+        GameObject.FindAnyObjectByType<TimerComponent>().StartTimer();
+    }
+
+    //TEMPORARY CODE TO TEST GENERIC TIMER
+    void OnTimerEnd() {
+        Debug.Log("Timer ended");
     }
 
     //Check if the minigame has been totally completed
@@ -42,5 +51,10 @@ public class MainMenuManager : GlobalAccess<MainMenuManager>
         //Update Minigame panel visuals (like rounds text)
         gameModePanels[minigameCode].UpdateVisuals(completedRounds);
         return (completedRounds == minigameRounds.Count) ? true : false;
+    }
+
+    private void OnDestroy()
+    {
+        MainMenuManager.Instance.CleanMemory();
     }
 }

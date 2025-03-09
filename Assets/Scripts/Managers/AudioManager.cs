@@ -122,4 +122,9 @@ public class AudioManager : GlobalAccess<AudioManager>
             Debug.Log("No AudioSource with that name was found.");
         }
     }
+
+    private void OnDestroy()
+    {
+        AudioManager.Instance.CleanMemory();
+    }
 }
