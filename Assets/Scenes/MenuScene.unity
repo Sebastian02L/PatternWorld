@@ -15394,7 +15394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upDownPeriod: 1
-  upDownDistance: 0.5
+  upDownDistance: 0.25
 --- !u!1 &1411059256
 GameObject:
   m_ObjectHideFlags: 0
