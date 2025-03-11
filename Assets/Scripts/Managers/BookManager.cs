@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BookManager : GlobalAccess<BookManager>
+public class BookManager : MonoBehaviour 
 {
     [Header("Game Mode UI Elements")]
     [SerializeField] List<BookEntryController> minigamesBookEntryButton;
@@ -15,19 +15,16 @@ public class BookManager : GlobalAccess<BookManager>
     //Unlock the information of the minigame in the book's UI
     public void UnlockBookEntry(int minigameCode)
     {
-        minigamesBookEntryButton[minigameCode].SetUnlocked(true);
+        minigamesBookEntryButton[minigameCode].SetUnlocked(true, this);
     }
 
     //Load the information of the minigame in the book's UI
     public void LoadPatternInformation(string minigameName)
     {
-        explanationImage.sprite = Resources.Load<Sprite>($"{minigameName}" + "Explanation");
-        usagesImage.sprite = Resources.Load<Sprite>($"{minigameName}" + "Usages");
-        diagramImage.sprite = Resources.Load<Sprite>($"{minigameName}" + "Diagram");
-    }
+        PatternData patternData = Resources.Load<PatternData>(minigameName);
 
-    private void OnDestroy()
-    {
-        BookManager.Instance.CleanMemory();
+        explanationImage.sprite = patternData.explanation;
+        usagesImage.sprite = patternData.usages;
+        diagramImage.sprite = patternData.diagram;
     }
 }

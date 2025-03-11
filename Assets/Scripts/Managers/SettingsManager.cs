@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class SettingsManager : GlobalAccess<SettingsManager>
+public class SettingsManager : MonoBehaviour 
 {
     [SerializeField] AudioMixerGroup masterAudioMixer;
     [SerializeField] AudioMixerGroup soundEffectsMixer;
@@ -17,6 +17,7 @@ public class SettingsManager : GlobalAccess<SettingsManager>
         //Set target frame rate to 60 FPS
         Application.targetFrameRate = 60;
         UpdateSlidersValue();
+        gameObject.SetActive(false);
     }
 
     public void OnGlobalVolumeChange(float value)
@@ -40,12 +41,12 @@ public class SettingsManager : GlobalAccess<SettingsManager>
     void UpdateSlidersValue()
     {
         masterSlider.value = PlayerDataManager.Instance.GetGlobalVolume;
-        soundEffectSlider.value = PlayerDataManager.Instance.GetSoundEffectsVolume;
-        musicSlider.value = PlayerDataManager.Instance.GetMusicVolume;
-    }
+        masterAudioMixer.audioMixer.SetFloat("MasterVolume", masterSlider.value);
 
-    private void OnDestroy()
-    {
-        SettingsManager.Instance.CleanMemory();
+        soundEffectSlider.value = PlayerDataManager.Instance.GetSoundEffectsVolume;
+        soundEffectsMixer.audioMixer.SetFloat("SoundEffectsVolume", soundEffectSlider.value);
+
+        musicSlider.value = PlayerDataManager.Instance.GetMusicVolume;
+        musicMixer.audioMixer.SetFloat("MusicVolume", musicSlider.value);
     }
 }

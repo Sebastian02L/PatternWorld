@@ -28,7 +28,7 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
 
     public void Start()
     {
-        //TEMPORARY INSTRUCTIONS TO DELETE ALL DATA
+        ////TEMPORARY INSTRUCTIONS TO DELETE ALL DATA
         //PlayerPrefs.DeleteAll();
         //return;
 
@@ -109,7 +109,7 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     void ResetStructure()
     {
         Start();
-        GameObject.FindAnyObjectByType<SceneLoaderManager>().SetNextScene("MenuScene");
+        GameObject.FindFirstObjectByType<SceneLoaderManager>(FindObjectsInactive.Include).SetNextScene("MenuScene");
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////

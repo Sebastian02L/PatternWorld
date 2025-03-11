@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e58e94a10b49b8d40a929601f60ca64a, type: 3}
+  m_Name: Component
+  m_EditorClassIdentifier: 
+  minigameName: Component
+  lockMaterial: {fileID: 2100000, guid: 08096904cd1f24f40957fcdf480a6f2e, type: 2}
+  unlockedMaterial: {fileID: 2100000, guid: 85f2ae5342dd3114795af927a05c8ed2, type: 2}
+  explanation: {fileID: 21300000, guid: 8dd28be6616497c47bf47b94c3576c65, type: 3}
+  usages: {fileID: 21300000, guid: 30ca130014f3b5448b2055bac457d64e, type: 3}
+  diagram: {fileID: 21300000, guid: 952e21aa32c812f4e97eb93874693e99, type: 3}

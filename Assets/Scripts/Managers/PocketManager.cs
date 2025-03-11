@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PocketManager : GlobalAccess<PocketManager>
+public class PocketManager : MonoBehaviour
 {
     [Header("Game Mode UI Elements")]
     [SerializeField] List<PocketEntryController> minigamesPocketEntryButton;
@@ -48,10 +48,5 @@ public class PocketManager : GlobalAccess<PocketManager>
         currentMedal.gameObject.SetActive(true);
         medalTitle.text = (currentMedal.MinigameUnlocked)? currentMedal.MinigameName : "???";
         Debug.Log("Current Medal: " + currentMedal.MinigameName);
-    }
-
-    private void OnDestroy()
-    {
-        PocketManager.Instance.CleanMemory();
     }
 }

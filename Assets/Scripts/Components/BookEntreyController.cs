@@ -4,17 +4,19 @@ using UnityEngine.UI;
 
 public class BookEntryController : MonoBehaviour
 {
-    [SerializeField] string minigameName;
+    [SerializeField] PatternData patternData;
     [SerializeField] RawImage lockImage;
     [SerializeField] TextMeshProUGUI buttonText;
+    BookManager bookManager;
 
     bool unlocked = false;
     public bool MinigameUnlocked => unlocked;
 
-    public void SetUnlocked(bool value)
+    public void SetUnlocked(bool value, BookManager bManager)
     {
+        bookManager = bManager;
         unlocked = value;
-        buttonText.text = minigameName;
+        buttonText.text = patternData.minigameName;
     }
 
     //Suscribed in the Inspector
@@ -27,7 +29,7 @@ public class BookEntryController : MonoBehaviour
         else
         {
             lockImage.enabled = false;
-            BookManager.Instance.LoadPatternInformation(minigameName);
+            bookManager.LoadPatternInformation(patternData.minigameName);
         }
     }
 }

@@ -4,17 +4,15 @@ using UnityEngine.UI;
 
 public class PocketEntryController : MonoBehaviour
 {
-    [SerializeField] string minigameName;
-    [SerializeField] Material lockMaterial;
-    [SerializeField] Material unlockedMaterial;
+    [SerializeField] PatternData patternData;
 
     bool unlocked = false;
     public bool MinigameUnlocked => unlocked;
-    public string MinigameName => minigameName;
+    public string MinigameName => patternData.minigameName;
 
     private void OnEnable()
     {
-        gameObject.GetComponent<MeshRenderer>().material = (unlocked) ? unlockedMaterial : lockMaterial;
+        gameObject.GetComponent<MeshRenderer>().material = (unlocked) ? patternData.unlockedMaterial : patternData.lockMaterial;
     }
 
     public void SetUnlocked(bool value)

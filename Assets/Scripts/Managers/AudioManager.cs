@@ -1,43 +1,57 @@
 using System.Collections.Generic;
+using System.ComponentModel;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
-public class AudioManager : GlobalAccess<AudioManager>
+public class AudioManager : Singleton<AudioManager>
 {
-    [Header("Music Needed on This Scene")]
-    public List<AudioClip> musicClips;
+    AudioSceneData currentSceneAudioData;
     private Dictionary<string, AudioClip> musicDict;
-    public AudioSource musicAudioSource;
-
-    [Header("Sound Effects Needed on This Scene")]
-    public List<AudioClip> soundEffects;
     private Dictionary<string, AudioClip> soundEffectsDict;
-
-    [Header("Sound Effects AudioSources Needed on This Scene")]
-    public List<AudioSource> audioSources;
     private Dictionary<string, AudioSource> audioSourcesDict;
+    AudioSource musicAudioSource;
 
     void Start()
     {
-        //Dictionarys initialization
         soundEffectsDict = new Dictionary<string, AudioClip>();
-        foreach (var clip in soundEffects)
+        audioSourcesDict = new Dictionary<string, AudioSource>();
+        musicDict = new Dictionary<string, AudioClip>();
+
+        SceneManager.sceneLoaded += SetUp;
+        SetUp(SceneManager.GetActiveScene(), LoadSceneMode.Single);
+    }
+
+    //Method that set up the AudioManager to work on the current Scene.
+    void SetUp(Scene arg0, LoadSceneMode arg1)
+    {
+        soundEffectsDict.Clear();
+        audioSourcesDict.Clear();
+        musicDict.Clear();
+
+        currentSceneAudioData = Resources.Load<AudioSceneData>(SceneManager.GetActiveScene().name);
+
+        //Dictionarys initialization
+        foreach (var clip in currentSceneAudioData.soundEffects)
         {
             soundEffectsDict[clip.name] = clip;
         }
 
-        audioSourcesDict = new Dictionary<string, AudioSource>();
-        foreach (var audioSource in audioSources)
-        {
-            audioSourcesDict[audioSource.name] = audioSource;
-        }
-
-        musicDict = new Dictionary<string, AudioClip>();
-        foreach (var clip in musicClips)
+        foreach (var clip in currentSceneAudioData.musicClips)
         {
             musicDict[clip.name] = clip;
         }
 
-        //PlayMusic("SpaceAtmospheric", 1f, false, true);
+        AudioSource[] sceneAudioSources = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
+
+        // Mostrar en la consola los nombres de los objetos encontrados
+        foreach (AudioSource audioSource in sceneAudioSources)
+        {
+            audioSourcesDict[audioSource.name] = audioSource;
+        }
+
+        musicAudioSource = audioSourcesDict["AS_Music"];
     }
 
     //The sound effects played by this method cant be replayed or stopped.
@@ -121,10 +135,5 @@ public class AudioManager : GlobalAccess<AudioManager>
         {
             Debug.Log("No AudioSource with that name was found.");
         }
-    }
-
-    private void OnDestroy()
-    {
-        AudioManager.Instance.CleanMemory();
     }
 }
