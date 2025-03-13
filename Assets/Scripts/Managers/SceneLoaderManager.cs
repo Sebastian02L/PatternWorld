@@ -67,6 +67,7 @@ public class SceneLoaderManager : MonoBehaviour
 
     public void EnableFadeIn()
     {
+        Time.timeScale = 1.0f; //The time needs to be always on 1 to do the transition
         IsFadePanelActive(true);
         startTransition = true;
         fadeIn = true;

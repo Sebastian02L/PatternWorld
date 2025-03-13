@@ -21,7 +21,7 @@ public class BookManager : MonoBehaviour
     //Load the information of the minigame in the book's UI
     public void LoadPatternInformation(string minigameName)
     {
-        PatternData patternData = Resources.Load<PatternData>(minigameName);
+        PatternData patternData = Resources.Load<PatternData>("MainMenu/" + minigameName);
 
         explanationImage.sprite = patternData.explanation;
         usagesImage.sprite = patternData.usages;

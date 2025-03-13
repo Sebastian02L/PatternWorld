@@ -30,7 +30,7 @@ public class AudioManager : Singleton<AudioManager>
         audioSourcesDict.Clear();
         musicDict.Clear();
 
-        currentSceneAudioData = Resources.Load<AudioSceneData>(SceneManager.GetActiveScene().name);
+        currentSceneAudioData = Resources.Load<AudioSceneData>("Audio/" + SceneManager.GetActiveScene().name);
 
         //Dictionarys initialization
         foreach (var clip in currentSceneAudioData.soundEffects)

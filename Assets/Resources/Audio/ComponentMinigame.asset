@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d844f26ae0b1dd140a86111bc180b8a9, type: 3}
+  m_Name: ComponentMinigame
+  m_EditorClassIdentifier: 
+  musicClips:
+  - {fileID: 8300000, guid: 7dd1f484ed8b24d4bb28f29b3a42ca52, type: 3}
+  soundEffects:
+  - {fileID: 8300000, guid: db639dc5f805680458a4154847daed5e, type: 3}
+  - {fileID: 8300000, guid: 0f540b5e43d0a9846ad5e6dc7250b358, type: 3}

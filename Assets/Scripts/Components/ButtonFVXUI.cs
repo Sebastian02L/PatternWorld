@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ButtonFVX : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
+public class ButtonFVXUI : MonoBehaviour, IButtonFVX
 {
     public void OnPointerClick(PointerEventData eventData)
     {

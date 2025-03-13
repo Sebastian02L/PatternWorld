@@ -6,16 +6,15 @@ using UnityEngine.UI;
 
 public class StoryManager : MonoBehaviour
 {
+    [Header("Story Data")]
+    [SerializeField] MinigameStoryData storyData;
+
     [Header("UI References")]
     [SerializeField] TextMeshProUGUI storyTextUI;
     [SerializeField] RawImage stripImageUI;
 
     [SerializeField] Button nextButton;
     [SerializeField] Button skipButton;
-
-    [Header("Story Elements")]
-    [SerializeField] List<Texture2D> strips;
-    [SerializeField] List<TextAsset> stripsText;
 
     [Header("Story Settings")]
     [SerializeField] float typingSpeed = 0.02f;
@@ -41,12 +40,12 @@ public class StoryManager : MonoBehaviour
 
     IEnumerator StorySequence()
     {
-        for (int i = 0; i < strips.Count; i++)
+        for (int i = 0; i < storyData.strips.Count; i++)
         {
             //Setting up the story elements
             writtingText = "";
-            currentText = stripsText[i].text;
-            stripImageUI.texture = strips[i];
+            currentText = storyData.stripsText[i].text;
+            stripImageUI.texture = storyData.strips[i];
             NextButtonSetActive(false);
 
             foreach (char character in currentText)
@@ -62,7 +61,7 @@ public class StoryManager : MonoBehaviour
             NextButtonSetActive(true);
 
             //Waiting for users click on "Next" button
-            while (!next) yield return null;
+            while (!next && !skipStory) yield return null;
             next = false;
         }
         if (!next || !skipStory) yield return null;
@@ -70,8 +69,6 @@ public class StoryManager : MonoBehaviour
     }
     public void DestroyStripPanel()
     {
-        //Temporary hide call
-        GameObject.Find("@CursorVisibilityManager").GetComponent<CursorVisibility>()?.HideCursor();
         gameObject.SetActive(false);
         Destroy(gameObject);
     }
