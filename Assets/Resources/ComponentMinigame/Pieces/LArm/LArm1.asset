@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a30deb8eb5679438ba87565c12a87d, type: 3}
   m_Name: LArm1
   m_EditorClassIdentifier: 
-  type: LArm
   maker: Droneborg
   modelVersion: BO-21
-  texture: {fileID: 0}
+  texture: {fileID: 2800000, guid: 5ee5fe5ff3448c14dbc010cc5152b8e8, type: 3}
   value: 25
-  render: {fileID: 0}
+  render: {fileID: 21300000, guid: 4df4d0f37fb981e48a0fb0df1c62b4ac, type: 3}

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9a30deb8eb5679438ba87565c12a87d, type: 3}
+  m_Name: Body7
+  m_EditorClassIdentifier: 
+  maker: Robotech
+  modelVersion: PU-112
+  texture: {fileID: 2800000, guid: a1413419c61ae0e4796987e5edfd9b50, type: 3}
+  value: 30
+  render: {fileID: 21300000, guid: 6be28881689bd0e48b54a2672df9b848, type: 3}

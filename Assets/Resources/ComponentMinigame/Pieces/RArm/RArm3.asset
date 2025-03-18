@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maker: Flatdron
   modelVersion: SA-1
-  texture: {fileID: 0}
+  texture: {fileID: 2800000, guid: a1db4db38f823bd40a682caaf63b1404, type: 3}
   value: 25
-  render: {fileID: 0}
+  render: {fileID: 21300000, guid: a893e7194a105f8499151c9a0bf3e3f0, type: 3}

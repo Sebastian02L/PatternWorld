@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class OrderManager : MonoBehaviour
 {
     [SerializeField] ComponentRoundData minigameData;
+    [SerializeField] PiecesScreenController piecesScreen;
     [SerializeField] int numberOfOrders = 20;
     Queue<Order> orders = new Queue<Order>();
     System.Random random = new System.Random();
@@ -23,6 +24,7 @@ public class OrderManager : MonoBehaviour
 
         //Loads the round configuration
         minigameData = Resources.Load<ComponentRoundData>(SceneManager.GetActiveScene().name + "/" + currentRound);
+        piecesScreen.Setup(minigameData);
 
         screenController = GetComponent<OrderScreenController>();
         orders = new Queue<Order>(numberOfOrders);

@@ -20,6 +20,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7fc1338bb3d7c6946bf60e56ea15c351, type: 2}
   - {fileID: 11400000, guid: 11839744046863d4a849780d64becc14, type: 2}
   - {fileID: 11400000, guid: e0b3412334b4e794db3337fbd2088c73, type: 2}
-  leftPieces: []
-  rightPieces: []
-  wheelPieces: []
+  leftPieces:
+  - {fileID: 11400000, guid: 85c8ea949a5751a408653611ebabcd0f, type: 2}
+  - {fileID: 11400000, guid: 8ae7d5fdae23821459689e98522ecdf2, type: 2}
+  - {fileID: 11400000, guid: 2a7d81c9c0f60f74fba27b45c57d8698, type: 2}
+  rightPieces:
+  - {fileID: 11400000, guid: 06a9a4492a6e0114d8209df2cba069aa, type: 2}
+  - {fileID: 11400000, guid: ec75b698083d04f4c94f68f3245180d4, type: 2}
+  - {fileID: 11400000, guid: 8444c1801dc8cec468472f412db03681, type: 2}
+  wheelPieces:
+  - {fileID: 11400000, guid: 2e6e9cea479b7784aa0bef4c15c089f2, type: 2}
+  - {fileID: 11400000, guid: 08ec256eec86ef2448ddc66f68e33bf6, type: 2}
+  - {fileID: 11400000, guid: 93a2219d03b5ac04e9ce67859e392d26, type: 2}

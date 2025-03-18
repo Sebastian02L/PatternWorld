@@ -5,6 +5,7 @@ public class Order
 {
     public Dictionary<string, PieceData> pieces;
     float revenue;
+    public float GetRevenue => revenue;
 
     public Order()
     {

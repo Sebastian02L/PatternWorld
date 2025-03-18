@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maker: Robotech
   modelVersion: VD-15
-  texture: {fileID: 0}
+  texture: {fileID: 2800000, guid: cf65c2eea96bdde40b9ad864a561b54d, type: 3}
   value: 30
-  render: {fileID: 0}
+  render: {fileID: 21300000, guid: b8a792b1506f8f04a9706f1d0beb9632, type: 3}
