@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a30deb8eb5679438ba87565c12a87d, type: 3}
   m_Name: Body1
   m_EditorClassIdentifier: 
+  type: Body
   maker: Corposaca
   modelVersion: Gr-10
   texture: {fileID: 2800000, guid: 2b1c906c949ba014c80f8aed4842de43, type: 3}

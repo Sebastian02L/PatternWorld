@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a30deb8eb5679438ba87565c12a87d, type: 3}
   m_Name: RArm1
   m_EditorClassIdentifier: 
+  type: RArm
   maker: Wheeldroid
   modelVersion: GR-22
   texture: {fileID: 2800000, guid: bddcfab7e970c91489d408b21d006077, type: 3}

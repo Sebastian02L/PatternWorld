@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a30deb8eb5679438ba87565c12a87d, type: 3}
   m_Name: Wheel8
   m_EditorClassIdentifier: 
+  type: Wheel
   maker: Droneborg
   modelVersion: NG-15
   texture: {fileID: 2800000, guid: ae6110921bbe5174ab16b207fa4c4f49, type: 3}

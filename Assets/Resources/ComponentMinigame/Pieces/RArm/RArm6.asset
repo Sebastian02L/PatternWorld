@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a30deb8eb5679438ba87565c12a87d, type: 3}
   m_Name: RArm6
   m_EditorClassIdentifier: 
+  type: RArm
   maker: Corposaca
   modelVersion: A-11
   texture: {fileID: 2800000, guid: 3b770a18124135445b733a73db338a69, type: 3}

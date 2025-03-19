@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a30deb8eb5679438ba87565c12a87d, type: 3}
   m_Name: LArm6
   m_EditorClassIdentifier: 
+  type: LArm
   maker: Vienadron
   modelVersion: WT-68
   texture: {fileID: 2800000, guid: c850f8fb82ff5f840a5c37f925a327cd, type: 3}

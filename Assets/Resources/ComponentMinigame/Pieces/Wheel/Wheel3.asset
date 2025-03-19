@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a30deb8eb5679438ba87565c12a87d, type: 3}
   m_Name: Wheel3
   m_EditorClassIdentifier: 
+  type: Wheel
   maker: Corposaca
   modelVersion: CS-2
   texture: {fileID: 2800000, guid: a5a4fa1afe23ae74f9adc68b311d39aa, type: 3}

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a30deb8eb5679438ba87565c12a87d, type: 3}
   m_Name: Wheel2
   m_EditorClassIdentifier: 
+  type: Wheel
   maker: Vienadron
   modelVersion: GN-5
   texture: {fileID: 2800000, guid: 34bc3d1d3101dda469576ffad6ba83fe, type: 3}

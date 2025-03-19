@@ -23,7 +23,7 @@ public class OrderScreenController : MonoBehaviour
             currentOrderText[i].text = entry.Value.maker + " " + entry.Value.modelVersion;
             i++;
         }
-        currentRevenueText.text = order.GetRevenue.ToString();
+        currentRevenueText.text = order.GetRevenue.ToString() + " $";
     }
 
     //Displays the next order on the second screen's desk
@@ -36,7 +36,7 @@ public class OrderScreenController : MonoBehaviour
             nextOrderText[i].text = entry.Value.maker + " " + entry.Value.modelVersion;
             i++;
         }
-        nextRevenueText.text= order.GetRevenue.ToString();
+        nextRevenueText.text= order.GetRevenue.ToString() + " $";
     }
 
     //Swap the storaged next order to take the place of the current order and receive the next one

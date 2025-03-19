@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a30deb8eb5679438ba87565c12a87d, type: 3}
   m_Name: Head7
   m_EditorClassIdentifier: 
+  type: Head
   maker: Droneborg
   modelVersion: M-10
   texture: {fileID: 2800000, guid: 25568a02970176545867d622b67d8120, type: 3}
