@@ -4,6 +4,8 @@ using UnityEngine.UI;
 public class WorldSpaceButton : MonoBehaviour, IRaycasteable
 {
     Button button;
+    //This bool makes sure that the onClick event only happens one time in each frame
+    bool clickProcessed = false;
     private void Start()
     {
         button = GetComponentInParent<Button>();
@@ -16,14 +18,20 @@ public class WorldSpaceButton : MonoBehaviour, IRaycasteable
     public void OnRaycastStay()
     {
         Debug.Log($"ESTOY EN EL BOTÓN + {gameObject.name}");
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonUp(0) && !clickProcessed && button.interactable)
         {
             button.onClick.Invoke();
+            clickProcessed = true;
         }
     }
 
     public void OnRaycastLeave()
     {
         Debug.Log($"SALÍ DEL BOTÓN + {gameObject.name}");
+    }
+
+    public void Update()
+    {
+        clickProcessed = false;
     }
 }

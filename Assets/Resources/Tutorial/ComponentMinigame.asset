@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69ae02c7f2eeead4890e0913fefd5388, type: 3}
-  m_Name: Component
+  m_Name: ComponentMinigame
   m_EditorClassIdentifier: 
   controlsImage: {fileID: 21300000, guid: 952e21aa32c812f4e97eb93874693e99, type: 3}
   rulesImage: {fileID: 21300000, guid: 8dd28be6616497c47bf47b94c3576c65, type: 3}

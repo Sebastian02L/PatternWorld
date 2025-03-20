@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b1492dc0cdfb2b4ca7c00f778f52759, type: 3}
-  m_Name: ComponentStory
+  m_Name: ComponentMinigame
   m_EditorClassIdentifier: 
   strips:
   - {fileID: 2800000, guid: 416ca9c7f42e5d54fbae197d8e1b9eb6, type: 3}

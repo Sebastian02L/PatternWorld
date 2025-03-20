@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StoryManager : MonoBehaviour
 {
-    [Header("Story Data")]
-    [SerializeField] MinigameStoryData storyData;
+
+    MinigameStoryData storyData;
 
     [Header("UI References")]
     [SerializeField] TextMeshProUGUI storyTextUI;
@@ -27,6 +28,7 @@ public class StoryManager : MonoBehaviour
 
     void Start()
     {
+        storyData = Resources.Load<MinigameStoryData>("Story/" + SceneManager.GetActiveScene().name);
         nextButton.onClick.AddListener(OnNextClick);
         skipButton.onClick.AddListener(OnSkipClick);
         StartCoroutine(StorySequence());

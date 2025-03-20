@@ -18,6 +18,7 @@ public class PieceButtonController : MonoBehaviour
         gameObject.GetComponent<Button>().onClick.RemoveListener(OnPieceSelected);
     }
 
+    //Receive the piece that the button will represent
     public void SetUpButton(PieceData piece)
     {
         currentPiece = piece;
@@ -29,6 +30,7 @@ public class PieceButtonController : MonoBehaviour
         GetComponent<Image>().sprite = currentPiece.render;
     }
 
+    //Invoked when the player clicks the button
     public void OnPieceSelected()
     {
         piecesScreenController.ShowPieceInformation(currentPiece);

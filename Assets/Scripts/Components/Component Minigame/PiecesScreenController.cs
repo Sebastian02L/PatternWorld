@@ -5,29 +5,41 @@ using UnityEngine.UI;
 
 public class PiecesScreenController : MonoBehaviour
 {
-    //UI Elements
+    [Header("Piece Select Panel Elements")]
     [SerializeField] List<PieceButtonController> piecesButtons;
     [SerializeField] TextMeshProUGUI pieceMakerText;
     [SerializeField] TextMeshProUGUI pieceModelVersionText;
-    [SerializeField] Button buildButton;
-    [SerializeField] Button removeButton;
+    [SerializeField] TextMeshProUGUI pieceTitle;
+    [SerializeField] Button buildPieceButton;
+    [SerializeField] Button removePieceButton;
+
+    [Header("Builder Panel Elements")]
+    [SerializeField] Button buildAndroidButton;
 
     ComponentRoundData minigameData;
     int numberOfPieces = 0;
 
-    //Variables
+    //Auxiliar Variables
     PieceData selectedPiece;
     string currentPieceType;
 
     //Android reference and build in pieces
     Dictionary<string, PieceData> buildedPieces;
-    AndroidController android;
+
+    [Header("References to other Scripts")]
+    [SerializeField] AndroidController android;
+    [SerializeField] OrderScreenController orderScreenController;
+    [SerializeField] EarningsScreenController earningsScreenController;
+    [SerializeField] OrderManager orderManager;
 
     //Setups the left monitor with the round data received from the right monitor
     public void Setup(ComponentRoundData data)
     {
         buildedPieces = new Dictionary<string, PieceData>();
-        android = GameObject.FindFirstObjectByType<AndroidController>();
+        //android = GameObject.FindAnyObjectByType<AndroidController>();
+        //earningsScreenController = GameObject.FindAnyObjectByType<EarningsScreenController>();
+        //orderScreenController = GameObject.FindAnyObjectByType<OrderScreenController>();
+        //orderManager = GameObject.FindAnyObjectByType<OrderManager>();
 
         minigameData = data;
         numberOfPieces = minigameData.headPieces.Count;
@@ -42,23 +54,25 @@ public class PiecesScreenController : MonoBehaviour
             }
         }
 
-        buildButton.onClick.AddListener(BuildPiece);
-        removeButton.onClick.AddListener(RemoveLastPiece);
+        buildPieceButton.onClick.AddListener(BuildPiece);
+        removePieceButton.onClick.AddListener(RemoveLastPiece);
+        buildAndroidButton.onClick.AddListener(BuildAndroid);
     }
 
     //Clear the information text when the panel is Off
     private void OnDisable()
     {
-        buildButton.interactable = false;
-        removeButton.interactable = false;
+        buildPieceButton.interactable = false;
+        removePieceButton.interactable = false;
         pieceMakerText.text = string.Empty;
         pieceModelVersionText.text = string.Empty;
     }
 
     private void OnDestroy()
     {
-        buildButton.onClick.RemoveListener(BuildPiece);
-        removeButton.onClick.RemoveListener(RemoveLastPiece);
+        buildPieceButton.onClick.RemoveListener(BuildPiece);
+        removePieceButton.onClick.RemoveListener(RemoveLastPiece);
+        buildAndroidButton.onClick.RemoveListener(BuildAndroid);
     }
 
     //Invoked from the UI Buttons
@@ -67,22 +81,27 @@ public class PiecesScreenController : MonoBehaviour
         switch (pieceType) 
         {
             case "Head":
+                pieceTitle.text = "Cabeza";
                 SetPiecesList(minigameData.headPieces);
                 break;
 
             case "Body":
+                pieceTitle.text = "Cuerpo";
                 SetPiecesList(minigameData.bodyPieces);
                 break;
 
             case "LArm":
+                pieceTitle.text = "Brazo Izquierdo";
                 SetPiecesList(minigameData.leftPieces);
                 break;
 
             case "RArm":
+                pieceTitle.text = "Brazo Derecho";
                 SetPiecesList(minigameData.rightPieces);
                 break;
 
             case "Wheel":
+                pieceTitle.text = "Rueda";
                 SetPiecesList(minigameData.wheelPieces);
                 break;
         }
@@ -114,22 +133,41 @@ public class PiecesScreenController : MonoBehaviour
         android.UpdateAndroidVisuals(currentPieceType, selectedPiece);
         buildedPieces.Add(selectedPiece.type, selectedPiece);
         CheckCanBuild();
+        CheckCanRemove();
+        CheckCanBuildAndroid();
     }
     void RemoveLastPiece()
     {
         android.UpdateAndroidVisuals(currentPieceType);
         buildedPieces.Remove(currentPieceType);
         CheckCanRemove();
+        CheckCanBuild();
+        CheckCanBuildAndroid();
+        //Decirle al earnignController que aumente el porcentaje de castigo
+        earningsScreenController.AddPenalty(0.1f);
+    }
+
+    void BuildAndroid()
+    {
+        earningsScreenController.AddMoney(orderScreenController.ComparePieces(buildedPieces));
+        android.ResetAndroid();
+        orderManager.OnOrderFinished();
+        buildedPieces.Clear();
+        CheckCanBuildAndroid();
+        selectedPiece = null;
     }
 
     void CheckCanBuild()
     {
-        if(!buildedPieces.ContainsKey(currentPieceType)) buildButton.interactable = true;
-        else buildButton.interactable = false;
+        buildPieceButton.interactable = (!buildedPieces.ContainsKey(currentPieceType))? true : false;
     }
     void CheckCanRemove()
     {
-        if (buildedPieces.ContainsKey(currentPieceType)) removeButton.interactable = true;
-        else removeButton.interactable = false;
+        removePieceButton.interactable = (buildedPieces.ContainsKey(currentPieceType))? true : false;
+    }
+
+    void CheckCanBuildAndroid()
+    {
+        buildAndroidButton.interactable = (buildedPieces.Count == 5) ? true : false;
     }
 }

@@ -68,4 +68,13 @@ public class AndroidController : MonoBehaviour
                 break;
         }
     }
+
+    public void ResetAndroid()
+    {
+        HeadPiece();
+        BodyPiece();
+        RightPiece();
+        LeftPiece();
+        WheelPiece();
+    }
 }

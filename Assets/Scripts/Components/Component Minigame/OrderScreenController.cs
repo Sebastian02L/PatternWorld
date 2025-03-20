@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -40,9 +42,41 @@ public class OrderScreenController : MonoBehaviour
     }
 
     //Swap the storaged next order to take the place of the current order and receive the next one
-    public void SwapOrders(Order followingOrder)
+    public void SwapOrders(Order followingOrder, OrderManager orderManager)
     {
-        SetActualOrder(nextOrder);
-        SetNextOrder(followingOrder);
+        if (followingOrder == null && nextOrder != null) //Case: When there are only 2 orders and the queue is empty
+        {
+            SetActualOrder(nextOrder);
+            nextOrder = null;
+            EraseSecondOrderUI();
+        }
+        else if (nextOrder == null && currentOrder != null)  //Case: When theres only 1 order and the queue is empty
+        {
+            orderManager.GameOver();
+        }
+        else //When there are still orders in the queue
+        {
+            SetActualOrder(nextOrder);
+            SetNextOrder(followingOrder);
+        }
+    }
+
+    //Compares the dictionarys to check if the pieces are correct
+    internal float ComparePieces(Dictionary<string, PieceData> buildedPieces)
+    {
+        float earning = 0f;
+        foreach(var piece in buildedPieces.Values)
+        {
+            if (currentOrder.pieces.ContainsValue(piece)) earning += piece.value;
+        }
+        return earning;
+    }
+
+    void EraseSecondOrderUI()
+    {
+        foreach (TextMeshProUGUI text in nextOrderText)
+        {
+            text.text = string.Empty;
+        }
     }
 }

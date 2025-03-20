@@ -1,19 +1,22 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TutorialController : MonoBehaviour
 {
-    [SerializeField] private TutorialData tutorialData;
+    TutorialData tutorialData;
     [SerializeField] Image controls;
     [SerializeField] Image rules;
     [SerializeField] Button continueButton;
+    [SerializeField] bool hideCursor = false;
 
     //Event that needs to be used to activate all minigame systems when the tutorial is over
     public static event Action OnTutorialClosed;
 
     void Start()
     {
+        tutorialData = Resources.Load<TutorialData>("Tutorial/" + SceneManager.GetActiveScene().name);
         controls.sprite = tutorialData.controlsImage;
         rules.sprite = tutorialData.rulesImage;
 
@@ -29,6 +32,7 @@ public class TutorialController : MonoBehaviour
 
     private void CloseTutorial()
     {
+        if(hideCursor) GetComponentInParent<CursorVisibility>().HideCursor();
         OnTutorialClosed?.Invoke();
         gameObject.SetActive(false);
     }
