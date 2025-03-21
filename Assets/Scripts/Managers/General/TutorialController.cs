@@ -10,6 +10,7 @@ public class TutorialController : MonoBehaviour
     [SerializeField] Image rules;
     [SerializeField] Button continueButton;
     [SerializeField] bool hideCursor = false;
+    [SerializeField] TimerComponent gameTimer;
 
     //Event that needs to be used to activate all minigame systems when the tutorial is over
     public static event Action OnTutorialClosed;
@@ -20,14 +21,16 @@ public class TutorialController : MonoBehaviour
         controls.sprite = tutorialData.controlsImage;
         rules.sprite = tutorialData.rulesImage;
 
-        controls.preserveAspect = true;
-        rules.preserveAspect = true;
+        //controls.preserveAspect = true;
+        //rules.preserveAspect = true;
         continueButton.onClick.AddListener(CloseTutorial);
+        OnTutorialClosed += gameTimer.StartTimer;
     }
 
     private void OnDestroy()
     {
         continueButton.onClick.RemoveListener(CloseTutorial);
+        OnTutorialClosed -= gameTimer.StartTimer;
     }
 
     private void CloseTutorial()

@@ -110,6 +110,7 @@ public class PiecesScreenController : MonoBehaviour
     //Update the UI buttons with the correct pieces according with the selected type
     void SetPiecesList(List<PieceData> pieces)
     {
+        AudioManager.Instance.PlaySoundEffect("AS_BuilderArm", "CM_SelectedPiece", 0.5f);
         currentPieceType = pieces[0].type;
         CheckCanRemove();
 
@@ -122,6 +123,7 @@ public class PiecesScreenController : MonoBehaviour
     //Invoked when the player click's the pieces button
     public void ShowPieceInformation(PieceData piece)
     {
+        AudioManager.Instance.PlaySoundEffect("AS_BuilderArm", "CM_PickUpPiece", 0.5f);
         selectedPiece = piece;
         pieceMakerText.text = piece.maker;
         pieceModelVersionText.text = piece.modelVersion;
@@ -130,6 +132,7 @@ public class PiecesScreenController : MonoBehaviour
 
     void BuildPiece()
     {
+        AudioManager.Instance.PlaySoundEffect("AS_BuilderArm", "CM_BuildPiece", 1f);
         android.UpdateAndroidVisuals(currentPieceType, selectedPiece);
         buildedPieces.Add(selectedPiece.type, selectedPiece);
         CheckCanBuild();
@@ -138,6 +141,7 @@ public class PiecesScreenController : MonoBehaviour
     }
     void RemoveLastPiece()
     {
+        AudioManager.Instance.PlaySoundEffect("AS_BuilderArm", "CM_RemovePiece", 1f);
         android.UpdateAndroidVisuals(currentPieceType);
         buildedPieces.Remove(currentPieceType);
         CheckCanRemove();

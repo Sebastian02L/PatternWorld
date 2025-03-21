@@ -16,6 +16,7 @@ public class OrderManager : MonoBehaviour
     [SerializeField] EarningsScreenController earningsScreenController;
     [SerializeField] EndGameController endGameController;
     [SerializeField] CursorVisibility cursorVisibility;
+    [SerializeField] TimerComponent gameTimer;
     OrderScreenController screenController;
 
     int currentRound = 1;
@@ -29,6 +30,8 @@ public class OrderManager : MonoBehaviour
         //Loads the round configuration
         minigameData = Resources.Load<ComponentRoundData>(SceneManager.GetActiveScene().name + "/" + currentRound);
         piecesScreen.Setup(minigameData);
+        gameTimer.SetStartTime(minigameData.roundDuration);
+        gameTimer.onTimerEnd += GameOver;
 
         screenController = GetComponent<OrderScreenController>();
         orders = new Queue<Order>(numberOfOrders);
@@ -36,6 +39,11 @@ public class OrderManager : MonoBehaviour
 
         QuotaScreenController quotaScreenController = GameObject.FindAnyObjectByType<QuotaScreenController>();
         quotaScreenController.SetQuota(minigameData.quota);
+    }
+
+    private void OnDestroy()
+    {
+        gameTimer.onTimerEnd -= GameOver;
     }
 
     //Creates the orders using the ComponentRoundData

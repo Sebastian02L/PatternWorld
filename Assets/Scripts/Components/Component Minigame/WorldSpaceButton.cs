@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class WorldSpaceButton : MonoBehaviour, IRaycasteable
@@ -18,8 +19,10 @@ public class WorldSpaceButton : MonoBehaviour, IRaycasteable
     public void OnRaycastStay()
     {
         Debug.Log($"ESTOY EN EL BOTÓN + {gameObject.name}");
+        ExecuteEvents.Execute(button.gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerEnterHandler);
         if (Input.GetMouseButtonUp(0) && !clickProcessed && button.interactable)
         {
+            AudioManager.Instance.PlaySoundEffect("AS_Mouse", "CM_MouseClick", 1f);
             button.onClick.Invoke();
             clickProcessed = true;
         }
@@ -28,6 +31,7 @@ public class WorldSpaceButton : MonoBehaviour, IRaycasteable
     public void OnRaycastLeave()
     {
         Debug.Log($"SALÍ DEL BOTÓN + {gameObject.name}");
+        ExecuteEvents.Execute(button.gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerExitHandler);
     }
 
     public void Update()

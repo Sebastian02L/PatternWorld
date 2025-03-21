@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 2
   m_EditorClassIdentifier: 
   quota: 750
-  roundDuration: 180
+  roundDuration: 225
   headPieces:
   - {fileID: 11400000, guid: 86c046f62ff105f4784482f38c3cf803, type: 2}
   - {fileID: 11400000, guid: 01becd0b67e5d254a98e57063fe47025, type: 2}

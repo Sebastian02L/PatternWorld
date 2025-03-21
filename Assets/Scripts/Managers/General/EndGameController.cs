@@ -12,6 +12,7 @@ public class EndGameController : MonoBehaviour
         Time.timeScale = 0f;
         endGameTitle.text = (playerHasWon) ? "Ronda Superada" : "Ronda Perdida";
         buttonText.text = (playerHasWon) ? "Continuar" : "Reintentar";
+        AudioManager.Instance.PlayMusic((playerHasWon)? "GM_Victory" : "GM_Defeated", 0.8f, false);
         endGamePanel.SetActive(true);
     }
 }

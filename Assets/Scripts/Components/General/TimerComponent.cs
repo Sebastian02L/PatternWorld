@@ -1,15 +1,22 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public class TimerComponent : MonoBehaviour
 {
     [SerializeField] float timerMaxTime;
+    [SerializeField] TextMeshProUGUI timerText;
     public Action onTimerEnd;
     bool active = false;
 
     public void StartTimer()
     {
         active = true;
+    }
+
+    public void SetStartTime(float time)
+    {
+        timerMaxTime = time;
     }
 
     void Update()
@@ -22,6 +29,11 @@ public class TimerComponent : MonoBehaviour
         {
             onTimerEnd?.Invoke();
             active = false;
+        }
+
+        if (timerText != null) 
+        { 
+            timerText.text = ((int)timerMaxTime).ToString();
         }
     }
 }

@@ -15,6 +15,9 @@ public class OrderScreenController : MonoBehaviour
     [SerializeField] TextMeshProUGUI nextRevenueText;
     Order nextOrder;
 
+    [Header("References to other Scripts")]
+    [SerializeField]NotifierLightsController notifierLights;
+
     //Displays the current order on the second screen's desk
     void SetActualOrder(Order order)
     {
@@ -65,10 +68,23 @@ public class OrderScreenController : MonoBehaviour
     internal float ComparePieces(Dictionary<string, PieceData> buildedPieces)
     {
         float earning = 0f;
+        bool allCorrect = true;
+
         foreach(var piece in buildedPieces.Values)
         {
             if (currentOrder.pieces.ContainsValue(piece)) earning += piece.value;
+            else allCorrect = false;
         }
+
+        if (allCorrect)
+        {
+            notifierLights.OnCorrectOrder();
+        }
+        else
+        {
+            notifierLights.OnIncorrectOrder();
+        }
+
         return earning;
     }
 
