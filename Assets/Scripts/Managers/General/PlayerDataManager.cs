@@ -26,8 +26,9 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         return minigamesData;
     }
 
-    public void Start()
+    public void Awake()
     {
+        base.Awake();
         ////TEMPORARY INSTRUCTIONS TO DELETE ALL DATA
         //PlayerPrefs.DeleteAll();
         //return;
@@ -108,7 +109,7 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     //Creates the default structure when you are in the Settings UI, then makes other scritps execute the code that reads the new structure.
     void ResetStructure()
     {
-        Start();
+        Awake();
         GameObject.FindFirstObjectByType<SceneLoaderManager>(FindObjectsInactive.Include).SetNextScene("MenuScene");
     }
 

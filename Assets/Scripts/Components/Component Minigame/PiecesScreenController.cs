@@ -148,7 +148,7 @@ public class PiecesScreenController : MonoBehaviour
         CheckCanBuild();
         CheckCanBuildAndroid();
         //Decirle al earnignController que aumente el porcentaje de castigo
-        earningsScreenController.AddPenalty(0.1f);
+        earningsScreenController.AddPenalty(10);
     }
 
     void BuildAndroid()

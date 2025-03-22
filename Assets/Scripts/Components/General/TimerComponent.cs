@@ -14,6 +14,11 @@ public class TimerComponent : MonoBehaviour
         active = true;
     }
 
+    public void PauseTimer()
+    {
+        active = false;
+    }
+
     public void SetStartTime(float time)
     {
         timerMaxTime = time;

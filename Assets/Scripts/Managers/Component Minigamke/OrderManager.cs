@@ -39,6 +39,7 @@ public class OrderManager : MonoBehaviour
 
         QuotaScreenController quotaScreenController = GameObject.FindAnyObjectByType<QuotaScreenController>();
         quotaScreenController.SetQuota(minigameData.quota);
+        earningsScreenController.quota = minigameData.quota;
     }
 
     private void OnDestroy()
@@ -85,7 +86,7 @@ public class OrderManager : MonoBehaviour
     //Invoked when the time is over or when theres no more orders
     public void GameOver()
     {
-        //EarningsScreenController earningsScreenController = GameObject.FindAnyObjectByType<EarningsScreenController>();
+        gameTimer.PauseTimer();
         //Check win or lose round
         if (earningsScreenController.GetCurrentEarnings >= minigameData.quota)
         {
