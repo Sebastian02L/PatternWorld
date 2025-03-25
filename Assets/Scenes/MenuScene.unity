@@ -1817,6 +1817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerMaxTime: 5
+  timerText: {fileID: 0}
 --- !u!4 &174517069
 Transform:
   m_ObjectHideFlags: 0
@@ -11496,7 +11497,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1665627465263109390}
         m_TargetAssemblyTypeName: SceneLoaderManager, Assembly-CSharp
         m_MethodName: SetNextScene
         m_Mode: 5
@@ -11505,7 +11506,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: ObserverMinigame
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1306029752

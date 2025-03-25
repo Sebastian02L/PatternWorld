@@ -24,13 +24,13 @@ public class TutorialController : MonoBehaviour
         //controls.preserveAspect = true;
         //rules.preserveAspect = true;
         continueButton.onClick.AddListener(CloseTutorial);
-        OnTutorialClosed += gameTimer.StartTimer;
+        if(gameTimer != null) OnTutorialClosed += gameTimer.StartTimer;
     }
 
     private void OnDestroy()
     {
         continueButton.onClick.RemoveListener(CloseTutorial);
-        OnTutorialClosed -= gameTimer.StartTimer;
+        if (gameTimer != null) OnTutorialClosed -= gameTimer.StartTimer;
     }
 
     private void CloseTutorial()

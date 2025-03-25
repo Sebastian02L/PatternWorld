@@ -87,6 +87,7 @@ public class OrderManager : MonoBehaviour
     public void GameOver()
     {
         gameTimer.PauseTimer();
+        GameObject.FindAnyObjectByType<ButtonMouseEvents>().enabled = false;
         //Check win or lose round
         if (earningsScreenController.GetCurrentEarnings >= minigameData.quota)
         {

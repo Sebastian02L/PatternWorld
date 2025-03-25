@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b1492dc0cdfb2b4ca7c00f778f52759, type: 3}
+  m_Name: ObserverMinigame
+  m_EditorClassIdentifier: 
+  strips:
+  - {fileID: 2800000, guid: d531afea05cfb094c95e6f3f66efe5d3, type: 3}
+  - {fileID: 2800000, guid: b59995687da2a564b88ae6b3d30c128f, type: 3}
+  - {fileID: 2800000, guid: e7f1f71f4ef113842813dfbd3a9ec7b2, type: 3}
+  - {fileID: 2800000, guid: 07ea17ef3ca724e4690627c22c11b0ec, type: 3}
+  stripsText:
+  - {fileID: 4900000, guid: d4c0b9a2b3e2de347ba189c79856296c, type: 3}
+  - {fileID: 4900000, guid: e173856f7f3bae1409e0a36283714461, type: 3}
+  - {fileID: 4900000, guid: d07376d4ef6401b4496950db8b85fc49, type: 3}
+  - {fileID: 4900000, guid: 651e4a9c8a712f8419e5f90519101702, type: 3}

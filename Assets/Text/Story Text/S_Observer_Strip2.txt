@@ -1,0 +1,1 @@
+Los ingenieros encontraron el problema que aprovecharon los rebeldes para desplegar el virus. El sistema central de seguridad de la base “Subjecurity” estaba apagado en ese momento, ya que se estaba agregando un nuevo sistema de puertas automáticas, y tal y como estaba hecho Subjecurity, cada vez que se quería agregar algo nuevo, era necesario modificar el código fuente.
