@@ -72,6 +72,34 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Interactions",
+            "id": "6b3ddf97-91fd-4afa-b7e0-31274bee0c71",
+            "actions": [
+                {
+                    "name": "Hide",
+                    "type": "Button",
+                    "id": "9182d55a-66ae-425e-98bc-22bcf874e5c4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4b82c9b9-5991-4097-acfc-96d9f6881dbc",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hide",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

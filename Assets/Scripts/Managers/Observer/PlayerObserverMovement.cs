@@ -1,31 +1,34 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerObserverMovement : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float rotationSpeed = 10f;
+
+    PlayerInput playerInput;
     CharacterController charController;
-    ObserverControls observerControls;
 
     Vector2 moveDirection;
+    bool processMovement = true;
 
     void Awake()
     {
         charController = GetComponent<CharacterController>();
-
-        observerControls = new ObserverControls();
-        observerControls.Enable();
+        playerInput = GetComponent<PlayerInput>();
+        playerInput.actions.Enable();
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        observerControls.Disable();
+        playerInput.actions.Disable();
     }
 
     private void Update()
     {
-        moveDirection = observerControls.Movement.Move.ReadValue<Vector2>();
+        moveDirection = playerInput.actions["Move"].ReadValue<Vector2>();
 
         if (moveDirection.sqrMagnitude > 0.1f)
         {
@@ -44,11 +47,35 @@ public class PlayerObserverMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!processMovement) return;
         //If there is movement then we will move the player
         if (moveDirection.sqrMagnitude > 0.1f)
         {
             Vector3 move = new Vector3(moveDirection.x, 0, moveDirection.y) * moveSpeed * Time.fixedDeltaTime;
             charController.Move(move);
         }
+    }
+
+    //Turns off/on the movement of the player
+    public void MovementIsActive(bool value)
+    {
+        if(value)
+        {
+            playerInput.actions["Move"].Enable();
+            StartCoroutine(MovementDelayActivation());
+        }
+        else
+        {
+            playerInput.actions["Move"].Disable();
+            processMovement = false;
+        }
+    }
+
+    //Delay the process of the movement. The movement is made on FixedUpdate, if the player press any WASD key when is exiting the hide area
+    //the player will pop on the floor and then teleported down the floor, caused by the fixed update.
+    IEnumerator MovementDelayActivation()
+    {
+        yield return new WaitForSeconds(0.1f);
+        processMovement = true;
     }
 }
