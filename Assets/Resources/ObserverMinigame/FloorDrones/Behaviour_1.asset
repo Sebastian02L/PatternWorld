@@ -18,5 +18,9 @@ MonoBehaviour:
   turnedAroundLookTime: 2
   FOV: 45
   visionDistance: 5
+  idleProbability: 0.25
+  nextWaypointProbability: 0.75
+  turnProbability: 0.25
+  changeWise: 0
   grabCylinder: {fileID: 5742524600089856608, guid: f14c277963bfaee4fa75edc50acc684e, type: 3}
   grabSphere: {fileID: 1160259638207386483, guid: a28eb1a0247e9f943be215801170f6a9, type: 3}

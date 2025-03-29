@@ -31,9 +31,10 @@ namespace ObserverMinigame
             index = Random.Range(0, waypoints.Length);
         }
 
-        public void ChangeDirection()
+        public void ChangeWise()
         {
             direction *= -1;
+            CalculateNextIndex();
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -10,6 +11,9 @@ namespace ObserverMinigame
         float rotationSpeed;
         bool alingmnetCompleted = false;
         bool shootCompleted = false;
+
+        float deadTime = 2f;
+        float timer = 0f;
 
         public ShootPlayerState(IContext context, EnemyData agentData, GameObject player, GameObject agentGO) : base(context, player, agentGO, agentData)
         {
@@ -37,14 +41,14 @@ namespace ObserverMinigame
             }
             else if (alingmnetCompleted && !shootCompleted)
             {
-                Shoot();
+                timer += Time.deltaTime;
+                
+                if(timer >= deadTime) Shoot();
             }
         }
 
         void Shoot()
         {
-            Debug.Log("Shooting Player");
-
             GameObject cylinder = GameObject.Instantiate(agentData.grabCylinder);
             GameObject sphere = GameObject.Instantiate(agentData.grabSphere);
 

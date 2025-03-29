@@ -40,10 +40,10 @@ namespace ObserverMinigame
                 else
                 {
                     timer += Time.deltaTime;
-                    if (timer >= 1f)
+                    if (timer >= 3f)
                     {
                         timer = 0f;
-                        EvaluateTurnAroundTransition();
+                        EvaluateSpecialStateTransition();
                     }
                 }
             }
@@ -57,7 +57,7 @@ namespace ObserverMinigame
         void RandomizeTransition()
         {
             float probability = Random.Range(0f, 1f);
-            if (probability <= 0.25f)
+            if (probability <= agentData.idleProbability)
             {
                 context.SetState(new IdleState(context, agentData, player, agentGameObject));
             }
@@ -67,13 +67,29 @@ namespace ObserverMinigame
             }
         }
 
-        void EvaluateTurnAroundTransition()
+        void EvaluateSpecialStateTransition()
         {
             float probability = Random.Range(0f, 1f);
-            if (probability <= 0.25f)
+
+            switch (agentData.enemyType)
             {
-                agent.isStopped = true;
-                context.SetState(new TurnAroundState(context, agentData, player, agentGameObject));
+                case EnemyData.EnemyType.FloorDrone:
+
+                    if (probability <= agentData.turnProbability)
+                    {
+                        agent.isStopped = true;
+                        context.SetState(new TurnAroundState(context, agentData, player, agentGameObject));
+                    }
+                    break;
+
+                case EnemyData.EnemyType.FlyingDrone:
+
+                    if (probability <= agentData.changeWise)
+                    {
+                        agent.isStopped = true;
+                        context.SetState(new ChangeWiseState(context, agentData, player, agentGameObject));
+                    }
+                    break;
             }
         }
 
