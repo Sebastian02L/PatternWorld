@@ -33,7 +33,7 @@ public class HideController : MonoBehaviour
             canvas.gameObject.SetActive(true);
             hideAction.action.performed += HidePlayer;
             player = other.gameObject;
-            Debug.Log("Player entered hide area");
+            //Debug.Log("Player entered hide area");
         }
     }
 
@@ -45,7 +45,7 @@ public class HideController : MonoBehaviour
             hideAction.action.performed -= HidePlayer;
             player = null;
             lastPlayerPosition = Vector3.zero;
-            Debug.Log("Player exited hide area");
+            //Debug.Log("Player exited hide area");
         }
     }
 

@@ -30,8 +30,13 @@ public class PlayerObserverMovement : MonoBehaviour
     {
         moveDirection = playerInput.actions["Move"].ReadValue<Vector2>();
 
+        if (!processMovement) return;
+        //If there is movement then we will move the player
         if (moveDirection.sqrMagnitude > 0.1f)
         {
+            Vector3 move = new Vector3(moveDirection.x, 0, moveDirection.y).normalized * moveSpeed;
+            charController.SimpleMove(move);
+       
             //Get the direction of the movement 
             Vector3 targetDirection = new Vector3(moveDirection.x, 0, moveDirection.y);
             targetDirection.Normalize();
@@ -45,16 +50,6 @@ public class PlayerObserverMovement : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
-    {
-        if (!processMovement) return;
-        //If there is movement then we will move the player
-        if (moveDirection.sqrMagnitude > 0.1f)
-        {
-            Vector3 move = new Vector3(moveDirection.x, 0, moveDirection.y) * moveSpeed * Time.fixedDeltaTime;
-            charController.Move(move);
-        }
-    }
 
     //Turns off/on the movement of the player
     public void MovementIsActive(bool value)
@@ -71,11 +66,16 @@ public class PlayerObserverMovement : MonoBehaviour
         }
     }
 
-    //Delay the process of the movement. The movement is made on FixedUpdate, if the player press any WASD key when is exiting the hide area
-    //the player will pop on the floor and then teleported down the floor, caused by the fixed update.
+    //Delay the process of the movement. If the player press any WASD key when is exiting the hide area
+    //the player sometimes will pop on the floor and then get teleported down the floor.
     IEnumerator MovementDelayActivation()
     {
         yield return new WaitForSeconds(0.1f);
         processMovement = true;
+    }
+
+    public void PlayerLose()
+    {
+        playerInput.actions.Disable();  
     }
 }
