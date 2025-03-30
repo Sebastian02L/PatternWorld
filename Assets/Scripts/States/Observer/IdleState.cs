@@ -25,7 +25,8 @@ namespace ObserverMinigame
                 timer += Time.deltaTime;
                 if (timer >= maxIdleDurationTime)
                 {
-                    context.SetState(new MoveState(context, agentData, player, agentGameObject));
+                    if(agentData.enemyType == EnemyData.EnemyType.Turret) context.SetState(new RotateState(context, agentData, player, agentGameObject));
+                    else context.SetState(new MoveState(context, agentData, player, agentGameObject));
                 }
             }
         }

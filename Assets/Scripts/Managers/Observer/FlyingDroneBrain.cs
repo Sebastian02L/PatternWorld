@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace ObserverMinigame 
 {
@@ -49,6 +50,29 @@ namespace ObserverMinigame
         private void FixedUpdate()
         {
             currentState.FixedUpdate();
+        }
+
+        public void EvaluatePostMoveTransition()
+        {
+            float probability = Random.Range(0f, 1f);
+            if (probability <= droneData.idleProbability)
+            {
+                SetState(new IdleState(this, droneData, player, gameObject));
+            }
+            else
+            {
+                SetState(new MoveState(this, droneData, player, gameObject));
+            }
+        }
+
+        public void EvaluateInterruptionTransition()
+        {
+            float probability = Random.Range(0f, 1f);
+            if (probability <= droneData.changeWise)
+            {
+                GetComponent<NavMeshAgent>().isStopped = true;
+                SetState(new ChangeWiseState(this, droneData, player, gameObject));
+            }
         }
     }
 }

@@ -49,18 +49,19 @@ namespace ObserverMinigame
 
         void Shoot()
         {
+            Transform shootOrigin = agentGameObject.transform.Find("ShootOrigin").gameObject.transform;
             GameObject cylinder = GameObject.Instantiate(agentData.grabCylinder);
             GameObject sphere = GameObject.Instantiate(agentData.grabSphere);
 
-            Vector3 cylinderOrigin = (player.transform.position + agentGameObject.transform.position) / 2;
+            Vector3 cylinderOrigin = (player.transform.position + shootOrigin.position) / 2;
             cylinder.transform.position = cylinderOrigin;
 
-            Vector3 direction = player.transform.position - agentGameObject.transform.position;
+            Vector3 direction = player.transform.position - shootOrigin.position;
 
             cylinder.transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0); ; 
             float height = direction.magnitude;
 
-            cylinder.transform.localScale = new Vector3(0.1f, height/2, 0.1f);
+            cylinder.transform.localScale = new Vector3(0.03f, height/2, 0.03f);
 
             sphere.transform.position = player.transform.position;
             sphere.transform.localScale = new Vector3(1f, 1f, 1f);

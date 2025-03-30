@@ -16,13 +16,17 @@ namespace ObserverMinigame
 
         public float idleProbability;
         public float nextWaypointProbability;
-        public float turnProbability;
 
         [Header("Floor Drone Specific Stats & Probabilities")]
         public float turnedAroundLookTime;
+        public float turnProbability;
 
         [Header("Flying Drone Specific Stats & Probabilities")]
         public float changeWise;
+
+        [Header("Flying Drone Specific Stats & Probabilities")]
+        public float restartDuration;
+        public float restartProbability;
 
         [Header("Grabber Prefabs")]
         public GameObject grabCylinder;

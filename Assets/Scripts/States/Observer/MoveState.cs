@@ -43,7 +43,7 @@ namespace ObserverMinigame
                     if (timer >= 3f)
                     {
                         timer = 0f;
-                        EvaluateSpecialStateTransition();
+                        EvaluateInterruption();
                     }
                 }
             }
@@ -56,41 +56,12 @@ namespace ObserverMinigame
 
         void RandomizeTransition()
         {
-            float probability = Random.Range(0f, 1f);
-            if (probability <= agentData.idleProbability)
-            {
-                context.SetState(new IdleState(context, agentData, player, agentGameObject));
-            }
-            else
-            {
-                context.SetState(new MoveState(context, agentData, player, agentGameObject));
-            }
+            context.EvaluatePostMoveTransition();
         }
 
-        void EvaluateSpecialStateTransition()
+        void EvaluateInterruption()
         {
-            float probability = Random.Range(0f, 1f);
-
-            switch (agentData.enemyType)
-            {
-                case EnemyData.EnemyType.FloorDrone:
-
-                    if (probability <= agentData.turnProbability)
-                    {
-                        agent.isStopped = true;
-                        context.SetState(new TurnAroundState(context, agentData, player, agentGameObject));
-                    }
-                    break;
-
-                case EnemyData.EnemyType.FlyingDrone:
-
-                    if (probability <= agentData.changeWise)
-                    {
-                        agent.isStopped = true;
-                        context.SetState(new ChangeWiseState(context, agentData, player, agentGameObject));
-                    }
-                    break;
-            }
+            context.EvaluateInterruptionTransition();
         }
 
         public override void Exit()
