@@ -35,7 +35,7 @@ public class TutorialController : MonoBehaviour
 
     private void CloseTutorial()
     {
-        if(hideCursor) GetComponentInParent<CursorVisibility>().HideCursor();
+        if(hideCursor) CursorVisibility.HideCursor();
         OnTutorialClosed?.Invoke();
         gameObject.SetActive(false);
     }

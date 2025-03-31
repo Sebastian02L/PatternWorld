@@ -6,15 +6,12 @@ public class PauseController : MonoBehaviour
     [SerializeField] GameObject pausePanel;
     bool gamePaused = false;
     public bool IsGamePaused => gamePaused;
-
-    CursorVisibility cursorManager;
     
     bool processInput = true;
     bool canPause = false;
 
     private void Start()
     {
-        cursorManager = GetComponent<CursorVisibility>();
         TutorialController.OnTutorialClosed += ActivatePauseFunction;
     }
 
@@ -42,14 +39,14 @@ public class PauseController : MonoBehaviour
     {
         if (!gamePaused)
         {
-            cursorManager?.ShowCursor();
+            CursorVisibility.ShowCursor();
             Time.timeScale = 0.0f;
             pausePanel.SetActive(true);
             gamePaused = true;
         }
         else
         {
-            cursorManager?.HideCursor();
+            CursorVisibility.HideCursor();
             Time.timeScale = 1.0f;
             pausePanel.SetActive(false);
             gamePaused = false;

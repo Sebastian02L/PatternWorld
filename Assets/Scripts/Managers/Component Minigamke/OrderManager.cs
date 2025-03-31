@@ -15,7 +15,6 @@ public class OrderManager : MonoBehaviour
     [SerializeField] PiecesScreenController piecesScreen;
     [SerializeField] EarningsScreenController earningsScreenController;
     [SerializeField] EndGameController endGameController;
-    [SerializeField] CursorVisibility cursorVisibility;
     [SerializeField] TimerComponent gameTimer;
     OrderScreenController screenController;
 
@@ -106,6 +105,6 @@ public class OrderManager : MonoBehaviour
             endGameController.EnablePanel(false);
         }
 
-        cursorVisibility.ShowCursor();
+        CursorVisibility.ShowCursor();
     }
 }
