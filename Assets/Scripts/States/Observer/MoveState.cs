@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 namespace ObserverMinigame
 {
@@ -10,7 +12,7 @@ namespace ObserverMinigame
         float timer;
 
 
-        public MoveState(IContext context, EnemyData agentData, GameObject player, GameObject agentGO) : base(context, player, agentGO, agentData)
+        public MoveState(IContext context, EnemyData agentData, GameObject player, GameObject agentGO, Action<int> notify) : base(context, player, agentGO, agentData, notify)
         {
             agent = agentGO.GetComponent<NavMeshAgent>();
             agent.speed = agentData.moveSpeed;
@@ -28,7 +30,7 @@ namespace ObserverMinigame
             if (CheckPlayerInFOV(agentData.FOV, agentData.visionDistance))
             {
                 agent.isStopped = true;
-                context.SetState(new ShootPlayerState(context, agentData, player, agentGameObject));
+                context.SetState(new ShootPlayerState(context, agentData, player, agentGameObject, notify));
             }
             else
             {

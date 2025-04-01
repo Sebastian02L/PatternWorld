@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
@@ -15,7 +16,7 @@ namespace ObserverMinigame
         float deadTime = 2f;
         float timer = 0f;
 
-        public ShootPlayerState(IContext context, EnemyData agentData, GameObject player, GameObject agentGO) : base(context, player, agentGO, agentData)
+        public ShootPlayerState(IContext context, EnemyData agentData, GameObject player, GameObject agentGO, Action<int> notify) : base(context, player, agentGO, agentData, notify)
         {
             rotationSpeed = this.agentData.rotationSpeed;
             Vector3 direction = (player.transform.position - agentGameObject.transform.position);
@@ -45,6 +46,12 @@ namespace ObserverMinigame
                 
                 if(timer >= deadTime) Shoot();
             }
+            else if(shootCompleted)
+            {
+                timer += Time.deltaTime;
+
+                if (timer >= deadTime) GameObject.FindAnyObjectByType<GameManager>().GameOver();
+            }
         }
 
         void Shoot()
@@ -66,8 +73,8 @@ namespace ObserverMinigame
             sphere.transform.position = player.transform.position;
             sphere.transform.localScale = new Vector3(1f, 1f, 1f);
 
+            timer = 0f;
             shootCompleted = true;
-
         }
 
         public override void Exit()

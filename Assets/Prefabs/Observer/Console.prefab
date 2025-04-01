@@ -583,11 +583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactAction: {fileID: 8707264656996067253, guid: 064cdca3bbe875f459ec1ce4508ba492, type: 3}
-  consoleInterfaceCanvas: {fileID: 5547323683406117250}
-  connectButton: {fileID: 2123660526339683048}
-  quitConsoleButton: {fileID: 4893783978730064321}
-  consoleSlider: {fileID: 229219053352312537}
-  connectionText: {fileID: 1135328470459555269}
+  consoleUI: {fileID: 0}
 --- !u!1 &1068150457374542625
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,7 +1067,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!114 &4434600665692095045
 MonoBehaviour:
@@ -5600,6 +5596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1b4f810a38b7f4dab0050d8663afdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shouldTurnOffOnStart: 1
 --- !u!1 &8875919681403791896
 GameObject:
   m_ObjectHideFlags: 0

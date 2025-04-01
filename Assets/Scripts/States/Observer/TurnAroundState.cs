@@ -1,6 +1,7 @@
+using System;
 using Unity.Collections;
 using UnityEngine;
-
+using Random = UnityEngine.Random;
 namespace ObserverMinigame
 {
     public class TurnAroundState : AState
@@ -15,7 +16,7 @@ namespace ObserverMinigame
         float timer;
 
 
-        public TurnAroundState(IContext context, EnemyData agentData, GameObject player, GameObject agent) : base(context, player, agent, agentData)
+        public TurnAroundState(IContext context, EnemyData agentData, GameObject player, GameObject agent, Action<int> notify) : base(context, player, agent, agentData, notify)
         {
             rotationSpeed = agentData.rotationSpeed;
             timer = 0f;
@@ -29,7 +30,7 @@ namespace ObserverMinigame
         {
             if (CheckPlayerInFOV(agentData.FOV, agentData.visionDistance))
             {
-                context.SetState(new ShootPlayerState(context, agentData, player, agentGameObject));
+                context.SetState(new ShootPlayerState(context, agentData, player, agentGameObject, notify));
             }
             else
             {
@@ -46,7 +47,7 @@ namespace ObserverMinigame
                 }
                 else
                 {
-                    if (phase == 2) context.SetState(new MoveState(context, agentData, player, agentGameObject));
+                    if (phase == 2) context.SetState(new MoveState(context, agentData, player, agentGameObject, notify));
 
                     timer += Time.deltaTime;
                     if (timer >= maxLookDurationTime)

@@ -1,15 +1,19 @@
+using System;
+using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 namespace ObserverMinigame 
 {
     public class TurretBrain : MonoBehaviour, IContext
     {
-        [SerializeField] EnemyData droneData;
+        EnemyData turretData;
         Light sensor;
         IState currentState;
 
         GameObject player;
+        public static event Action<int> OnPlayerInSight;
 
         public IState GetState()
         {
@@ -34,12 +38,19 @@ namespace ObserverMinigame
         void Start()
         {
             player = GameObject.FindWithTag("Player");
+            SetUpBehaviour();
+        }
 
-            SetState(new IdleState(this, droneData, player, gameObject));
+        void SetUpBehaviour()
+        {
+            List<EnemyData> behaviours = GameObject.FindAnyObjectByType<GameManager>().GetRoundData().turretData;
+            turretData = behaviours[Random.Range(0, behaviours.Count)];
+
             sensor = GetComponentInChildren<Light>();
-            sensor.innerSpotAngle = droneData.FOV;
-            sensor.spotAngle = droneData.FOV;
-            sensor.range = droneData.visionDistance;
+            sensor.innerSpotAngle = turretData.FOV;
+            sensor.spotAngle = turretData.FOV;
+            sensor.range = turretData.visionDistance;
+            SetState(new IdleState(this, turretData, player, gameObject, Notify));
         }
 
         void Update()
@@ -55,23 +66,28 @@ namespace ObserverMinigame
         public void EvaluatePostMoveTransition()
         {
             float probability = Random.Range(0f, 1f);
-            if (probability <= droneData.idleProbability)
+            if (probability <= turretData.idleProbability)
             {
-                SetState(new IdleState(this, droneData, player, gameObject));
+                SetState(new IdleState(this, turretData, player, gameObject, Notify));
             }
             else
             {
-                SetState(new RotateState(this, droneData, player, gameObject));
+                SetState(new RotateState(this, turretData, player, gameObject, Notify));
             }
         }
 
         public void EvaluateInterruptionTransition()
         {
             float probability = Random.Range(0f, 1f);
-            if (probability <= droneData.restartProbability)
+            if (probability <= turretData.restartProbability)
             {
-                SetState(new RestartState(this, droneData, player, gameObject));
+                SetState(new RestartState(this, turretData, player, gameObject, Notify));
             }
+        }
+
+        public void Notify(int barkState)
+        {
+            OnPlayerInSight?.Invoke(barkState);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using ObserverMinigame;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class LookAtCamera : MonoBehaviour
 {
+    [SerializeField] bool shouldTurnOffOnStart = true;
     private void Start()
     {
-        gameObject.SetActive(false);
+       if(shouldTurnOffOnStart) gameObject.SetActive(false);
     }
     void Update()
     {

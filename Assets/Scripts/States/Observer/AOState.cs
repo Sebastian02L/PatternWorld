@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,13 +10,16 @@ namespace ObserverMinigame
         protected GameObject agentGameObject;
         protected GameObject player;
         protected EnemyData agentData;
+        protected Action<int> notify;
+        protected int lastBarkState = 0;
 
-        public AState(IContext context, GameObject player, GameObject agent, EnemyData agentData)
+        public AState(IContext context, GameObject player, GameObject agent, EnemyData agentData, Action<int> notify)
         {
             this.context = context;
             this.agentGameObject = agent;
             this.player = player;
             this.agentData = agentData;
+            this.notify = notify;
         }
 
         public abstract void Enter();
@@ -32,12 +36,13 @@ namespace ObserverMinigame
             Vector2 dir2d = new Vector2(dir3d.x, dir3d.z);
             Vector2 agentForward2d = new Vector2(agentGameObject.transform.forward.x, agentGameObject.transform.forward.z);
 
-            if (Mathf.Abs(Vector2.Angle(agentForward2d, dir2d)) <= (FOV / 2f))
+            if (Mathf.Abs(Vector2.Angle(agentForward2d, dir2d)) <= (FOV / 2f) && dir3d.magnitude <= visionDistance)
             {
                 return CheckPlayerInSight(dir3d, visionDistance);
             }
             else
             {
+                Notify(0);
                 return false;
             }
         }
@@ -67,16 +72,26 @@ namespace ObserverMinigame
             if (dir3d.magnitude <= (visionDistance * 2 / 3))
             {
                 Debug.Log("Player is dead");
+                Notify(2);
                 return true;
             }
-            else if (dir3d.magnitude <= visionDistance)
+            else 
             {
                 Debug.Log("Player is in warning zone");
+                Notify(1);
                 return false;
             }
-            else
+        }
+
+        //Is the received barkState is different from the last one, there are two possible cases:
+        //1. The enemy was looking the player before and now is not looking him anymore
+        //2. The enemy was not looking the player before and now is looking him
+        protected void Notify(int barkState)
+        {
+            if(lastBarkState != barkState)
             {
-                return false;
+                notify.Invoke(barkState);
+                lastBarkState = barkState;
             }
         }
     }

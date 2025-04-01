@@ -1,15 +1,19 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 namespace ObserverMinigame 
 {
     public class FlyingDroneBrain : MonoBehaviour, IContext
     {
-        [SerializeField] EnemyData droneData;
+        EnemyData droneData;
         Light sensor;
         IState currentState;
 
         GameObject player;
+        public static event Action<int> OnPlayerInSight;
 
         public IState GetState()
         {
@@ -34,12 +38,19 @@ namespace ObserverMinigame
         void Start()
         {
             player = GameObject.FindWithTag("Player");
+            SetUpBehaviour();
+        }
 
-            SetState(new IdleState(this, droneData, player, gameObject));
+        void SetUpBehaviour()
+        {
+            List<EnemyData> behaviours = GameObject.FindAnyObjectByType<GameManager>().GetRoundData().flyingDroneData;
+            droneData = behaviours[Random.Range(0, behaviours.Count)];
+
             sensor = GetComponentInChildren<Light>();
             sensor.innerSpotAngle = droneData.FOV;
             sensor.spotAngle = droneData.FOV;
             sensor.range = droneData.visionDistance;
+            SetState(new IdleState(this, droneData, player, gameObject, Notify));
         }
 
         void Update()
@@ -57,11 +68,11 @@ namespace ObserverMinigame
             float probability = Random.Range(0f, 1f);
             if (probability <= droneData.idleProbability)
             {
-                SetState(new IdleState(this, droneData, player, gameObject));
+                SetState(new IdleState(this, droneData, player, gameObject, Notify));
             }
             else
             {
-                SetState(new MoveState(this, droneData, player, gameObject));
+                SetState(new MoveState(this, droneData, player, gameObject, Notify));
             }
         }
 
@@ -71,8 +82,13 @@ namespace ObserverMinigame
             if (probability <= droneData.changeWise)
             {
                 GetComponent<NavMeshAgent>().isStopped = true;
-                SetState(new ChangeWiseState(this, droneData, player, gameObject));
+                SetState(new ChangeWiseState(this, droneData, player, gameObject, Notify));
             }
+        }
+
+        public void Notify(int barkState)
+        {
+            OnPlayerInSight?.Invoke(barkState);
         }
     }
 }

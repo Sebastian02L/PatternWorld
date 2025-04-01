@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace ObserverMinigame
 {
@@ -10,7 +12,7 @@ namespace ObserverMinigame
         Quaternion nextLookDirection;
         float timer = 0f;
 
-        public RotateState(IContext context, EnemyData agentData, GameObject player, GameObject agent) : base(context, player, agent, agentData)
+        public RotateState(IContext context, EnemyData agentData, GameObject player, GameObject agent, Action<int> notify) : base(context, player, agent, agentData, notify)
         {
             waypointsManager = agent.GetComponent<WaypointsManager>();
             rotationSpeed = agentData.rotationSpeed;
@@ -28,7 +30,7 @@ namespace ObserverMinigame
         {
             if (CheckPlayerInFOV(agentData.FOV, agentData.visionDistance))
             {
-                context.SetState(new ShootPlayerState(context, agentData, player, agentGameObject));
+                context.SetState(new ShootPlayerState(context, agentData, player, agentGameObject, notify));
             }
             else
             {

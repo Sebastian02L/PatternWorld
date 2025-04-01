@@ -10,29 +10,16 @@ namespace ObserverMinigame
     public class ConsoleController : MonoBehaviour
     {
         [SerializeField] InputActionReference interactAction;
-        [SerializeField] Canvas consoleInterfaceCanvas;
-        [SerializeField] Button connectButton;
-        [SerializeField] Button quitConsoleButton;
-        [SerializeField] Slider consoleSlider;
-        [SerializeField] TextMeshProUGUI connectionText;
+        [SerializeField] ConsoleInterfaceController consoleUI;
         Canvas canvas3d;
 
         GameObject player;
         bool consoleActive = false;
-        bool doSliderAnim = false;
-        float sliderDelta;
 
         void Start()
         {
-            sliderDelta = 1 / 3f;
             canvas3d = GetComponentInChildren<Canvas>(true);
-        }
-
-        void Update()
-        {
-            if (!doSliderAnim) return;
-            else SliderAnimation();
-            
+            consoleUI.OnQuitConsole = InteractConsole;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -55,44 +42,12 @@ namespace ObserverMinigame
             }
         }
 
-        //Console related methods
         void InteractConsole(InputAction.CallbackContext context)
         {
-            if(doSliderAnim) return;
+            if(consoleUI.isSliderActive) return;
+            player.GetComponent<PlayerObserverMovement>().MovementIsActive(consoleActive);
             consoleActive = !consoleActive;
-            player.GetComponent<PlayerObserverMovement>().MovementIsActive(!consoleActive);
-            consoleInterfaceCanvas.gameObject.SetActive(consoleActive);
-        }
-
-        public void CloseConsole()
-        {
-            InteractConsole(new InputAction.CallbackContext());
-        }
-
-        public void OnConnect()
-        {
-            doSliderAnim = true;
-            connectButton.interactable = false;
-            quitConsoleButton.interactable = false;
-        }
-
-        void SliderAnimation()
-        {
-            if (consoleSlider.value < 1)
-            {
-                consoleSlider.value += sliderDelta * Time.deltaTime;
-            }
-            else
-            {
-                doSliderAnim = false;
-                OnConnectEnded();
-            }
-        }
-
-        void OnConnectEnded()
-        {
-            quitConsoleButton.interactable = true;
-            connectionText.text = "ESTABLE";
+            consoleUI.gameObject.SetActive(consoleActive);
         }
     }
 }

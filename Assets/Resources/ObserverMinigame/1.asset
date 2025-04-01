@@ -9,28 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd9cac5b097395142a3cddc16d8e116c, type: 3}
+  m_Script: {fileID: 11500000, guid: 3161389adb111ac49aaff44b9c699b78, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: 
-  quota: 500
-  roundDuration: 180
-  headPieces:
-  - {fileID: 11400000, guid: 86c046f62ff105f4784482f38c3cf803, type: 2}
-  - {fileID: 11400000, guid: 01becd0b67e5d254a98e57063fe47025, type: 2}
-  - {fileID: 11400000, guid: c26c83be0fb809348afbe34ba34f317f, type: 2}
-  bodyPieces:
-  - {fileID: 11400000, guid: 7fc1338bb3d7c6946bf60e56ea15c351, type: 2}
-  - {fileID: 11400000, guid: 11839744046863d4a849780d64becc14, type: 2}
-  - {fileID: 11400000, guid: e0b3412334b4e794db3337fbd2088c73, type: 2}
-  leftPieces:
-  - {fileID: 11400000, guid: 85c8ea949a5751a408653611ebabcd0f, type: 2}
-  - {fileID: 11400000, guid: 8ae7d5fdae23821459689e98522ecdf2, type: 2}
-  - {fileID: 11400000, guid: 2a7d81c9c0f60f74fba27b45c57d8698, type: 2}
-  rightPieces:
-  - {fileID: 11400000, guid: 06a9a4492a6e0114d8209df2cba069aa, type: 2}
-  - {fileID: 11400000, guid: ec75b698083d04f4c94f68f3245180d4, type: 2}
-  - {fileID: 11400000, guid: 8444c1801dc8cec468472f412db03681, type: 2}
-  wheelPieces:
-  - {fileID: 11400000, guid: 2e6e9cea479b7784aa0bef4c15c089f2, type: 2}
-  - {fileID: 11400000, guid: 08ec256eec86ef2448ddc66f68e33bf6, type: 2}
-  - {fileID: 11400000, guid: 93a2219d03b5ac04e9ce67859e392d26, type: 2}
+  mapPrefab: {fileID: 4011558285830045494, guid: ebc3aa6756a06594583497ab1e537793, type: 3}
+  numberOfConsoles: 2
+  floorDroneData:
+  - {fileID: 11400000, guid: c602e0cf9d4048142a1eb44146e56320, type: 2}
+  flyingDroneData:
+  - {fileID: 11400000, guid: dfb4314b3e7f0c5409587b172a6d521b, type: 2}
+  turretData: []
+  sentinelData: []

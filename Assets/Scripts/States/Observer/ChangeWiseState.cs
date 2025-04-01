@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ObserverMinigame
@@ -9,7 +10,7 @@ namespace ObserverMinigame
         bool rotationCompleted = false;
         float rotationSpeed;
 
-        public ChangeWiseState(IContext context, EnemyData agentData, GameObject player, GameObject agentGO) : base(context, player, agentGO, agentData)
+        public ChangeWiseState(IContext context, EnemyData agentData, GameObject player, GameObject agentGO, Action<int> notify) : base(context, player, agentGO, agentData, notify)
         {
             waypointsManager = agentGameObject.GetComponent<WaypointsManager>();
             oppositeDirection = Quaternion.LookRotation(-agentGameObject.transform.forward);
@@ -40,7 +41,7 @@ namespace ObserverMinigame
                 if (angle < 0.1f)
                 {
                     rotationCompleted = true;
-                    context.SetState(new MoveState(context, agentData, player, agentGameObject));
+                    context.SetState(new MoveState(context, agentData, player, agentGameObject, notify));
                 }
             }
         }

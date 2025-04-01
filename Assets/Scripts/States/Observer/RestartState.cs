@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ObserverMinigame
@@ -8,7 +9,7 @@ namespace ObserverMinigame
         float intensity;
         Light sensor;
 
-        public RestartState(IContext context, EnemyData agentData, GameObject player, GameObject agent) : base(context, player, agent, agentData)
+        public RestartState(IContext context, EnemyData agentData, GameObject player, GameObject agent, Action<int> notify) : base(context, player, agent, agentData, notify)
         {
             sensor = agentGameObject.GetComponentInChildren<Light>();
             intensity = sensor.intensity;
@@ -17,6 +18,7 @@ namespace ObserverMinigame
 
         public override void Enter()
         {
+            Notify(0);
             Debug.Log("Restarting");
         }
 
@@ -34,7 +36,7 @@ namespace ObserverMinigame
             if (timer >= agentData.restartDuration)
             {
                 sensor.intensity = intensity;
-                context.SetState(new RotateState(context, agentData, player, agentGameObject));
+                context.SetState(new RotateState(context, agentData, player, agentGameObject, notify));
             }
         }
     }
