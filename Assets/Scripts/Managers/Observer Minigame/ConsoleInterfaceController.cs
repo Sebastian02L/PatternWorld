@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace ObserverMinigame
 {
-    public class ConsoleInterfaceController : MonoBehaviour
+    public class ConsoleInterfaceController : MonoBehaviour, IObserver
     {
         [SerializeField] Button connectButton;
         [SerializeField] Button quitConsoleButton;
@@ -66,9 +66,15 @@ namespace ObserverMinigame
 
         void OnConnectEnded()
         {
+            GameObject.FindAnyObjectByType<SubjecurityUIController>(FindObjectsInactive.Include).AddObserver(this);
             doSliderAnim = false;
             quitConsoleButton.interactable = true;
             connectionText.text = "ESTABLE";
+        }
+
+        public void HandleNotification()
+        {
+            //
         }
     }
 }

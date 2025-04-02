@@ -7,12 +7,12 @@ namespace ObserverMinigame
     public class GameManager : MonoBehaviour
     {
         [SerializeField] EndGameController endGameController;
+        SubjecurityUIController subjecurityController;
         ObserverRoundData minigameData;
         GameObject map;
         GameObject player;
 
         int numberOfConsoles;
-        int consolesActivated = 0;
         int currentRound = 1;
 
         void Awake()
@@ -30,6 +30,9 @@ namespace ObserverMinigame
             player.transform.position = map.transform.Find("PlayerSpawnPoint").transform.position;
 
             numberOfConsoles = minigameData.numberOfConsoles;
+
+            subjecurityController = FindAnyObjectByType<SubjecurityUIController>(FindObjectsInactive.Include);
+            subjecurityController.SetUp(numberOfConsoles);
         }
 
         //Enemies ask for the round data to initialize their behaviour
@@ -37,15 +40,11 @@ namespace ObserverMinigame
         {
             return minigameData;
         }
-        void Update()
-        {
-
-        }
 
         public void GameOver()
         {
             //Check win or lose round
-            if (consolesActivated == numberOfConsoles)
+            if (subjecurityController.GetSubscribedConsoles == numberOfConsoles)
             {
                 List<bool> newMinigameData = new List<bool>();
                 for (int i = 0; i < 3; i++)

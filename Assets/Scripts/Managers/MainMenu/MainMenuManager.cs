@@ -37,14 +37,6 @@ public class MainMenuManager : MonoBehaviour
                 pocketManager.UnlockMinigameMedal(i);
             }
         }
-        //TEMPORARY CODE TO TEST GENERIC TIMER
-        GameObject.FindAnyObjectByType<TimerComponent>().onTimerEnd += OnTimerEnd;
-        GameObject.FindAnyObjectByType<TimerComponent>().StartTimer();
-    }
-
-    //TEMPORARY CODE TO TEST GENERIC TIMER
-    void OnTimerEnd() {
-        Debug.Log("Timer ended");
     }
 
     //Check if the minigame has been totally completed
