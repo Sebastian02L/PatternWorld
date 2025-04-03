@@ -58,6 +58,8 @@ namespace ObserverMinigame
                 }
                 else
                 {
+                    //Debug.Log("Choque con" + hit.collider.gameObject.name);
+                    Notify(0);
                     return false;
                 }
             }

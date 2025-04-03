@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3245788274102883915}
   - component: {fileID: 8860252592960157275}
   - component: {fileID: 5781165233602552548}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ventilation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,13 +85,13 @@ GameObject:
   - component: {fileID: 3566432208469023896}
   - component: {fileID: 6625646231453205976}
   - component: {fileID: 8398905289989382089}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4701490361184238968
 RectTransform:
   m_ObjectHideFlags: 0
@@ -187,6 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1b4f810a38b7f4dab0050d8663afdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shouldTurnOffOnStart: 1
 --- !u!1 &4436393735351597087
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +202,7 @@ GameObject:
   - component: {fileID: 1592495855274662457}
   - component: {fileID: 4165749092012835438}
   - component: {fileID: 4567315777195942919}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hatch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -548,7 +549,7 @@ GameObject:
   - component: {fileID: 3644051781031710021}
   - component: {fileID: 9140284725215529790}
   - component: {fileID: 6987936213882353609}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -685,7 +686,7 @@ GameObject:
   - component: {fileID: 3681075603791402981}
   - component: {fileID: 13796771393313809}
   - component: {fileID: 3786581928379004344}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

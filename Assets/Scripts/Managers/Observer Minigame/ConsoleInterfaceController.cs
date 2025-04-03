@@ -35,6 +35,7 @@ namespace ObserverMinigame
 
         void Update()
         {
+            if(GameManager.playerTrapped) gameObject.SetActive(false);
             if (!Cursor.visible) CursorVisibility.ShowCursor();
             if (!doSliderAnim) return;
             else SliderAnimation();

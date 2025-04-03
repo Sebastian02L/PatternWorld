@@ -26,6 +26,7 @@ namespace ObserverMinigame
         public override void Enter()
         {
             player.GetComponent<PlayerObserverMovement>().PlayerLose();
+            GameManager.SetPlayerTrapped();
         }
 
         public override void Update()

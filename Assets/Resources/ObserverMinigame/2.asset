@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3161389adb111ac49aaff44b9c699b78, type: 3}
+  m_Name: 2
+  m_EditorClassIdentifier: 
+  mapPrefab: {fileID: 1427957644906138024, guid: 798e6dd2889f02144bd447cf9d3eae57, type: 3}
+  numberOfConsoles: 3
+  floorDroneData:
+  - {fileID: 11400000, guid: c602e0cf9d4048142a1eb44146e56320, type: 2}
+  flyingDroneData:
+  - {fileID: 11400000, guid: dfb4314b3e7f0c5409587b172a6d521b, type: 2}
+  turretData:
+  - {fileID: 11400000, guid: 986a7ed8b61ed5141b3706903c650338, type: 2}
+  sentinelData: []

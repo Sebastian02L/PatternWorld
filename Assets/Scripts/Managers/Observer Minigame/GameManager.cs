@@ -11,12 +11,14 @@ namespace ObserverMinigame
         ObserverRoundData minigameData;
         GameObject map;
         GameObject player;
+        public static bool playerTrapped;
 
         int numberOfConsoles;
         int currentRound = 1;
 
         void Awake()
         {
+            playerTrapped = false;
             //Determinates the current round of the minigame
             List<bool> minigameRounds = PlayerDataManager.Instance.GetMinigameRounds()[1];
             foreach (bool succededRound in minigameRounds) if (succededRound) currentRound += 1;
@@ -62,6 +64,11 @@ namespace ObserverMinigame
             }
 
             CursorVisibility.ShowCursor();
+        }
+
+        public static void SetPlayerTrapped()
+        {
+            playerTrapped = true;
         }
     }
 }

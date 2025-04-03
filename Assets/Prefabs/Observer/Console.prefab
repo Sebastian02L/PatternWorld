@@ -583,7 +583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactAction: {fileID: 8707264656996067253, guid: 064cdca3bbe875f459ec1ce4508ba492, type: 3}
-  consoleUI: {fileID: 0}
+  consoleUI: {fileID: 4642126521278144281}
 --- !u!1 &1068150457374542625
 GameObject:
   m_ObjectHideFlags: 0
@@ -995,8 +995,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7082120821151456153}
-        m_TargetAssemblyTypeName: ObserverMinigame.ConsoleController, Assembly-CSharp
+      - m_Target: {fileID: 4642126521278144281}
+        m_TargetAssemblyTypeName: ObserverMinigame.ConsoleInterfaceController, Assembly-CSharp
         m_MethodName: OnConnect
         m_Mode: 1
         m_Arguments:
@@ -1019,6 +1019,7 @@ GameObject:
   - component: {fileID: 5547323683406117250}
   - component: {fileID: 4434600665692095045}
   - component: {fileID: 8931388095429249203}
+  - component: {fileID: 4642126521278144281}
   m_Layer: 5
   m_Name: ConsoleInterface
   m_TagString: Untagged
@@ -1109,6 +1110,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4642126521278144281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527736726188504692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83c2d60842c35a4da519a2709761785, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectButton: {fileID: 2123660526339683048}
+  quitConsoleButton: {fileID: 4893783978730064321}
+  consoleSlider: {fileID: 229219053352312537}
+  connectionText: {fileID: 1135328470459555269}
 --- !u!1 &2186321877395083702
 GameObject:
   m_ObjectHideFlags: 0
@@ -2528,7 +2545,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 8
+  m_VersionIndex: 44
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3491,7 +3508,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 107
+  m_VersionIndex: 143
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4298,7 +4315,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 978
+  m_VersionIndex: 1014
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4499,8 +4516,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7082120821151456153}
-        m_TargetAssemblyTypeName: ObserverMinigame.ConsoleController, Assembly-CSharp
+      - m_Target: {fileID: 4642126521278144281}
+        m_TargetAssemblyTypeName: ObserverMinigame.ConsoleInterfaceController, Assembly-CSharp
         m_MethodName: CloseConsole
         m_Mode: 1
         m_Arguments:
@@ -4685,7 +4702,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 107
+  m_VersionIndex: 143
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4873,7 +4890,7 @@ RectTransform:
   m_Father: {fileID: 4321424700621753402}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -0.6031952, y: 0}
   m_SizeDelta: {x: 0.03332, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5326,7 +5343,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 442
+  m_VersionIndex: 478
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
