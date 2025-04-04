@@ -26,7 +26,6 @@ namespace ObserverMinigame
         public override void Enter()
         {
             player.GetComponent<PlayerObserverMovement>().PlayerLose();
-            GameManager.SetPlayerTrapped();
         }
 
         public override void Update()
@@ -51,12 +50,17 @@ namespace ObserverMinigame
             {
                 timer += Time.deltaTime;
 
-                if (timer >= deadTime) GameObject.FindAnyObjectByType<GameManager>().GameOver();
+                if (timer >= deadTime && !GameManager.playerTrapped)
+                {
+                    GameManager.SetPlayerTrapped();
+                    GameObject.FindAnyObjectByType<GameManager>().GameOver(true);
+                }
             }
         }
 
         void Shoot()
         {
+            agentGameObject.GetComponent<SoundEffectsController>().ShootPlayer();
             Transform shootOrigin = agentGameObject.transform.Find("ShootOrigin").gameObject.transform;
             GameObject cylinder = GameObject.Instantiate(agentData.grabCylinder);
             GameObject sphere = GameObject.Instantiate(agentData.grabSphere);

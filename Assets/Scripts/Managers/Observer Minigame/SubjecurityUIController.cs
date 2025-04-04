@@ -50,7 +50,7 @@ namespace ObserverMinigame
         public void NotifyClick()
         {
             NotifyObservers();
-            GameObject.FindAnyObjectByType<GameManager>().GameOver();
+            GameObject.FindAnyObjectByType<GameManager>().GameOver(false);
         }
 
         void Update()

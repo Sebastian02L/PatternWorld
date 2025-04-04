@@ -22,6 +22,7 @@ public class PiecesScreenController : MonoBehaviour
     //Auxiliar Variables
     PieceData selectedPiece;
     string currentPieceType;
+    AudioSource audioSourceRoboticArm;
 
     //Android reference and build in pieces
     Dictionary<string, PieceData> buildedPieces;
@@ -35,6 +36,7 @@ public class PiecesScreenController : MonoBehaviour
     //Setups the left monitor with the round data received from the right monitor
     public void Setup(ComponentRoundData data)
     {
+        audioSourceRoboticArm = GameObject.Find("AS_BuilderArm").GetComponent<AudioSource>();
         buildedPieces = new Dictionary<string, PieceData>();
         //android = GameObject.FindAnyObjectByType<AndroidController>();
         //earningsScreenController = GameObject.FindAnyObjectByType<EarningsScreenController>();
@@ -110,7 +112,7 @@ public class PiecesScreenController : MonoBehaviour
     //Update the UI buttons with the correct pieces according with the selected type
     void SetPiecesList(List<PieceData> pieces)
     {
-        AudioManager.Instance.PlaySoundEffect("AS_BuilderArm", "CM_SelectedPiece", 0.5f);
+        AudioManager.Instance.PlaySoundEffect(audioSourceRoboticArm, "CM_SelectedPiece", 0.5f);
         currentPieceType = pieces[0].type;
         CheckCanRemove();
 
@@ -123,7 +125,7 @@ public class PiecesScreenController : MonoBehaviour
     //Invoked when the player click's the pieces button
     public void ShowPieceInformation(PieceData piece)
     {
-        AudioManager.Instance.PlaySoundEffect("AS_BuilderArm", "CM_PickUpPiece", 0.5f);
+        AudioManager.Instance.PlaySoundEffect(audioSourceRoboticArm, "CM_PickUpPiece", 0.5f);
         selectedPiece = piece;
         pieceMakerText.text = piece.maker;
         pieceModelVersionText.text = piece.modelVersion;
@@ -132,7 +134,7 @@ public class PiecesScreenController : MonoBehaviour
 
     void BuildPiece()
     {
-        AudioManager.Instance.PlaySoundEffect("AS_BuilderArm", "CM_BuildPiece", 1f);
+        AudioManager.Instance.PlaySoundEffect(audioSourceRoboticArm, "CM_BuildPiece", 1f);
         android.UpdateAndroidVisuals(currentPieceType, selectedPiece);
         buildedPieces.Add(selectedPiece.type, selectedPiece);
         CheckCanBuild();
@@ -141,7 +143,7 @@ public class PiecesScreenController : MonoBehaviour
     }
     void RemoveLastPiece()
     {
-        AudioManager.Instance.PlaySoundEffect("AS_BuilderArm", "CM_RemovePiece", 1f);
+        AudioManager.Instance.PlaySoundEffect(audioSourceRoboticArm, "CM_RemovePiece", 1f);
         android.UpdateAndroidVisuals(currentPieceType);
         buildedPieces.Remove(currentPieceType);
         CheckCanRemove();

@@ -886,6 +886,7 @@ GameObject:
   - component: {fileID: 2012672420162696236}
   - component: {fileID: 3019197417182063855}
   - component: {fileID: 2123660526339683048}
+  - component: {fileID: 8231831308385168774}
   m_Layer: 5
   m_Name: ConnectButton
   m_TagString: Untagged
@@ -1007,6 +1008,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8231831308385168774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417542022188701790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a418bb2ae53024a996c76c8f165882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1527736726188504692
 GameObject:
   m_ObjectHideFlags: 0
@@ -1020,6 +1033,7 @@ GameObject:
   - component: {fileID: 4434600665692095045}
   - component: {fileID: 8931388095429249203}
   - component: {fileID: 4642126521278144281}
+  - component: {fileID: 2155438267291875348}
   m_Layer: 5
   m_Name: ConsoleInterface
   m_TagString: Untagged
@@ -1126,6 +1140,103 @@ MonoBehaviour:
   quitConsoleButton: {fileID: 4893783978730064321}
   consoleSlider: {fileID: 229219053352312537}
   connectionText: {fileID: 1135328470459555269}
+--- !u!82 &2155438267291875348
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527736726188504692}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -7554826202965211586, guid: 7b7e348cb411a144cbf7aa30dbbcd82e, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2186321877395083702
 GameObject:
   m_ObjectHideFlags: 0
@@ -4407,6 +4518,7 @@ GameObject:
   - component: {fileID: 8249605619204202916}
   - component: {fileID: 6451976454856186099}
   - component: {fileID: 4893783978730064321}
+  - component: {fileID: 6477179345112415656}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -4528,6 +4640,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6477179345112415656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5439842705739432738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a418bb2ae53024a996c76c8f165882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5988549692541478636
 GameObject:
   m_ObjectHideFlags: 0

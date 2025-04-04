@@ -5,9 +5,11 @@ using UnityEngine;
 public class NotifierLightsController : MonoBehaviour
 {
     Animator[] lightAnims;
+    AudioSource audioSourceLights;
 
     private void Start()
     {
+        audioSourceLights = transform.Find("AS_Lights").GetComponent<AudioSource>();
         lightAnims = GetComponentsInChildren<Animator>();
     }
 
@@ -15,7 +17,7 @@ public class NotifierLightsController : MonoBehaviour
     {
         foreach (Animator anim in lightAnims)
         {
-            AudioManager.Instance.PlaySoundEffect("AS_Lights", "CM_GoodBuild", 1f);
+            AudioManager.Instance.PlaySoundEffect(audioSourceLights, "CM_GoodBuild", 1f);
             anim.SetTrigger("Green");
         }
     }
@@ -24,7 +26,7 @@ public class NotifierLightsController : MonoBehaviour
     {
         foreach (Animator anim in lightAnims)
         {
-            AudioManager.Instance.PlaySoundEffect("AS_Lights", "CM_BadBuild", 1f);
+            AudioManager.Instance.PlaySoundEffect(audioSourceLights, "CM_BadBuild", 1f);
             anim.SetTrigger("Red");
         }
     }

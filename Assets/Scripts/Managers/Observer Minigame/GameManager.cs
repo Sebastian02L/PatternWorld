@@ -43,10 +43,10 @@ namespace ObserverMinigame
             return minigameData;
         }
 
-        public void GameOver()
+        public void GameOver(bool playerTrapped)
         {
             //Check win or lose round
-            if (subjecurityController.GetSubscribedConsoles == numberOfConsoles)
+            if (subjecurityController.GetSubscribedConsoles == numberOfConsoles && !playerTrapped)
             {
                 List<bool> newMinigameData = new List<bool>();
                 for (int i = 0; i < 3; i++)

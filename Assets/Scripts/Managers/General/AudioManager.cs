@@ -10,13 +10,13 @@ public class AudioManager : Singleton<AudioManager>
     AudioSceneData currentSceneAudioData;
     private Dictionary<string, AudioClip> musicDict;
     private Dictionary<string, AudioClip> soundEffectsDict;
-    private Dictionary<string, AudioSource> audioSourcesDict;
-    AudioSource musicAudioSource;
+    //private Dictionary<string, AudioSource> audioSourcesDict;
+    //AudioSource musicAudioSource;
 
     void Start()
     {
         soundEffectsDict = new Dictionary<string, AudioClip>();
-        audioSourcesDict = new Dictionary<string, AudioSource>();
+        //audioSourcesDict = new Dictionary<string, AudioSource>();
         musicDict = new Dictionary<string, AudioClip>();
 
         SceneManager.sceneLoaded += SetUp;
@@ -27,7 +27,7 @@ public class AudioManager : Singleton<AudioManager>
     void SetUp(Scene arg0, LoadSceneMode arg1)
     {
         soundEffectsDict.Clear();
-        audioSourcesDict.Clear();
+        //audioSourcesDict.Clear();
         musicDict.Clear();
 
         currentSceneAudioData = Resources.Load<AudioSceneData>("Audio/" + SceneManager.GetActiveScene().name);
@@ -43,21 +43,21 @@ public class AudioManager : Singleton<AudioManager>
             musicDict[clip.name] = clip;
         }
 
-        AudioSource[] sceneAudioSources = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
+        //AudioSource[] sceneAudioSources = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
 
-        // Mostrar en la consola los nombres de los objetos encontrados
-        foreach (AudioSource audioSource in sceneAudioSources)
-        {
-            audioSourcesDict[audioSource.name] = audioSource;
-        }
+        //// Mostrar en la consola los nombres de los objetos encontrados
+        //foreach (AudioSource audioSource in sceneAudioSources)
+        //{
+        //    audioSourcesDict[audioSource.name] = audioSource;
+        //}
 
-        musicAudioSource = audioSourcesDict["AS_Music"];
+        //musicAudioSource = audioSourcesDict["AS_Music"];
     }
 
     //The sound effects played by this method cant be replayed or stopped.
-    public void PlayOneShotSoundEffect(string audioSourceName, string clipName, float volume, bool waitFinish = false, bool needToLoop = false)
+    public void PlayOneShotSoundEffect(AudioSource audioSource, string clipName, float volume, bool waitFinish = false, bool needToLoop = false)
     {
-        if (soundEffectsDict.TryGetValue(clipName, out AudioClip clip) && audioSourcesDict.TryGetValue(audioSourceName, out AudioSource audioSource))
+        if (soundEffectsDict.TryGetValue(clipName, out AudioClip clip))
         {
             if(audioSource.isPlaying && waitFinish) return;
 
@@ -72,9 +72,9 @@ public class AudioManager : Singleton<AudioManager>
     }
 
     //The sound effects played by this method can be replayed or stopped.
-    public void PlaySoundEffect(string audioSourceName, string clipName, float volume, bool waitFinish = false, bool needToLoop = false)
+    public void PlaySoundEffect(AudioSource audioSource, string clipName, float volume, bool waitFinish = false, bool needToLoop = false)
     {
-        if (soundEffectsDict.TryGetValue(clipName, out AudioClip clip) && audioSourcesDict.TryGetValue(audioSourceName, out AudioSource audioSource))
+        if (soundEffectsDict.TryGetValue(clipName, out AudioClip clip))
         {
             if (audioSource.isPlaying && waitFinish) return;
 
@@ -90,15 +90,15 @@ public class AudioManager : Singleton<AudioManager>
     }
 
     //The music played by this method cant be replayed or stopped.
-    public void PlayOneShotMusic(string clipName, float volume, bool waitFinish = false, bool needToLoop = false)
+    public void PlayOneShotMusic(AudioSource audioSource, string clipName, float volume, bool waitFinish = false, bool needToLoop = false)
     {
-        if (musicDict.TryGetValue(clipName, out AudioClip clip) && musicAudioSource != null)
+        if (musicDict.TryGetValue(clipName, out AudioClip clip))
         {
-            if (musicAudioSource.isPlaying && waitFinish) return;
+            if (audioSource.isPlaying && waitFinish) return;
 
-            musicAudioSource.volume = volume;
-            musicAudioSource.loop = needToLoop;
-            musicAudioSource.PlayOneShot(clip);
+            audioSource.volume = volume;
+            audioSource.loop = needToLoop;
+            audioSource.PlayOneShot(clip);
         }
         else
         {
@@ -107,16 +107,16 @@ public class AudioManager : Singleton<AudioManager>
     }
 
     //The music played by this method can be replayed or stopped.
-    public void PlayMusic(string clipName, float volume, bool waitFinish = false, bool needToLoop = false)
+    public void PlayMusic(AudioSource audioSource, string clipName, float volume, bool waitFinish = false, bool needToLoop = false)
     {
-        if (musicDict.TryGetValue(clipName, out AudioClip clip) && musicAudioSource != null)
+        if (musicDict.TryGetValue(clipName, out AudioClip clip))
         {
-            if (musicAudioSource.isPlaying && waitFinish) return;
+            if (audioSource.isPlaying && waitFinish) return;
 
-            musicAudioSource.volume = volume;
-            musicAudioSource.clip = clip;
-            musicAudioSource.loop = needToLoop;
-            musicAudioSource.Play();
+            audioSource.volume = volume;
+            audioSource.clip = clip;
+            audioSource.loop = needToLoop;
+            audioSource.Play();
         }
         else
         {
@@ -125,15 +125,8 @@ public class AudioManager : Singleton<AudioManager>
     } 
 
     //Stop the sound effect or the music played by the given audiosource.
-    public void StopAudioSource(string audioSourceName)
+    public void StopAudioSource(AudioSource audioSource)
     {
-        if (audioSourcesDict.TryGetValue(audioSourceName, out AudioSource audioSource))
-        {
-            audioSource.Stop();
-        }
-        else
-        {
-            Debug.Log("No AudioSource with that name was found.");
-        }
+        audioSource.Stop();
     }
 }

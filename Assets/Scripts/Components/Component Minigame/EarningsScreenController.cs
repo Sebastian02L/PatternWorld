@@ -10,7 +10,12 @@ public class EarningsScreenController : MonoBehaviour
     int penaltyPercent = 0;
     public float GetCurrentEarnings => currentEarnings;
     public float quota = 0f;
+    AudioSource audioSourceEarningsScreen;
 
+    private void Start()
+    {
+        audioSourceEarningsScreen = transform.Find("AS_EarningScreen").GetComponent<AudioSource>();
+    }
 
     //Adds the money when the android is builded
     public void AddMoney(float value)
@@ -33,7 +38,7 @@ public class EarningsScreenController : MonoBehaviour
     {
         if(penaltyPercent >= 100) return;
         penaltyPercent += value;
-        AudioManager.Instance.PlaySoundEffect("AS_EarningScreen", "CM_PenaltyAddition", 0.5f);
+        AudioManager.Instance.PlaySoundEffect(audioSourceEarningsScreen, "CM_PenaltyAddition", 0.5f);
         UpdatePenaltyText();
         
     }

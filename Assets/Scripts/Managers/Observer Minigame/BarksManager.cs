@@ -11,8 +11,11 @@ namespace ObserverMinigame
         [SerializeField] List<Sprite> barks;
         [SerializeField] Image barkImage;
 
+        AudioSource audioSourceBark;
+
         private void Start()
         {
+            audioSourceBark = GetComponentsInParent<AudioSource>()[1];
             FloorDroneBrain.OnPlayerInSight += Bark;
             FlyingDroneBrain.OnPlayerInSight += Bark;
             TurretBrain.OnPlayerInSight += Bark;
@@ -36,11 +39,13 @@ namespace ObserverMinigame
                 case 1:
                     barkImage.gameObject.SetActive(true);
                     barkImage.sprite = barks[0];
+                    AudioManager.Instance.PlaySoundEffect(audioSourceBark, "OM_Warning", 0.5f, true);
                     break;
 
                 case 2:
                     barkImage.gameObject.SetActive(true);
                     barkImage.sprite = barks[1];
+                    AudioManager.Instance.PlaySoundEffect(audioSourceBark, "OM_PlayerTrapped", 0.2f, true);
                     break;
                 default:
                     Debug.Log($"Bark state {barkState} not found");

@@ -14,6 +14,8 @@ namespace ObserverMinigame
         [SerializeField] TextMeshProUGUI connectionText;
         public Action<InputAction.CallbackContext> OnQuitConsole;
 
+        AudioSource audioSourceInterface;
+
         bool doSliderAnim = false;
         float sliderDelta;
         public bool isSliderActive => doSliderAnim;
@@ -21,6 +23,7 @@ namespace ObserverMinigame
         void Start()
         {
             sliderDelta = 1 / 3f;
+            audioSourceInterface = GetComponent<AudioSource>();
         }
 
         private void OnEnable()
@@ -68,6 +71,7 @@ namespace ObserverMinigame
         void OnConnectEnded()
         {
             GameObject.FindAnyObjectByType<SubjecurityUIController>(FindObjectsInactive.Include).AddObserver(this);
+            AudioManager.Instance.PlaySoundEffect(audioSourceInterface, "OM_Subscribed", 1f, false);
             doSliderAnim = false;
             quitConsoleButton.interactable = true;
             connectionText.text = "ESTABLE";

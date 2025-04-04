@@ -6,23 +6,24 @@ using UnityEngine.UI;
 public class ButtonFVXUI : MonoBehaviour, IButtonFVX
 {
     Button button;
-
+    AudioSource audioSourceIU;
     private void Start()
     {
         button = GetComponent<Button>();
+        audioSourceIU = GameObject.Find("AS_UI").GetComponent<AudioSource>();
     }
     public void OnPointerClick(PointerEventData eventData)
     {
         if(!button.interactable) return;
         if (eventData.button == 0)
         {
-            AudioManager.Instance.PlayOneShotSoundEffect("AS_UI", "UI_Click", 1f);
+            AudioManager.Instance.PlayOneShotSoundEffect(audioSourceIU, "UI_Click", 1f);
         }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (!button.interactable) return;
-        AudioManager.Instance.PlayOneShotSoundEffect("AS_UI", "UI_OnSelect", 1f);
+        AudioManager.Instance.PlayOneShotSoundEffect(audioSourceIU, "UI_OnSelect", 1f);
     }
 }

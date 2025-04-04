@@ -4286,7 +4286,6 @@ MonoBehaviour:
   piecesScreen: {fileID: 974145925}
   earningsScreenController: {fileID: 890593466}
   endGameController: {fileID: 4928507167038275230}
-  cursorVisibility: {fileID: 4928507167038275231}
   gameTimer: {fileID: 1965816438}
 --- !u!114 &287764901
 MonoBehaviour:
@@ -13514,7 +13513,6 @@ GameObject:
   - component: {fileID: 724746471}
   - component: {fileID: 724746470}
   - component: {fileID: 724746469}
-  - component: {fileID: 724746468}
   m_Layer: 0
   m_Name: TimerScreen
   m_TagString: Untagged
@@ -13542,21 +13540,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.02291, y: 0.00049}
   m_SizeDelta: {x: 0.64008, y: 0.3176}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &724746468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 724746466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 958ec4f2b391f6149b70441eb0410885, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  earningsText: {fileID: 1027364402}
-  penalizationText: {fileID: 0}
-  quota: 0
 --- !u!114 &724746469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40804,17 +40787,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ed2ec47f3732004290d7aa6779de7a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4928507167038275231 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 395253172845111546, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
-  m_PrefabInstance: {fileID: 4928507167038275229}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1d85b2c1328107418522b5f886e8a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807

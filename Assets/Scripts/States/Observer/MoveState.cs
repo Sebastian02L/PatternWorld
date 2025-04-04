@@ -23,6 +23,7 @@ namespace ObserverMinigame
         {
             agent.isStopped = false;
             agent.SetDestination(waypointsManager.GetNextWaypoint().position);
+            agentGameObject.GetComponent<SoundEffectsController>().MovementPlayer(false);
         }
 
         public override void Update()
@@ -30,6 +31,7 @@ namespace ObserverMinigame
             if (CheckPlayerInFOV(agentData.FOV, agentData.visionDistance))
             {
                 agent.isStopped = true;
+                agentGameObject.GetComponent<SoundEffectsController>().MovementPlayer(true);
                 context.SetState(new ShootPlayerState(context, agentData, player, agentGameObject, notify));
             }
             else

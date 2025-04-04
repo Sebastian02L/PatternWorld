@@ -4943,6 +4943,7 @@ GameObject:
   - component: {fileID: 8020864606189544296}
   - component: {fileID: 8178212453880716286}
   - component: {fileID: 165680393262058354}
+  - component: {fileID: 6793547474018089833}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -12359,7 +12360,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dfef66a585e6b04195ae55c4e76acdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droneData: {fileID: 11400000, guid: 986a7ed8b61ed5141b3706903c650338, type: 2}
+--- !u!114 &6793547474018089833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939725880290679319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5e80e12226dec84eaec7c9af63a9202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioNameMovement: 
+  audioNameSpecial: OMG_TurretReset
 --- !u!1 &2098555603576015557
 GameObject:
   m_ObjectHideFlags: 0
@@ -16874,7 +16888,7 @@ Light:
   m_InnerSpotAngle: 45
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
