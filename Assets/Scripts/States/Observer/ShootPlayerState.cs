@@ -13,7 +13,7 @@ namespace ObserverMinigame
         bool alingmnetCompleted = false;
         bool shootCompleted = false;
 
-        float deadTime = 2f;
+        float deadTime = 2.36f;
         float timer = 0f;
 
         public ShootPlayerState(IContext context, EnemyData agentData, GameObject player, GameObject agentGO, Action<int> notify) : base(context, player, agentGO, agentData, notify)
@@ -42,9 +42,9 @@ namespace ObserverMinigame
             }
             else if (alingmnetCompleted && !shootCompleted)
             {
-                timer += Time.deltaTime;
+                /*timer += Time.deltaTime;
                 
-                if(timer >= deadTime) Shoot();
+                if(timer >= deadTime)*/ Shoot();
             }
             else if(shootCompleted)
             {

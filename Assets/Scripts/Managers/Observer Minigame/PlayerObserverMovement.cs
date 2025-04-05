@@ -22,13 +22,20 @@ namespace ObserverMinigame
         {
             charController = GetComponent<CharacterController>();
             playerInput = GetComponent<PlayerInput>();
-            playerInput.actions.Enable();
+            playerInput.actions.Disable();
             audioSourcePlayer = GetComponent<AudioSource>();
+            TutorialController.OnTutorialClosed += SetUp;
+        }
+
+        void SetUp()
+        {
+            playerInput.actions.Enable();
         }
 
         private void OnDestroy()
         {
             playerInput.actions.Disable();
+            TutorialController.OnTutorialClosed -= SetUp;
         }
 
         private void Update()

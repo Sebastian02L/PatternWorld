@@ -3360,6 +3360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioNameMovement: OM_DroneMoving
   audioNameSpecial: 
+  audioNameSpecial2: 
 --- !u!195 &3523458069963004960
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3442,7 +3443,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -7554826202965211586, guid: 7b7e348cb411a144cbf7aa30dbbcd82e, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -3450,9 +3451,9 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 5
-  MinDistance: 0
-  MaxDistance: 5
+  DopplerLevel: 1
+  MinDistance: 2
+  MaxDistance: 9
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -3487,7 +3488,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3502,7 +3503,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.5
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3547,9 +3548,9 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 5
-  MinDistance: 0
-  MaxDistance: 5
+  DopplerLevel: 1
+  MinDistance: 2
+  MaxDistance: 9
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -3584,7 +3585,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3599,7 +3600,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.5
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

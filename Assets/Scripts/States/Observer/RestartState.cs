@@ -19,11 +19,13 @@ namespace ObserverMinigame
         public override void Enter()
         {
             Notify(0);
+            agentGameObject.GetComponent<SoundEffectsController>().SpecialStateSound(); ;
             Debug.Log("Restarting");
         }
 
         public override void Exit()
         {
+            agentGameObject.GetComponent<SoundEffectsController>().SpecialStateSound2();
         }
 
         public override void FixedUpdate()

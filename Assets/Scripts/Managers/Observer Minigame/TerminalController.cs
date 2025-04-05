@@ -48,7 +48,7 @@ namespace ObserverMinigame
         {
             player.GetComponent<PlayerObserverMovement>().MovementIsActive(consoleActive);
             string clipName = consoleActive ? "OM_CloseConsole" : "OM_OpenConsole";
-            AudioManager.Instance.PlaySoundEffect(audioSourceTerminal, clipName, 1f, false);
+            AudioManager.Instance.PlaySoundEffect(audioSourceTerminal, clipName, 0.5f, false);
             consoleActive = !consoleActive;
             subjecurityUI.gameObject.SetActive(consoleActive);
         }

@@ -56,11 +56,11 @@ namespace ObserverMinigame
                 }
                 //Save data
                 PlayerDataManager.Instance.SetMinigameRound(1, newMinigameData);
-                endGameController.EnablePanel(true);
+                endGameController.EnablePanel(true, currentRound);
             }
             else
             {
-                endGameController.EnablePanel(false);
+                endGameController.EnablePanel(false, currentRound);
             }
 
             CursorVisibility.ShowCursor();

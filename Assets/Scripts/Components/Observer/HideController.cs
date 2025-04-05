@@ -11,6 +11,7 @@ namespace ObserverMinigame
         Animator animator;
 
         bool isPlayerHidden = false;
+        public bool IsPlayerHidden => isPlayerHidden;
         Vector3 hidePosition;
 
         GameObject player;
@@ -56,24 +57,28 @@ namespace ObserverMinigame
 
         private void HidePlayer(InputAction.CallbackContext context)
         {
-            AudioManager.Instance.PlaySoundEffect(audioSourceHideSpot, "OM_Hide", 1f, false);
-
             if (isPlayerHidden)
             {
-                animator.SetTrigger("Hide");
+                
                 player.transform.position = lastPlayerPosition;
+                OpenAnimation();
                 player.GetComponent<PlayerObserverMovement>().MovementIsActive(true);
                 isPlayerHidden = false;
             }
             else
             {
                 player.GetComponent<PlayerObserverMovement>().MovementIsActive(false);
-                animator.SetTrigger("Hide");
+                OpenAnimation();
                 lastPlayerPosition = player.transform.position;
                 player.transform.position = hidePosition;
                 isPlayerHidden = true;
             }
+        }
 
+        public void OpenAnimation()
+        {
+            AudioManager.Instance.PlaySoundEffect(audioSourceHideSpot, "OM_Hide", 0.8f, false);
+            animator.SetTrigger("Hide");
         }
     }
 }

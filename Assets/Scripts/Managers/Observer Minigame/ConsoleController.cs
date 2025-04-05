@@ -16,9 +16,11 @@ namespace ObserverMinigame
         GameObject player;
         bool consoleActive = false;
 
+        AudioSource audioSourceConsole;
         void Start()
         {
             canvas3d = GetComponentInChildren<Canvas>(true);
+            audioSourceConsole = GetComponent<AudioSource>();
             consoleUI.OnQuitConsole = InteractConsole;
         }
 
@@ -46,6 +48,8 @@ namespace ObserverMinigame
         {
             if(consoleUI.isSliderActive) return;
             player.GetComponent<PlayerObserverMovement>().MovementIsActive(consoleActive);
+            string clipName = consoleActive ? "OM_CloseConsole" : "OM_OpenConsole";
+            AudioManager.Instance.PlaySoundEffect(audioSourceConsole, clipName, 0.5f, false);
             consoleActive = !consoleActive;
             consoleUI.gameObject.SetActive(consoleActive);
         }

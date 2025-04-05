@@ -1382,6 +1382,7 @@ MonoBehaviour:
   endGamePanel: {fileID: 4157298096598030396}
   endGameTitle: {fileID: 5302583909445813153}
   buttonText: {fileID: 8294580320663494419}
+  continueRestartButton: {fileID: 5024714897464581299}
 --- !u!1001 &2455773333936932906
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -19,6 +19,7 @@ namespace ObserverMinigame
             FloorDroneBrain.OnPlayerInSight += Bark;
             FlyingDroneBrain.OnPlayerInSight += Bark;
             TurretBrain.OnPlayerInSight += Bark;
+            SentinelBrain.OnPlayerInSight += Bark;
         }
 
         private void OnDestroy()
@@ -26,6 +27,7 @@ namespace ObserverMinigame
             FloorDroneBrain.OnPlayerInSight -= Bark;
             FlyingDroneBrain.OnPlayerInSight -= Bark;
             TurretBrain.OnPlayerInSight -= Bark;
+            SentinelBrain.OnPlayerInSight -= Bark;
         }
 
         void Bark(int barkState)
@@ -45,7 +47,8 @@ namespace ObserverMinigame
                 case 2:
                     barkImage.gameObject.SetActive(true);
                     barkImage.sprite = barks[1];
-                    AudioManager.Instance.PlaySoundEffect(audioSourceBark, "OM_PlayerTrapped", 0.2f, true);
+                    AudioManager.Instance.StopAudioSource(audioSourceBark);
+                    AudioManager.Instance.PlaySoundEffect(audioSourceBark, "OM_PlayerTrapped", 1f, true);
                     break;
                 default:
                     Debug.Log($"Bark state {barkState} not found");

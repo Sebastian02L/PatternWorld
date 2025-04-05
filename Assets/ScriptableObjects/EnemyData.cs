@@ -28,6 +28,9 @@ namespace ObserverMinigame
         public float restartDuration;
         public float restartProbability;
 
+        [Header("Sentinel Specific Stats")]
+        public float checkHideSpotTimer;
+
         [Header("Grabber Prefabs")]
         public GameObject grabCylinder;
         public GameObject grabSphere;
