@@ -51,6 +51,8 @@ namespace ObserverMinigame
                 if (timer >= 1f)
                 {
                     timer = 0f;
+                    //If the turret is seing the player and go to RestartState, the bark need to be turned off.
+                    Notify(0);
                     context.EvaluateInterruptionTransition();
                 }
                 

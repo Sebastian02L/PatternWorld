@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -47,7 +48,8 @@ namespace ObserverMinigame
             {
                 if (WaypointReached())
                 {
-                    waypointsManager.CalculateNextIndex();
+                    agent.isStopped = true;
+                    if (agentData.enemyType != EnemyData.EnemyType.Sentinel) waypointsManager.CalculateNextIndex();
                     RandomizeTransition();
                 }
                 else

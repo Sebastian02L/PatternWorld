@@ -28,6 +28,7 @@ namespace ObserverMinigame
         {
             if (other.CompareTag("Player"))
             {
+                AudioManager.Instance.PlaySoundEffect(audioSourceConsole, "OM_Interactable", 1f);
                 canvas3d.gameObject.SetActive(true);
                 interactAction.action.performed += InteractConsole;
                 player = other.gameObject;

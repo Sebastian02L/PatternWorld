@@ -77,6 +77,11 @@ namespace ObserverMinigame
             connectionText.text = "ESTABLE";
         }
 
+        private void OnDestroy()
+        {
+            GameObject.FindAnyObjectByType<SubjecurityUIController>(FindObjectsInactive.Include).RemoveObserver(this);
+        }
+
         public void HandleNotification()
         {
             //

@@ -23,7 +23,8 @@ MonoBehaviour:
   turnedAroundLookTime: 0
   turnProbability: 0
   changeWise: 0
-  restartDuration: 5
+  restartDuration: 8
   restartProbability: 0.1
+  checkHideSpotTimer: 0
   grabCylinder: {fileID: 5742524600089856608, guid: f14c277963bfaee4fa75edc50acc684e, type: 3}
   grabSphere: {fileID: 1160259638207386483, guid: a28eb1a0247e9f943be215801170f6a9, type: 3}

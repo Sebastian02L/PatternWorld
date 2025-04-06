@@ -20,8 +20,10 @@ namespace ObserverMinigame
         }
         public override void Enter()
         {
+            Debug.Log("     Entre CheckState");
             agent.stoppingDistance = agent.radius + 0.5f;
             selectedHideSpot = hideSpotsLocalizator.CalculateRandomHideSpot(agentGameObject.transform.position);
+            agent.isStopped = false;
             agent.SetDestination(selectedHideSpot.transform.position);
         }
 
@@ -39,6 +41,7 @@ namespace ObserverMinigame
                 {
                     agent.isStopped = true;
                     timer += Time.deltaTime;
+
                     if(timer >= agentData.checkHideSpotTimer && phase == 0)
                     {
                         timer = 0f;
@@ -65,6 +68,7 @@ namespace ObserverMinigame
 
         public override void Exit()
         {
+            Debug.Log("    Sali CheckState");
             agent.stoppingDistance = 0f;
         }
 

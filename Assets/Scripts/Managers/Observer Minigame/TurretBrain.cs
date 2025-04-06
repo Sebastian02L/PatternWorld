@@ -15,6 +15,8 @@ namespace ObserverMinigame
         GameObject player;
         public static event Action<int> OnPlayerInSight;
 
+        bool settedUp = false;
+
         public IState GetState()
         {
             return currentState;
@@ -38,7 +40,12 @@ namespace ObserverMinigame
         void Start()
         {
             player = GameObject.FindWithTag("Player");
-            SetUpBehaviour();
+            TutorialController.OnTutorialClosed += SetUpBehaviour;
+        }
+
+        private void OnDestroy()
+        {
+            TutorialController.OnTutorialClosed -= SetUpBehaviour;
         }
 
         void SetUpBehaviour()
@@ -51,15 +58,18 @@ namespace ObserverMinigame
             sensor.spotAngle = turretData.FOV;
             sensor.range = turretData.visionDistance;
             SetState(new IdleState(this, turretData, player, gameObject, Notify));
+            settedUp = true;
         }
 
         void Update()
         {
+            if (!settedUp) return;
             currentState.Update();
         }
 
         private void FixedUpdate()
         {
+            if (!settedUp) return;
             currentState.FixedUpdate();
         }
 

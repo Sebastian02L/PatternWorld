@@ -93,12 +93,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b381ffac8fbb7284a83fc430f9d92a51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storyData: {fileID: 11400000, guid: dd06de5cb17a4e14f86623bab7ba323c, type: 2}
   storyTextUI: {fileID: 5613517954261965739}
   stripImageUI: {fileID: 1730336086165434444}
   nextButton: {fileID: 207818835855536667}
   skipButton: {fileID: 7774315632125606997}
-  typingSpeed: 0.05
+  typingSpeed: 0.025
 --- !u!1 &1835124153647184084
 GameObject:
   m_ObjectHideFlags: 0

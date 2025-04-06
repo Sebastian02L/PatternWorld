@@ -16035,6 +16035,7 @@ GameObject:
   - component: {fileID: 8904196239259058594}
   - component: {fileID: 4224592285064057186}
   - component: {fileID: 223705861197232219}
+  - component: {fileID: 260291178378342293}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -16922,6 +16923,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!208 &260291178378342293
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3917009169303613804}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.069000006, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.071, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &6654067326895053763
 GameObject:
   m_ObjectHideFlags: 0
@@ -17002,8 +17019,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.2241821, y: 0.37647292, z: 0.15306358}
-  m_Center: {x: 0.0064322078, y: 0.21405433, z: -0.0014726002}
+  m_Size: {x: 0.28552797, y: 0.79258406, z: 0.30105364}
+  m_Center: {x: 0.000564905, y: 0.006000409, z: -0.0082873795}
 --- !u!1 &8277738761515648414
 GameObject:
   m_ObjectHideFlags: 0
@@ -17085,7 +17102,7 @@ Light:
   m_InnerSpotAngle: 45
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -17116,7 +17133,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 123
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0

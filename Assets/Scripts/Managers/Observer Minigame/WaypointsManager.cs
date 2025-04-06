@@ -8,6 +8,8 @@ namespace ObserverMinigame
         int direction = 1;
         int index = 0;
 
+        int lastIndex;
+
         public Transform GetNextWaypoint()
         {
             return waypoints[index];
@@ -28,7 +30,15 @@ namespace ObserverMinigame
 
         public void CalculateRandomIndex()
         {
-            index = Random.Range(0, waypoints.Length);
+            int randomIndex;
+            do
+            {
+                randomIndex = Random.Range(0, waypoints.Length);
+            } 
+            while (randomIndex == lastIndex);
+
+            lastIndex = index;
+            index = randomIndex;
         }
 
         public void ChangeWise()
