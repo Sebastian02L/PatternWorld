@@ -343,10 +343,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5064163586426775891, guid: 7b7e348cb411a144cbf7aa30dbbcd82e, type: 2}
-  m_audioClip: {fileID: 8300000, guid: cd8ab4aaed7499d4ea282a57a624ef61, type: 3}
-  m_Resource: {fileID: 8300000, guid: cd8ab4aaed7499d4ea282a57a624ef61, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9ceecdd0a0493274dafe1de618adbffe, type: 3}
+  m_Resource: {fileID: 8300000, guid: 9ceecdd0a0493274dafe1de618adbffe, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -904,9 +904,9 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 1.64
-  m_Radius: 0.5
+  m_Radius: 0.45
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.09, z: 0}
@@ -2171,6 +2171,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 92969697271623360, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1365906547947448504, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2191,6 +2195,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2530870376100843647, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2790087782585406870, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2202,6 +2210,21 @@ PrefabInstance:
     - target: {fileID: 2790087782585406870, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270456238867933609, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3536766830607377386, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
+      propertyPath: m_text
+      value: "1. Sigue las flechas rojas de las paredes para llegar a las consolas
+        y suscribirlas al sistema de seguridad.\n2. Esc\xF3ndete del campo de visi\xF3n
+        de los enemigos . Si entras en el extremo de este, a\xFAn puedes salir para
+        sobrevivir."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3536766830607377386, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
+      propertyPath: m_margin.w
+      value: -255.43088
       objectReference: {fileID: 0}
     - target: {fileID: 3613201428857347291, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2215,9 +2238,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4754281516634932384, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5024714897464581299, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: ObserverMinigame
+      objectReference: {fileID: 0}
+    - target: {fileID: 5490762371085730901, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5555530630303034279, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012420844657759432, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6129451176473321259, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2230,6 +2269,14 @@ PrefabInstance:
     - target: {fileID: 6129451176473321259, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7469964435548470852, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7469964435548470852, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
+      propertyPath: m_margin.z
+      value: -12.604248
       objectReference: {fileID: 0}
     - target: {fileID: 8145013737482993401, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
       propertyPath: m_Name

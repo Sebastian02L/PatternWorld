@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
@@ -46,6 +47,8 @@ namespace ObserverMinigame
             }
             else
             {
+                if (agent.pathPending) return;
+
                 if (WaypointReached())
                 {
                     agent.isStopped = true;

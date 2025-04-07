@@ -37,6 +37,11 @@ namespace ObserverMinigame
             } 
             while (randomIndex == lastIndex);
 
+            if (randomIndex == 0)
+            {
+                Debug.Log("     Salio 0");
+            }
+
             lastIndex = index;
             index = randomIndex;
         }

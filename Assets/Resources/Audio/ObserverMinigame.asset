@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ObserverMinigame
   m_EditorClassIdentifier: 
   musicClips:
-  - {fileID: 8300000, guid: cd8ab4aaed7499d4ea282a57a624ef61, type: 3}
+  - {fileID: 8300000, guid: 9ceecdd0a0493274dafe1de618adbffe, type: 3}
   - {fileID: 8300000, guid: 1281cbffbd9cb0f4d88137f6cd21f111, type: 3}
   - {fileID: 8300000, guid: 9a0abb63feff4d844a7a934ced5d53a2, type: 3}
   soundEffects:
