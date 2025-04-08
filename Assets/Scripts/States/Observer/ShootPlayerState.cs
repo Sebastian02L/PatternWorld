@@ -39,11 +39,9 @@ namespace ObserverMinigame
             }
             else if (alingmnetCompleted && !shootCompleted)
             {
-                /*timer += Time.deltaTime;
-                
-                if(timer >= deadTime)*/ Shoot();
+                Shoot();
             }
-            else if(shootCompleted)
+            else if(shootCompleted && !GameManager.playerTrapped)
             {
                 timer += Time.deltaTime;
 

@@ -24,6 +24,7 @@ public class StoryManager : MonoBehaviour
     private string writtingText = "";
 
     bool skipStory = false;
+    bool completeTyping = false;
     bool next = false;
 
     void Start()
@@ -48,11 +49,16 @@ public class StoryManager : MonoBehaviour
             writtingText = "";
             currentText = storyData.stripsText[i].text;
             stripImageUI.texture = storyData.strips[i];
-            NextButtonSetActive(false);
 
             foreach (char character in currentText)
             {
                 if(skipStory) break;
+
+                if (completeTyping)
+                {
+                    storyTextUI.text = currentText;
+                    break;
+                }
 
                 writtingText += character;
                 storyTextUI.text = writtingText;
@@ -83,7 +89,15 @@ public class StoryManager : MonoBehaviour
     }
     public void OnNextClick()
     {
-        next = true;
+        if (!completeTyping) 
+        {
+            completeTyping = true;
+        }
+        else
+        {
+            completeTyping = false;
+            next = true;
+        }
     }
     public void OnSkipClick()
     {

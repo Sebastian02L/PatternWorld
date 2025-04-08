@@ -3,12 +3,17 @@ using UnityEngine;
 public class LookAtCamera : MonoBehaviour
 {
     [SerializeField] bool shouldTurnOffOnStart = true;
+    Transform cameraTranform;
     private void Start()
     {
-       if(shouldTurnOffOnStart) gameObject.SetActive(false);
+        cameraTranform = Camera.main.transform;
+        if (shouldTurnOffOnStart) gameObject.SetActive(false);
     }
     void Update()
     {
-        gameObject.transform.LookAt(Camera.main.transform);
+        Vector3 targetDirection = cameraTranform.position - gameObject.transform.position;
+        targetDirection.x = 0;
+
+        gameObject.transform.forward = Vector3.RotateTowards(gameObject.transform.forward, targetDirection.normalized, Mathf.PI * 2f, 0.0f);
     }
 }

@@ -6,6 +6,7 @@ public class ButtonActivationDelay : MonoBehaviour
     [SerializeField] float activationTime = 1f;
     float timer = 0;
     Button button;
+    bool firstTime = true;
 
     void Start()
     {
@@ -15,8 +16,9 @@ public class ButtonActivationDelay : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= activationTime) 
+        if (timer >= activationTime && firstTime) 
         {
+            firstTime = false;
             button.interactable = true;
         }
     }
