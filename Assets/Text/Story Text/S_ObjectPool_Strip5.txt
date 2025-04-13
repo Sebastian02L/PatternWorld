@@ -1,0 +1,1 @@
+A uno de los ingenieros se le ocurrió una solución. En lugar de crear y destruir elementos de forma continua, se crearían solo al principio de la simulación y se utilizarían cuando fuera necesario.

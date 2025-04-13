@@ -1,0 +1,1 @@
+Tras observar las gráficas de la simulación, se determinó que la constante creación y destrucción de elementos virtuales generaba un pico en el consumo de recursos del ordenador

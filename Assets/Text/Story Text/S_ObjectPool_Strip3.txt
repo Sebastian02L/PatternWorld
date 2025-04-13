@@ -1,0 +1,1 @@
+Dentro de la simulación, en el momento en el que se mostraban simultáneamente varios disparos y partículas del terreno, la estabilidad se veía afectada, haciendo que no se pudieran realizar las pruebas correctamente.

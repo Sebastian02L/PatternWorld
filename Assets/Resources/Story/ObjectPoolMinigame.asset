@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b1492dc0cdfb2b4ca7c00f778f52759, type: 3}
+  m_Name: ObjectPoolMinigame
+  m_EditorClassIdentifier: 
+  strips:
+  - {fileID: 2800000, guid: eaa4e4474ff2502459b58e4c1188578a, type: 3}
+  - {fileID: 2800000, guid: 242ec24c82cfd0349afaf5295bf25b10, type: 3}
+  - {fileID: 2800000, guid: 8ff6fe2c2323f85499843ec4de0ffc7f, type: 3}
+  - {fileID: 2800000, guid: 2e0f345fe5ad61a4ba3a8642119e7b91, type: 3}
+  - {fileID: 2800000, guid: 1268653690ccfae49ae4962b310d0ea9, type: 3}
+  - {fileID: 2800000, guid: e05f4c013507a6847a9ea926017908f3, type: 3}
+  stripsText:
+  - {fileID: 4900000, guid: 498febd30b783a544b9654c30d2bca09, type: 3}
+  - {fileID: 4900000, guid: 7370fcf62354e14428ff6ef0f6677c22, type: 3}
+  - {fileID: 4900000, guid: 4165be4d99247d74692c836f5ae34c40, type: 3}
+  - {fileID: 4900000, guid: 487f132a163370b4fa2e379b69f29a01, type: 3}
+  - {fileID: 4900000, guid: b097ab210e92584419321796cc47571c, type: 3}
+  - {fileID: 4900000, guid: 821423921215b9e42acf5ddff9487045, type: 3}

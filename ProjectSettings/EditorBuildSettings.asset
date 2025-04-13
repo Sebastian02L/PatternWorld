@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ObserverMinigame.unity
     guid: 856c40b32d3dbd04fa1a15def64579d7
+  - enabled: 1
+    path: Assets/Scenes/ObjectPoolMinigame.unity
+    guid: c4f81f88761eb7a4e858a1ad9735d419
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
