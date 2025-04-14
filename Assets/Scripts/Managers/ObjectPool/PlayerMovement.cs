@@ -8,17 +8,18 @@ namespace ObjectPoolMinigame
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] float moveSpeed = 5f;
-        //[SerializeField] float rotationSpeed = 10f;
 
         PlayerInput playerInput;
         CharacterController charController;
         AudioSource audioSourcePlayer;
+        Camera camera;
 
         Vector2 moveDirection;
         bool processMovement = true;
 
         void Awake()
         {
+            camera = Camera.main;
             charController = GetComponent<CharacterController>();
             playerInput = GetComponent<PlayerInput>();
             playerInput.actions.Disable();
@@ -42,30 +43,24 @@ namespace ObjectPoolMinigame
             moveDirection = playerInput.actions["Move"].ReadValue<Vector2>();
 
             if (!processMovement) return;
+
             //If there is movement then we will move the player
             if (moveDirection.sqrMagnitude > 0.1f)
             {
-                //AudioManager.Instance.PlaySoundEffect(audioSourcePlayer, "OM_PlayerMoving", 0.2f, true);
-                Vector3 move = new Vector3(moveDirection.x, 0, moveDirection.y).normalized * moveSpeed;
+                //The movement has to be done depending of the direction of the camera
+                Vector3 forward = camera.transform.forward;
+                Vector3 right = camera.transform.right;
+
+                forward.y = 0;
+                right.y = 0;
+
+                forward.Normalize();
+                right.Normalize();
+
+                Vector3 move = (forward * moveDirection.y + right * moveDirection.x) * moveSpeed;
                 charController.SimpleMove(move);
-
-                //Get the direction of the movement 
-                //Vector3 targetDirection = new Vector3(moveDirection.x, 0, moveDirection.y);
-                //targetDirection.Normalize();
-
-                ////Rotate the player to face the direction of the movement
-                //if (targetDirection != Vector3.zero)
-                //{
-                //    Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-                //    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-                //}
-            }
-            else
-            {
-                //AudioManager.Instance.StopAudioSource(audioSourcePlayer);
             }
         }
-
 
         //Turns off/on the movement of the player
         public void MovementIsActive(bool value)
@@ -77,19 +72,11 @@ namespace ObjectPoolMinigame
             }
             else
             {
-                AudioManager.Instance.StopAudioSource(audioSourcePlayer);
+                //AudioManager.Instance.StopAudioSource(audioSourcePlayer);
                 playerInput.actions["Move"].Disable();
                 processMovement = false;
             }
         }
-
-        //Delay the process of the movement. If the player press any WASD key when is exiting the hide area
-        //the player sometimes will pop on the floor and then get teleported down the floor.
-        //IEnumerator MovementDelayActivation()
-        //{
-        //    yield return new WaitForSeconds(0.1f);
-        //    processMovement = true;
-        //}
 
         public void PlayerLose()
         {
