@@ -162,8 +162,50 @@ public partial class @ObjectPoolControls: IInputActionCollection2, IDisposable
         {
             ""name"": ""Interactions"",
             ""id"": ""6b3ddf97-91fd-4afa-b7e0-31274bee0c71"",
-            ""actions"": [],
-            ""bindings"": []
+            ""actions"": [
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""acdf52f8-ab54-4802-8315-f82ffc765b55"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""110162f3-0430-47b3-8580-49fb704ef100"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""7e114e9e-064f-444f-84fb-640cb0af0b10"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f07eb255-793f-42f8-9739-a174e02704eb"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -173,6 +215,8 @@ public partial class @ObjectPoolControls: IInputActionCollection2, IDisposable
         m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
         // Interactions
         m_Interactions = asset.FindActionMap("Interactions", throwIfNotFound: true);
+        m_Interactions_Shoot = m_Interactions.FindAction("Shoot", throwIfNotFound: true);
+        m_Interactions_Reload = m_Interactions.FindAction("Reload", throwIfNotFound: true);
     }
 
     ~@ObjectPoolControls()
@@ -350,6 +394,8 @@ public partial class @ObjectPoolControls: IInputActionCollection2, IDisposable
     // Interactions
     private readonly InputActionMap m_Interactions;
     private List<IInteractionsActions> m_InteractionsActionsCallbackInterfaces = new List<IInteractionsActions>();
+    private readonly InputAction m_Interactions_Shoot;
+    private readonly InputAction m_Interactions_Reload;
     /// <summary>
     /// Provides access to input actions defined in input action map "Interactions".
     /// </summary>
@@ -361,6 +407,14 @@ public partial class @ObjectPoolControls: IInputActionCollection2, IDisposable
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
         public InteractionsActions(@ObjectPoolControls wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Interactions/Shoot".
+        /// </summary>
+        public InputAction @Shoot => m_Wrapper.m_Interactions_Shoot;
+        /// <summary>
+        /// Provides access to the underlying input action "Interactions/Reload".
+        /// </summary>
+        public InputAction @Reload => m_Wrapper.m_Interactions_Reload;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -387,6 +441,12 @@ public partial class @ObjectPoolControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_InteractionsActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_InteractionsActionsCallbackInterfaces.Add(instance);
+            @Shoot.started += instance.OnShoot;
+            @Shoot.performed += instance.OnShoot;
+            @Shoot.canceled += instance.OnShoot;
+            @Reload.started += instance.OnReload;
+            @Reload.performed += instance.OnReload;
+            @Reload.canceled += instance.OnReload;
         }
 
         /// <summary>
@@ -398,6 +458,12 @@ public partial class @ObjectPoolControls: IInputActionCollection2, IDisposable
         /// <seealso cref="InteractionsActions" />
         private void UnregisterCallbacks(IInteractionsActions instance)
         {
+            @Shoot.started -= instance.OnShoot;
+            @Shoot.performed -= instance.OnShoot;
+            @Shoot.canceled -= instance.OnShoot;
+            @Reload.started -= instance.OnReload;
+            @Reload.performed -= instance.OnReload;
+            @Reload.canceled -= instance.OnReload;
         }
 
         /// <summary>
@@ -453,5 +519,19 @@ public partial class @ObjectPoolControls: IInputActionCollection2, IDisposable
     /// <seealso cref="InteractionsActions.RemoveCallbacks(IInteractionsActions)" />
     public interface IInteractionsActions
     {
+        /// <summary>
+        /// Method invoked when associated input action "Shoot" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnShoot(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Reload" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnReload(InputAction.CallbackContext context);
     }
 }

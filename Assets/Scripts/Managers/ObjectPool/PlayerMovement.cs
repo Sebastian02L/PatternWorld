@@ -16,6 +16,8 @@ namespace ObjectPoolMinigame
 
         Vector2 moveDirection;
         bool processMovement = true;
+        float gravity = -9.81f;
+        float speedY = 0f;
 
         void Awake()
         {
@@ -57,8 +59,19 @@ namespace ObjectPoolMinigame
                 forward.Normalize();
                 right.Normalize();
 
-                Vector3 move = (forward * moveDirection.y + right * moveDirection.x) * moveSpeed;
-                charController.SimpleMove(move);
+                Vector3 move = (forward * moveDirection.y + right * moveDirection.x) * moveSpeed * Time.deltaTime;
+
+                if (!charController.isGrounded) 
+                {
+                    speedY += gravity * Time.deltaTime;
+                }
+                else
+                {
+                    speedY = 0;
+                }
+
+                move.y = speedY;
+                charController.Move(move);
             }
         }
 

@@ -76,8 +76,50 @@
         {
             "name": "Interactions",
             "id": "6b3ddf97-91fd-4afa-b7e0-31274bee0c71",
-            "actions": [],
-            "bindings": []
+            "actions": [
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "acdf52f8-ab54-4802-8315-f82ffc765b55",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Reload",
+                    "type": "Button",
+                    "id": "110162f3-0430-47b3-8580-49fb704ef100",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7e114e9e-064f-444f-84fb-640cb0af0b10",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f07eb255-793f-42f8-9739-a174e02704eb",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
