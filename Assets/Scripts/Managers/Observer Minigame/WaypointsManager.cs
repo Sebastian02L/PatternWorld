@@ -15,6 +15,11 @@ namespace ObserverMinigame
             return waypoints[index];
         }
 
+        public void SetWaypoints(Transform[] waypointsList)
+        {
+            waypoints = waypointsList;
+        }
+
         public void CalculateNextIndex()
         {
             index += direction;
@@ -36,11 +41,6 @@ namespace ObserverMinigame
                 randomIndex = Random.Range(0, waypoints.Length);
             } 
             while (randomIndex == lastIndex);
-
-            if (randomIndex == 0)
-            {
-                Debug.Log("     Salio 0");
-            }
 
             lastIndex = index;
             index = randomIndex;
