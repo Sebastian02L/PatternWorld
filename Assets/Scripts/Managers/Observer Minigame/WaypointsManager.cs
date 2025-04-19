@@ -20,6 +20,11 @@ namespace ObserverMinigame
             waypoints = waypointsList;
         }
 
+        public Transform[] GetWaypoints()
+        {
+            return waypoints;
+        }
+
         public void CalculateNextIndex()
         {
             index += direction;

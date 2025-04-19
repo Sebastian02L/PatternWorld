@@ -22,9 +22,8 @@ namespace ObjectPoolMinigame
         {
             if (CheckPlayerInFOV())
             {
-                //Debug.Log("jUGADOR A LA VISTA");
                 //agentGameObject.GetComponent<SoundEffectsController>().Movement(true);
-                context.SetState(new ShootState(context, agentData, player, agentGameObject, animator, playerHead, agentHead, gunManager));
+                context.SetState(new CombatState(context, agentData, player, agentGameObject, animator, playerHead, agentHead, gunManager));
             }
             else
             {

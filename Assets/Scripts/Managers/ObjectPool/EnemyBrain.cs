@@ -11,6 +11,7 @@ namespace ObjectPoolMinigame
         [SerializeField] MeshRenderer gunRenderer;
         [SerializeField] EnemyGunManager gunManager;
         [SerializeField] GameObject enemyHead;
+        HealthManager healthManager;
         IState currentState;
 
         GameObject player;
@@ -42,11 +43,15 @@ namespace ObjectPoolMinigame
             player = GameObject.FindWithTag("Player");
             playerHead = player.transform.Find("Head").gameObject;
             GetComponent<WaypointsManager>().SetWaypoints(GameObject.FindAnyObjectByType<NavMeshSurface>().GetComponent<NavMeshWaypointManager>().GetWaypoints());
+            healthManager = GetComponent<HealthManager>();
+            healthManager.SetMaxHeahlt(enemyData.maxHealht);
+            healthManager.OnHealthChange += OnGetDamaged;
             TutorialController.OnTutorialClosed += SetUpBehaviour;
         }
 
         private void OnDestroy()
         {
+            healthManager.OnHealthChange -= OnGetDamaged;
             TutorialController.OnTutorialClosed -= SetUpBehaviour;
         }
 
@@ -71,6 +76,14 @@ namespace ObjectPoolMinigame
         {
             if (!settedUp) return;
             currentState.FixedUpdate();
+        }
+
+        void OnGetDamaged()
+        {
+            if(currentState.GetType() != typeof(CombatState) && currentState.GetType() != typeof(EscapeState))
+            {
+                SetState(new CombatState(this, enemyData, player, gameObject, GetComponent<Animator>(), playerHead, enemyHead, gunManager));
+            }
         }
     }
 }

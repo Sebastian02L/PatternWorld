@@ -45,15 +45,13 @@ namespace ObjectPoolMinigame
 
             if (CheckPlayerInFOV())
             {
-                navMeshAgent.isStopped = true;
                 //agentGameObject.GetComponent<SoundEffectsController>().Movement(true);
-                context.SetState(new ShootState(context, agentData, player, agentGameObject, animator, playerHead, agentHead, gunManager));
+                context.SetState(new CombatState(context, agentData, player, agentGameObject, animator, playerHead, agentHead, gunManager));
             }
             else
             {
                 if (PointReached())
                 {
-                    navMeshAgent.isStopped = true;
                     context.SetState(new IdleState(context, agentData, player, agentGameObject, animator, playerHead, agentHead, gunManager));
                 }
             }
@@ -62,6 +60,7 @@ namespace ObjectPoolMinigame
 
         public override void Exit()
         {
+            navMeshAgent.isStopped = true;
         }
 
         public override void FixedUpdate()
