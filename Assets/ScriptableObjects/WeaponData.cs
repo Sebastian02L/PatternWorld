@@ -11,6 +11,7 @@ namespace ObjectPoolMinigame
         public float bulletDamage;
         public float bulletRange;
         public float realoadTime;
+        public GameObject weaponPrefab;
         public GameObject bulletPrefab;
     }
 }

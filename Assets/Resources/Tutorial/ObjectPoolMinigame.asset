@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ae02c7f2eeead4890e0913fefd5388, type: 3}
   m_Name: ObjectPoolMinigame
   m_EditorClassIdentifier: 
-  controlsImage: {fileID: 21300000, guid: da4fa9dc3ceb14747935769d98b59135, type: 3}
-  rulesImage: {fileID: 21300000, guid: 4b6470ed751694e45a1b5acdb9f1db5c, type: 3}
+  controlsImage: {fileID: 21300000, guid: 48cd8460ea8f9114e93a717f8d0cf6c4, type: 3}
+  rulesImage: {fileID: 21300000, guid: dd9cb9957aead5c4a855dc6039731be7, type: 3}

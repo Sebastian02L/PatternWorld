@@ -4,13 +4,11 @@ using UnityEngine;
 
 namespace ObjectPoolMinigame
 {
-    public class EnemyGunManager : MonoBehaviour, IWeapon, IObjectPool
+    public class EnemyGunManager : MonoBehaviour, IWeapon
     {
-        [SerializeField] EnemyData enemyData;
         [SerializeField] Transform shootOrigin;
-
-        //IObjectPool related
-        List<IPoolableObject> bullets;
+        WeaponData weaponData;
+        ObjectPool bulletsPool;
 
         //Weapon Logic Related
         Camera playerCamera;
@@ -20,23 +18,17 @@ namespace ObjectPoolMinigame
         float timer;
         int ammo;
 
+        Mesh bulletMesh;
+        Material bulletMaterial;
+
         public event Action<int> onAmmoChange;
 
         void Start()
         {
-            //ObjectPool Initialization
-            int numberOfBullets = enemyData.weapon.maxAmmo + (enemyData.weapon.maxAmmo / 2);
-            bullets = new List<IPoolableObject>(numberOfBullets);
-            for (int i = 0; i < numberOfBullets; i++)
-            {
-                bullets.Add(Instantiate(enemyData.weapon.bulletPrefab, this.transform).GetComponent<IPoolableObject>());
-                bullets[i].IsDirty = false;
-                (bullets[i] as BulletManager).SetWeaponData(enemyData.weapon);
-            }
-
+            bulletsPool = FindAnyObjectByType<GameManager>().GetBulletsPool();
             playerCamera = Camera.main;
-            shootInterval = 1f / enemyData.weapon.bulletPerSecond;
-            ammo = enemyData.weapon.maxAmmo;
+            shootInterval = 1f / weaponData.bulletPerSecond;
+            ammo = weaponData.maxAmmo;
             AdjustShootOrientation();
         }
 
@@ -56,7 +48,7 @@ namespace ObjectPoolMinigame
             {
                 timer += Time.deltaTime;
 
-                if(timer >= enemyData.weapon.maxAmmo)
+                if(timer >= weaponData.realoadTime)
                 {
                     timer = 0;
                     reloading = false;
@@ -71,12 +63,7 @@ namespace ObjectPoolMinigame
             canShoot = false;
             reloading = true;
             timer = 0;
-            ammo = enemyData.weapon.maxAmmo;
-
-            foreach(var bullet in bullets)
-            {
-                bullet.IsDirty = false;
-            }
+            ammo = weaponData.maxAmmo;
         }
 
         public void Shoot()
@@ -84,11 +71,15 @@ namespace ObjectPoolMinigame
             if (canShoot && ammo > 0)
             {
                 canShoot = false;
-                IPoolableObject bullet = Get();
+                IPoolableObject bullet = bulletsPool.Get();
 
                 if (bullet != null)
                 {
+                    (bullet as BulletManager).SetWeaponData(weaponData);
                     GameObject bulletGO = bullet.GetGameObject();
+                    bulletGO.GetComponentInChildren<MeshFilter>().mesh = bulletMesh;
+                    bulletGO.GetComponentInChildren<MeshRenderer>().material = bulletMaterial;
+
                     bulletGO.transform.position = shootOrigin.position;
 
                     Vector3 impactPoint = CalculateBulletDirection();
@@ -128,24 +119,16 @@ namespace ObjectPoolMinigame
             shootOrigin.LookAt(worldPos);
         }
 
-        // // // // // // IObjectPool Methods // // // // // //
-        public IPoolableObject Get()
+        public void SetWeaponData(WeaponData weaponData)
         {
-            foreach(var bullet in bullets)
-            {
-                if (!bullet.IsDirty)
-                {
-                    bullet.IsDirty = true;
-                    return bullet;
-                }
-            }
-
-            return null;
+            this.weaponData = weaponData;
+            SaveBulletVisuals();
         }
 
-        public void Release(IPoolableObject obj)
+        void SaveBulletVisuals()
         {
-            obj.IsDirty = false;
+            bulletMesh = weaponData.bulletPrefab.GetComponentInChildren<MeshFilter>().sharedMesh;
+            bulletMaterial = new Material(weaponData.bulletPrefab.GetComponentInChildren<MeshRenderer>().sharedMaterial);
         }
     }
 }

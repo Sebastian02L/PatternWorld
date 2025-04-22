@@ -4,13 +4,11 @@ using UnityEngine;
 
 namespace ObjectPoolMinigame
 {
-    public class EnergyPistolManager : MonoBehaviour, IWeapon, IObjectPool
+    public class EnergyPistolManager : MonoBehaviour, IWeapon
     {
-        [SerializeField] WeaponData weaponData;
         [SerializeField] Transform shootOrigin;
-
-        //IObjectPool related
-        List<IPoolableObject> bullets;
+        WeaponData weaponData;
+        IObjectPool bulletsPool;
 
         //Weapon Logic Related
         Camera playerCamera;
@@ -20,21 +18,15 @@ namespace ObjectPoolMinigame
         float timer;
         public int ammo;
 
+        Mesh bulletMesh;
+        Material bulletMaterial;
+
         public event Action<int> onAmmoChange;
         bool firstTime = true;
 
         void Start()
         {
-            //ObjectPool Initialization
-            int numberOfBullets = weaponData.maxAmmo + (weaponData.maxAmmo / 2);
-            bullets = new List<IPoolableObject>(numberOfBullets);
-            for (int i = 0; i < numberOfBullets; i++)
-            {
-                bullets.Add(Instantiate(weaponData.bulletPrefab, this.transform).GetComponent<IPoolableObject>());
-                bullets[i].IsDirty = false;
-                (bullets[i] as BulletManager).SetWeaponData(weaponData);
-            }
-
+            bulletsPool = FindAnyObjectByType<GameManager>().GetBulletsPool();
             playerCamera = Camera.main;
             shootInterval = 1f / weaponData.bulletPerSecond;
             AdjustShootOrientation();
@@ -80,11 +72,6 @@ namespace ObjectPoolMinigame
             reloading = true;
             timer = 0;
             ammo = weaponData.maxAmmo;
-
-            foreach(var bullet in bullets)
-            {
-                bullet.IsDirty = false;
-            }
         }
 
         public void Shoot()
@@ -92,11 +79,15 @@ namespace ObjectPoolMinigame
             if (canShoot && ammo > 0)
             {
                 canShoot = false;
-                IPoolableObject bullet = Get();
+                IPoolableObject bullet = bulletsPool.Get();
 
                 if (bullet != null)
                 {
+                    (bullet as BulletManager).SetWeaponData(weaponData);
                     GameObject bulletGO = bullet.GetGameObject();
+                    bulletGO.GetComponentInChildren<MeshFilter>().mesh = bulletMesh;
+                    bulletGO.GetComponentInChildren<MeshRenderer>().material = bulletMaterial;
+                    
                     bulletGO.transform.position = shootOrigin.position;
 
                     Vector3 impactPoint = CalculateBulletDirection();
@@ -144,24 +135,16 @@ namespace ObjectPoolMinigame
             shootOrigin.LookAt(worldPos);
         }
 
-        // // // // // // IObjectPool Methods // // // // // //
-        public IPoolableObject Get()
+        public void SetWeaponData(WeaponData weaponData)
         {
-            foreach(var bullet in bullets)
-            {
-                if (!bullet.IsDirty)
-                {
-                    bullet.IsDirty = true;
-                    return bullet;
-                }
-            }
-
-            return null;
+            this.weaponData = weaponData;
+            SaveBulletVisuals();
         }
 
-        public void Release(IPoolableObject obj)
+        void SaveBulletVisuals()
         {
-            obj.IsDirty = false;
+            bulletMesh = weaponData.bulletPrefab.GetComponentInChildren<MeshFilter>().sharedMesh;
+            bulletMaterial = new Material (weaponData.bulletPrefab.GetComponentInChildren<MeshRenderer>().sharedMaterial);
         }
     }
 }

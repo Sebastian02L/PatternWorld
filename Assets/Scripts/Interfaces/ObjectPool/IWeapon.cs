@@ -8,5 +8,6 @@ namespace ObjectPoolMinigame
         public event Action<int> onAmmoChange;
         public void Shoot();
         public void Reload();
+        public void SetWeaponData(WeaponData weaponData);
     }
 }

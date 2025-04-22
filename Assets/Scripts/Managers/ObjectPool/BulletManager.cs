@@ -5,12 +5,12 @@ namespace ObjectPoolMinigame
     public class BulletManager : MonoBehaviour, IPoolableObject
     {
         WeaponData weaponData;
-        IObjectPool pool;
+        IObjectPool bulletsPool;
 
         void Start()
         {
+            bulletsPool = FindAnyObjectByType<GameManager>().GetBulletsPool();
             GetComponentInChildren<BulletCollisionManager>().onCollision += OnCollision;
-            pool = GetComponentInParent<IObjectPool>();
             gameObject.SetActive(false);
         }
 
@@ -35,7 +35,7 @@ namespace ObjectPoolMinigame
         public void Release()
         {
             gameObject.SetActive(false);
-            pool.Release(this);
+            bulletsPool.Release(this);
         }
 
         // // // // // Logic Methods // // // // //

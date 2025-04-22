@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,7 +9,9 @@ namespace ObjectPoolMinigame
     {
         //Origin of the "player's hand"
         [SerializeField] Transform weaponsOrigin;
-        public List<GameObject> weapons;
+        List<WeaponData> weaponsData = new List<WeaponData>();
+        List<GameObject> weapons = new List<GameObject>();
+        GameObject currentWeaponGO;
         IWeapon currentWeapon;
 
         PlayerInput input;
@@ -17,8 +20,11 @@ namespace ObjectPoolMinigame
         {
             input = GetComponent<PlayerInput>();
             input.actions["Reload"].performed += RealoadWeapon;
+        }
 
-            currentWeapon = Instantiate(weapons[0], weaponsOrigin).GetComponent<IWeapon>();
+        private void Start()
+        {
+            InstantiateWeapon(0);
         }
 
         private void OnDestroy()
@@ -34,6 +40,20 @@ namespace ObjectPoolMinigame
             }
         }
 
+        void InstantiateWeapon(int weaponTurn)
+        {
+            currentWeaponGO = Instantiate(weapons[weaponTurn], weaponsOrigin);
+            currentWeapon = currentWeaponGO.GetComponent<IWeapon>();
+            currentWeapon.SetWeaponData(weaponsData[weaponTurn]);
+        }
+
+        public void ChangeWeapon()
+        {
+            currentWeapon = null;
+            currentWeaponGO.SetActive(false);
+            InstantiateWeapon(1);
+        }
+
         void ShootWeapon()
         {
             currentWeapon.Shoot();
@@ -47,6 +67,13 @@ namespace ObjectPoolMinigame
         public IWeapon GetCurrentWeapon()
         {
             return currentWeapon;
+        }
+
+        public void SetWeaponsData(List<WeaponData> weaponData)
+        {
+            weaponsData = weaponData;
+            weapons.Add(weaponsData[0].weaponPrefab);
+            //weapons.Add(weaponsData[1].weaponPrefab);
         }
     }
 }

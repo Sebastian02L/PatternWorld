@@ -18,4 +18,5 @@ MonoBehaviour:
   bulletDamage: 10
   bulletRange: 10
   realoadTime: 2
-  bulletPrefab: {fileID: 7172639506888598500, guid: cb44251a0dca9fd45803cfc2503073ab, type: 3}
+  weaponPrefab: {fileID: 916454621778862129, guid: 9b9ff5d747364bd4daaa82773d490ea0, type: 3}
+  bulletPrefab: {fileID: 7172639506888598500, guid: d8bedd290098262408e98a3d9a88338d, type: 3}

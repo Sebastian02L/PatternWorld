@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b1fdcfa786db2941bb4edfb53af8bd4, type: 3}
   m_Name: WeakEnemy
   m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 8058137261491702815, guid: b3f8a5662806dd0468f88349a28fc0c7, type: 3}
   maxHealht: 100
   moveSpeed: 5
   idleTime: 7
