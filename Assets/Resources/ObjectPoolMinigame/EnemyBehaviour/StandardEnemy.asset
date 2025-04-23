@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b1fdcfa786db2941bb4edfb53af8bd4, type: 3}
+  m_Name: StandardEnemy
+  m_EditorClassIdentifier: 
+  maxHealht: 100
+  moveSpeed: 5
+  idleTime: 7
+  FOV: 60
+  visionDistance: 20
+  weapon: {fileID: 11400000, guid: 189ae2468f2c8df4997a7d9ba49fc03b, type: 2}
+  gunTexture: {fileID: 2800000, guid: ef274a115121e9d40a88019611e6bd28, type: 3}

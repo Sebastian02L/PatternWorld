@@ -23,7 +23,7 @@ namespace ObjectPoolMinigame
 
         public event Action<int> onAmmoChange;
 
-        void Start()
+        public void SetUp()
         {
             bulletsPool = FindAnyObjectByType<GameManager>().GetBulletsPool();
             playerCamera = Camera.main;
@@ -123,6 +123,7 @@ namespace ObjectPoolMinigame
         {
             this.weaponData = weaponData;
             SaveBulletVisuals();
+            SetUp();
         }
 
         void SaveBulletVisuals()

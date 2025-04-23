@@ -6,12 +6,12 @@ public class HealthManager : MonoBehaviour
 {
     [SerializeField] Image healthLifeBar;
     float maxHealth;
-    float health;
+    public float health;
 
     public float GetMaxHealth => maxHealth;
     public float GetHealth => health;
 
-    public event Action OnHealthChange;
+    public event Action<int> OnHealthChange;
     public void SetMaxHeahlt(float value)
     {
         maxHealth = value;
@@ -25,29 +25,14 @@ public class HealthManager : MonoBehaviour
     public void GetDamage(float damage)
     {
         health -= damage;
-
-        if (!CheckDeath())
-        {
-            UpdateLifeBar();
-        }
+        UpdateLifeBar();
+        
     }
 
     void UpdateLifeBar()
     {
         healthLifeBar.fillAmount = Mathf.Max(0, Mathf.Min(1, health/maxHealth));
-        OnHealthChange?.Invoke();
-    }
-
-    bool CheckDeath()
-    {
-        if (health <= 0)
-        {
-            Destroy(gameObject);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        if(health <= 0) OnHealthChange?.Invoke(0);
+        else OnHealthChange?.Invoke(1);
     }
 }

@@ -46,7 +46,7 @@ namespace ObjectPoolMinigame
 
         public void OnCollision(Collider other)
         {
-            if(other.tag == "Player" || other.tag == "Enemy") other.GetComponent<HealthManager>().GetDamage(weaponData.bulletDamage);
+            if(/*other.tag == "Player" ||*/ other.tag == "Enemy") other.GetComponent<HealthManager>().GetDamage(weaponData.bulletDamage);
             Release();
         }
     }

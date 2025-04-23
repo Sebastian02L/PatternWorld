@@ -5,7 +5,6 @@ namespace ObjectPoolMinigame
     [CreateAssetMenu(fileName = "EnemyData", menuName = "Scriptable Objects/ObjectPool Minigame/EnemyData")]
     public class EnemyData : ScriptableObject
     {
-        public GameObject enemyPrefab;
         public float maxHealht;
         public float moveSpeed;
         public float idleTime;

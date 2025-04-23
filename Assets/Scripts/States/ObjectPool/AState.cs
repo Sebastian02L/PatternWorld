@@ -63,7 +63,6 @@ namespace ObjectPoolMinigame
                 }
                 else
                 {
-                    Debug.Log("Choque contra" + hit.collider.gameObject.name);
                     return false;
                 }
             }

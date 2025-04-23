@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,6 +7,7 @@ namespace ObjectPoolMinigame
 {
     public class GameManager : MonoBehaviour
     {
+        [SerializeField] List<Transform> spawnPoints;
         ObjectPoolRoundData minigameData;
         ObjectPool bulletsPool;
         ObjectPool enemiesPool;
@@ -13,6 +15,9 @@ namespace ObjectPoolMinigame
         int currentRound = 1;
 
         WeaponManager weaponManager;
+        EnemiesManager enemiesManager;
+
+        bool firstTime = true;
 
         void Awake()
         {
@@ -28,7 +33,13 @@ namespace ObjectPoolMinigame
             weaponManager.SetWeaponsData(minigameData.weaponsData);
 
             CreateBulletPool();
-            //CreateEnemiesPool();
+            CreateEnemiesPool();
+
+            enemiesManager = new EnemiesManager(enemiesPool, spawnPoints, minigameData);
+        }
+
+        private void Start()
+        {
             
         }
 
@@ -48,10 +59,20 @@ namespace ObjectPoolMinigame
             bulletsPool = new ObjectPool(numberOfBullets, minigameData.genericBullet);
         }
 
+        void CreateEnemiesPool()
+        {
+            int numberOfEnemies = Mathf.CeilToInt((float)minigameData.numberOfEnemies + (minigameData.numberOfEnemies / 2));
+            enemiesPool = new ObjectPool(numberOfEnemies, minigameData.genericEnemy);  
+        }
+
         // Update is called once per frame
         void Update()
         {
-
+            if (firstTime)
+            {
+                enemiesManager.FirstEnemiesSpawn();
+                firstTime = false;
+            }
         }
 
         public ObjectPool GetBulletsPool()

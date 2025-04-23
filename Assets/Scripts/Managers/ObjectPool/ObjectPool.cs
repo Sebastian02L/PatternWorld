@@ -21,12 +21,12 @@ namespace ObjectPoolMinigame
 
         public IPoolableObject Get()
         {
-            foreach (var bullet in objectPoolList)
+            foreach (var poolableObject in objectPoolList)
             {
-                if (!bullet.IsDirty)
+                if (!poolableObject.IsDirty)
                 {
-                    bullet.IsDirty = true;
-                    return bullet;
+                    poolableObject.IsDirty = true;
+                    return poolableObject;
                 }
             }
 

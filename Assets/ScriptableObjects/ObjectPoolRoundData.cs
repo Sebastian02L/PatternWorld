@@ -22,5 +22,6 @@ namespace ObjectPoolMinigame
         public float strongEnemyProportion;
         public float eliminationsPerWeapon;
         public GameObject genericBullet;
+        public GameObject genericEnemy;
     }
 }
