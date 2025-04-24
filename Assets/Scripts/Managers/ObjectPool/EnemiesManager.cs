@@ -30,34 +30,56 @@ namespace ObjectPoolMinigame
             playerHead = GameObject.FindWithTag("Player").transform.Find("Head").gameObject;
 
         }
+
+        //Spawns the first wave of enemies at the beggining of the round
         public void FirstEnemiesSpawn()
         {
             for (int i = 0; i < numberOfWeaks; i++) 
             {
                 IPoolableObject enemy = enemiesPool.Get();
-                SetUpEnemy(enemy, minigameData.weakEnemyData);
+                FirstEnemySetUp(enemy, minigameData.weakEnemyData);
             }
-
             for (int i = 0; i < numberOfStandards; i++)
             {
                 IPoolableObject enemy = enemiesPool.Get();
-                SetUpEnemy(enemy, minigameData.standardEnemyData);
+                FirstEnemySetUp(enemy, minigameData.standardEnemyData);
             }
-
             for (int i = 0; i < numberOfStrongs; i++)
             {
                 IPoolableObject enemy = enemiesPool.Get();
-                SetUpEnemy(enemy, minigameData.strongEnemyData);
+                FirstEnemySetUp(enemy, minigameData.strongEnemyData);
             }
         }
-
-        void SetUpEnemy(IPoolableObject enemy, EnemyData enemyData)
+        void FirstEnemySetUp(IPoolableObject enemy, EnemyData enemyData)
         {
             (enemy as EnemyBrain).SetEnemyData(enemyData);
-            (enemy as EnemyBrain).SetEnemiesPool(this.enemiesPool);
-            (enemy as EnemyBrain).SetEnemiesManager(this);
+            SetEnemiesPool((enemy as EnemyBrain));
+            SetEnemiesManager((enemy as EnemyBrain));
             enemy.GetGameObject().transform.position = ChooseSpawnPoint();
             enemy.GetGameObject().SetActive(true);
+        }
+
+        //Spawn enemies during the duration of the round
+        public void SpawnEnemy(EnemyData lastEnemyData)
+        {
+            IPoolableObject enemy = enemiesPool.Get();
+            ResetEnemy(enemy, lastEnemyData);
+            (enemy as EnemyBrain).SetUpBehaviour();
+        }
+        void ResetEnemy(IPoolableObject enemy, EnemyData enemyData)
+        {
+            (enemy as EnemyBrain).SetEnemyData(enemyData);
+            enemy.GetGameObject().transform.position = ChooseSpawnPoint();
+            enemy.GetGameObject().SetActive(true);
+        }
+
+        void SetEnemiesPool(EnemyBrain enemy)
+        {
+            enemy.SetEnemiesPool(enemiesPool);
+        }
+        void SetEnemiesManager(EnemyBrain enemy)
+        {
+            enemy.SetEnemiesManager(this);
         }
 
         Vector3 ChooseSpawnPoint()
@@ -76,12 +98,6 @@ namespace ObjectPoolMinigame
                 }
             }
             return spawnPoint.position;
-        }
-        public void SpawnEnemy(EnemyData lastEnemyData)
-        {
-            IPoolableObject enemy = enemiesPool.Get();
-            SetUpEnemy(enemy, lastEnemyData);
-            (enemy as EnemyBrain).SetUpBehaviour();
         }
     }
 }

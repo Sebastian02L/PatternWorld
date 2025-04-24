@@ -18,4 +18,4 @@ MonoBehaviour:
   FOV: 60
   visionDistance: 20
   weapon: {fileID: 11400000, guid: 189ae2468f2c8df4997a7d9ba49fc03b, type: 2}
-  gunTexture: {fileID: 2800000, guid: ef274a115121e9d40a88019611e6bd28, type: 3}
+  gunTexture: {fileID: 2800000, guid: 15463805d371abd43870d36e16d37ca0, type: 3}

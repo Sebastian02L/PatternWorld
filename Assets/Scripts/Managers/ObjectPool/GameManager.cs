@@ -38,18 +38,13 @@ namespace ObjectPoolMinigame
             enemiesManager = new EnemiesManager(enemiesPool, spawnPoints, minigameData);
         }
 
-        private void Start()
-        {
-            
-        }
-
         void CreateBulletPool()
         {
             int numberOfBullets = 0;
 
             foreach (WeaponData playerWeapon in minigameData.weaponsData)
             {
-                numberOfBullets += playerWeapon.maxAmmo;
+                if(playerWeapon.objectPoolRequired) numberOfBullets += playerWeapon.maxAmmo;
             }
 
             numberOfBullets += minigameData.weakEnemyData.weapon.maxAmmo * Mathf.CeilToInt((float)(minigameData.numberOfEnemies * minigameData.weakEnemyProportion));

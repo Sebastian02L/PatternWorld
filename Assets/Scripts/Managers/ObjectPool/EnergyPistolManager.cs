@@ -4,77 +4,38 @@ using UnityEngine;
 
 namespace ObjectPoolMinigame
 {
-    public class EnergyPistolManager : MonoBehaviour, IWeapon
+    public class EnergyPistolManager : AWeapon
     {
-        [SerializeField] Transform shootOrigin;
-        WeaponData weaponData;
         IObjectPool bulletsPool;
-
-        //Weapon Logic Related
-        Camera playerCamera;
-        bool canShoot = true;
-        bool reloading = false;
-        float shootInterval;
-        float timer;
-        public int ammo;
 
         Mesh bulletMesh;
         Material bulletMaterial;
 
-        public event Action<int> onAmmoChange;
-        bool firstTime = true;
-
-        void Start()
+        protected override void Start()
         {
-            bulletsPool = FindAnyObjectByType<GameManager>().GetBulletsPool();
-            playerCamera = Camera.main;
-            shootInterval = 1f / weaponData.bulletPerSecond;
+            base.Start();
             AdjustShootOrientation();
+            if (bulletsPool == null) bulletsPool = FindAnyObjectByType<GameManager>().GetBulletsPool();
         }
 
-        void Update()
+        public override void SetWeaponData(WeaponData weaponData)
         {
-            if (firstTime) 
-            { 
-                firstTime = false;
-                ammo = weaponData.maxAmmo;
-                onAmmoChange.Invoke(ammo);
-            }
-
-            if (!canShoot && !reloading) 
-            {
-                timer += Time.deltaTime;
-
-                if (timer >= shootInterval) 
-                {
-                    timer = 0;
-                    canShoot = true;
-                }
-            }
-            else if(!canShoot && reloading)
-            {
-                timer += Time.deltaTime;
-
-                if(timer >= weaponData.realoadTime)
-                {
-                    timer = 0;
-                    reloading = false;
-                    canShoot= true;
-                    onAmmoChange?.Invoke(ammo);
-                }
-            }
+            base.SetWeaponData(weaponData);
+            SaveBulletVisuals();
         }
 
-        // // // // // // IWeapon Methods // // // // // //
-        public void Reload()
+        void SaveBulletVisuals()
         {
-            canShoot = false;
-            reloading = true;
-            timer = 0;
-            ammo = weaponData.maxAmmo;
+            bulletMesh = weaponData.bulletPrefab.GetComponentInChildren<MeshFilter>().sharedMesh;
+            bulletMaterial = new Material(weaponData.bulletPrefab.GetComponentInChildren<MeshRenderer>().sharedMaterial);
         }
 
-        public void Shoot()
+        protected override void Update()
+        {
+            base.Update();
+        }
+
+        public override void Shoot()
         {
             if (canShoot && ammo > 0)
             {
@@ -84,7 +45,9 @@ namespace ObjectPoolMinigame
                 if (bullet != null)
                 {
                     (bullet as BulletManager).SetWeaponData(weaponData);
+                    (bullet as BulletManager).SetWeaponData(weaponData);
                     GameObject bulletGO = bullet.GetGameObject();
+                    bulletGO.GetComponentInChildren<BulletCollisionManager>().isPlayerBullet = true;
                     bulletGO.GetComponentInChildren<MeshFilter>().mesh = bulletMesh;
                     bulletGO.GetComponentInChildren<MeshRenderer>().material = bulletMaterial;
                     
@@ -104,7 +67,7 @@ namespace ObjectPoolMinigame
                     bulletGO.transform.parent = null;
                     bulletGO.SetActive(true);
                     ammo--;
-                    onAmmoChange?.Invoke(ammo);
+                    InvokeAmmoChange();
                 }
             }
             else if (ammo == 0)
@@ -113,38 +76,8 @@ namespace ObjectPoolMinigame
             }
         }
 
-        // Weapon Related Methods
-        Vector3 CalculateBulletDirection()
+        public override void ShootCanceled()
         {
-            RaycastHit hit;
-            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit))
-            {
-                return hit.point;
-            }
-            else
-            {
-                return Vector3.zero;
-            }
-        }
-
-        //Adjust the front vector of the weapon to aim teh center of teh screen.
-        void AdjustShootOrientation()
-        {
-            Vector3 target = new Vector3(Screen.width / 2, Screen.height / 2, 100f);
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(target);
-            shootOrigin.LookAt(worldPos);
-        }
-
-        public void SetWeaponData(WeaponData weaponData)
-        {
-            this.weaponData = weaponData;
-            SaveBulletVisuals();
-        }
-
-        void SaveBulletVisuals()
-        {
-            bulletMesh = weaponData.bulletPrefab.GetComponentInChildren<MeshFilter>().sharedMesh;
-            bulletMaterial = new Material (weaponData.bulletPrefab.GetComponentInChildren<MeshRenderer>().sharedMaterial);
         }
     }
 }

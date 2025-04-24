@@ -7174,8 +7174,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 055e07ea7b0b9a94cae2ed0676c30362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: e4806e99981488a42811a10e1d0ee2af, type: 2}
   shootOrigin: {fileID: 2919302003246985963}
+  gunLight: {fileID: 6072756507369634623}
 --- !u!1 &1208718367031430292
 GameObject:
   m_ObjectHideFlags: 0
@@ -8152,6 +8152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthLifeBar: {fileID: 582551895139495739}
+  health: 0
 --- !u!114 &159437715956735457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8164,7 +8165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b9dbc76701fc944aadddb093cbb2c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: e4806e99981488a42811a10e1d0ee2af, type: 2}
   gunRenderer: {fileID: 4928527396530615470}
   gunManager: {fileID: 890976731382664466}
   enemyHead: {fileID: 1208718367031430292}

@@ -37,6 +37,9 @@ namespace ObjectPoolMinigame
             if (input.actions["Shoot"].IsPressed())
             {
                 ShootWeapon();
+            } else if (input.actions["Shoot"].WasReleasedThisFrame())
+            {
+                CancelShoot();
             }
         }
 
@@ -59,6 +62,11 @@ namespace ObjectPoolMinigame
             currentWeapon.Shoot();
         }
 
+        void CancelShoot()
+        {
+            currentWeapon.ShootCanceled();
+        }
+
         void RealoadWeapon(InputAction.CallbackContext ctx) 
         {
             currentWeapon.Reload();
@@ -73,7 +81,7 @@ namespace ObjectPoolMinigame
         {
             weaponsData = weaponData;
             weapons.Add(weaponsData[0].weaponPrefab);
-            //weapons.Add(weaponsData[1].weaponPrefab);
+            weapons.Add(weaponsData[1].weaponPrefab);
         }
     }
 }

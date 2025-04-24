@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 1
   m_EditorClassIdentifier: 
   weaponsData:
+  - {fileID: 11400000, guid: 33edd3f5be0e5b54493bae63da1d057b, type: 2}
   - {fileID: 11400000, guid: 0ad6658a68c279948b9ef04a61a562db, type: 2}
   weakEnemyData: {fileID: 11400000, guid: e4806e99981488a42811a10e1d0ee2af, type: 2}
   standardEnemyData: {fileID: 11400000, guid: 67fc9cbf45b845240b7354ce351c5912, type: 2}
