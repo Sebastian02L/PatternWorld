@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6697138575963585006}
   - component: {fileID: 4641842383360417987}
   - component: {fileID: 7931815563291891646}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0facd9a5083e1ff4da6dd473b14033b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerBullet: 0
 --- !u!135 &4641842383360417987
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -114,7 +115,7 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -159,7 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6818553016391489934}
   - component: {fileID: 1772875856557723543}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GenericBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

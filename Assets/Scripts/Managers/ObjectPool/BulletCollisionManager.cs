@@ -8,6 +8,8 @@ public class BulletCollisionManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!isPlayerBullet) onCollision?.Invoke(other); //The player's bullet wont collide with himself
+        //Debug.Log("CHOQUE CONTRA: " + other.name);
+        if (isPlayerBullet && other.tag == "Player") return;
+        onCollision?.Invoke(other); //The player's bullet wont collide with himself
     }
 }

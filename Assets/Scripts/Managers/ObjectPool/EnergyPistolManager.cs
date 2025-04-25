@@ -45,7 +45,6 @@ namespace ObjectPoolMinigame
                 if (bullet != null)
                 {
                     (bullet as BulletManager).SetWeaponData(weaponData);
-                    (bullet as BulletManager).SetWeaponData(weaponData);
                     GameObject bulletGO = bullet.GetGameObject();
                     bulletGO.GetComponentInChildren<BulletCollisionManager>().isPlayerBullet = true;
                     bulletGO.GetComponentInChildren<MeshFilter>().mesh = bulletMesh;
