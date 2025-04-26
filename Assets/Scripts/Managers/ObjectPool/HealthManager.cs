@@ -1,12 +1,17 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
     [SerializeField] Image healthLifeBar;
+    [SerializeField] TextMeshProUGUI healthText;
+    [SerializeField] float healingActivationTime;
+    [SerializeField] float healthRecuperationRate;
     float maxHealth;
     float health;
+    float timer = 0f;
 
     public float GetMaxHealth => maxHealth;
     public float GetHealth => health;
@@ -20,19 +25,39 @@ public class HealthManager : MonoBehaviour
     public void SetHealth(float value)
     {
         health = value;
-        UpdateLifeBar();
+        UpdateHealthVisuals();
     }
     public void GetDamage(float damage)
     {
         health -= damage;
-        UpdateLifeBar();
-        
+        UpdateHealthVisuals();
+        timer = 0f;
     }
 
-    void UpdateLifeBar()
+    public void Heal(float healing)
+    {
+        health += healing;
+        UpdateHealthVisuals();
+    }
+
+    void UpdateHealthVisuals()
     {
         healthLifeBar.fillAmount = Mathf.Max(0, Mathf.Min(1, health/maxHealth));
+        healthText.text = $"{(int)health}/{maxHealth}";
         if(health <= 0) OnHealthChange?.Invoke(0);
         else OnHealthChange?.Invoke(1);
+    }
+
+    private void Update()
+    {
+        if (health >= maxHealth) return;
+        else
+        {
+            timer += Time.deltaTime;
+            if (timer > healingActivationTime)
+            {
+                Heal(healthRecuperationRate * Time.deltaTime);
+            }
+        }
     }
 }

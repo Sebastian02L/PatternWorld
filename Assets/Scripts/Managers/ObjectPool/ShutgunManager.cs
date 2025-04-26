@@ -17,7 +17,8 @@ namespace ObjectPoolMinigame
             base.Start();
             AdjustShootOrientation();
             if (bulletsPool == null) bulletsPool = FindAnyObjectByType<GameManager>().GetBulletsPool();
-            GameObject.FindAnyObjectByType<PlayerCanvas>().SubscribeToCurrentWeapon(this);
+            PlayerCanvas playerCanvas = GameObject.FindAnyObjectByType<PlayerCanvas>();
+            playerCanvas.SubscribeToCurrentWeapon(this);
         }
 
         public override void SetWeaponData(WeaponData weaponData)

@@ -20,6 +20,7 @@ namespace ObjectPoolMinigame
         protected bool firstTime = true;
 
         public event Action<int> onAmmoChange;
+        public event Action<float> onReloadWeapon;
 
         protected virtual void Start()
         {
@@ -44,6 +45,7 @@ namespace ObjectPoolMinigame
         //Reloads the weapon
         public void Reload()
         {
+            onReloadWeapon?.Invoke(weaponData.realoadTime);
             canShoot = false;
             reloading = true;
             timer = 0;
