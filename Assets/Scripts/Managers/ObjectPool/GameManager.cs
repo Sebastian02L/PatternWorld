@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace ObjectPoolMinigame
@@ -19,6 +21,12 @@ namespace ObjectPoolMinigame
 
         bool firstTime = true;
 
+        HealthManager healthManager;
+        PlayerCanvas playerCanvas;
+        PlayerInput playerInput;
+
+        public event Action<int, int> OnEnemyDefeated;
+
         void Awake()
         {
             //Determinates the current round of the minigame
@@ -35,7 +43,12 @@ namespace ObjectPoolMinigame
             CreateBulletPool();
             CreateEnemiesPool();
 
-            enemiesManager = new EnemiesManager(enemiesPool, spawnPoints, minigameData);
+            enemiesManager = new EnemiesManager(enemiesPool, spawnPoints, minigameData, EnemyDefeated);
+            healthManager = GetComponent<HealthManager>();
+            healthManager.OnHealthChange += OnPlayerDamage;
+            healthManager.SetMaxHeahlt(100);
+            playerInput = GetComponent<PlayerInput>();
+
         }
 
         void CreateBulletPool()
@@ -67,12 +80,50 @@ namespace ObjectPoolMinigame
             {
                 enemiesManager.FirstEnemiesSpawn();
                 firstTime = false;
+                OnEnemyDefeated?.Invoke(0, minigameData.enemiesToEliminate);
             }
         }
 
         public ObjectPool GetBulletsPool()
         {
             return bulletsPool;
+        }
+
+        void OnPlayerDamage(int state)
+        {
+            if (state == 0)
+            {
+                GameOver(false);
+            }
+        }
+
+        void EnemyDefeated(int defeatedEnemies)
+        {
+            OnEnemyDefeated?.Invoke(defeatedEnemies, minigameData.enemiesToEliminate);
+
+            if (defeatedEnemies == (minigameData.enemiesToEliminate / 2)) weaponManager.ChangeWeapon(playerInput);
+            if (defeatedEnemies == minigameData.enemiesToEliminate) GameOver(true);
+        }
+
+        void GameOver(bool hasWon)
+        {
+            playerInput.actions.Disable();
+            gameObject.GetComponent<CharacterController>().enabled = false;
+
+            if (hasWon) 
+            {
+                List<bool> newMinigameData = new List<bool>();
+                for (int i = 0; i < 3; i++)
+                {
+                    if (i < currentRound) newMinigameData.Add(true);
+                    else newMinigameData.Add(false);
+                }
+                //Save data
+                PlayerDataManager.Instance.SetMinigameRound(2, newMinigameData);
+            }
+
+            GameObject.FindAnyObjectByType<EndGameController>().EnablePanel(hasWon, currentRound);
+            CursorVisibility.ShowCursor();
         }
     }
 }

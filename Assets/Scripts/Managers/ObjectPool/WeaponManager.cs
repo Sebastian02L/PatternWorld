@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Networking.PlayerConnection;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -50,11 +51,17 @@ namespace ObjectPoolMinigame
             currentWeapon.SetWeaponData(weaponsData[weaponTurn]);
         }
 
-        public void ChangeWeapon()
+        public void ChangeWeapon(PlayerInput playerInput)
         {
+            Debug.Log("Cambiando armas");
+            playerInput.actions["Shoot"].Disable();
+            playerInput.actions["Reload"].Disable();
             currentWeapon = null;
             currentWeaponGO.SetActive(false);
             InstantiateWeapon(1);
+            playerInput.actions["Shoot"].Enable();
+            playerInput.actions["Reload"].Enable();
+            Debug.Log("Arma cambiada");
         }
 
         void ShootWeapon()

@@ -16,6 +16,7 @@ namespace ObjectPoolMinigame
         public EnemyData strongEnemyData;
 
         [Header("Round Rules")]
+        public int enemiesToEliminate;
         public int numberOfEnemies;
         public float weakEnemyProportion;
         public float standardEnemyProportion;

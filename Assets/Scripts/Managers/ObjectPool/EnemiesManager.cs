@@ -1,6 +1,5 @@
+using System;
 using System.Collections.Generic;
-using NUnit.Framework;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace ObjectPoolMinigame
@@ -15,19 +14,22 @@ namespace ObjectPoolMinigame
         int numberOfWeaks;
         int numberOfStandards;
         int numberOfStrongs;
+        int defeatedEnemies;
+        Action<int> onEnemyDefeated;
 
-
-        public EnemiesManager(ObjectPool enemiesPool, List<Transform> spawnPoints, ObjectPoolRoundData minigameData)
+        public EnemiesManager(ObjectPool enemiesPool, List<Transform> spawnPoints, ObjectPoolRoundData minigameData, Action<int> onEnemyDefeated)
         {
             this.enemiesPool = enemiesPool;
             this.spawnPoints = spawnPoints;
             this.minigameData = minigameData;
+            this.onEnemyDefeated = onEnemyDefeated;
 
             numberOfWeaks = Mathf.FloorToInt((float)minigameData.numberOfEnemies * minigameData.weakEnemyProportion);
             numberOfStandards = Mathf.FloorToInt((float)minigameData.numberOfEnemies * minigameData.standardEnemyProportion);
             numberOfStrongs = Mathf.FloorToInt((float)minigameData.numberOfEnemies * minigameData.strongEnemyProportion);
 
             playerHead = GameObject.FindWithTag("Player").transform.Find("Head").gameObject;
+            defeatedEnemies = 0;
 
         }
 
@@ -62,6 +64,8 @@ namespace ObjectPoolMinigame
         //Spawn enemies during the duration of the round
         public void SpawnEnemy(EnemyData lastEnemyData)
         {
+            defeatedEnemies += 1;
+            onEnemyDefeated(defeatedEnemies);
             IPoolableObject enemy = enemiesPool.Get();
             ResetEnemy(enemy, lastEnemyData);
             (enemy as EnemyBrain).SetUpBehaviour();
@@ -90,7 +94,7 @@ namespace ObjectPoolMinigame
 
             while (!found) 
             {
-                spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
+                spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Count)];
                 playerSpawnVector = (playerHead.transform.position - spawnPoint.transform.position);
                 if (Vector3.Angle(playerHead.transform.forward, playerSpawnVector) > 90f || playerSpawnVector.magnitude > 5f) 
                 {

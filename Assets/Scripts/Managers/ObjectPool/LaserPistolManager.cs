@@ -13,6 +13,7 @@ namespace ObjectPoolMinigame
         {
             base.Start();
             AdjustShootOrientation();
+            GameObject.FindAnyObjectByType<PlayerCanvas>().SubscribeToCurrentWeapon(this);
         }
 
         public override void SetWeaponData(WeaponData weaponData)

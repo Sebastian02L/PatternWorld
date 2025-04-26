@@ -76,24 +76,19 @@ namespace ObjectPoolMinigame
         }
 
         //Turns off/on the movement of the player
-        public void MovementIsActive(bool value)
-        {
-            if (value)
-            {
-                playerInput.actions["Move"].Enable();
-                //StartCoroutine(MovementDelayActivation());
-            }
-            else
-            {
-                //AudioManager.Instance.StopAudioSource(audioSourcePlayer);
-                playerInput.actions["Move"].Disable();
-                processMovement = false;
-            }
-        }
-
-        public void PlayerLose()
-        {
-            playerInput.actions.Disable();
-        }
+        //public void MovementIsActive(bool value)
+        //{
+        //    if (value)
+        //    {
+        //        playerInput.actions["Move"].Enable();
+        //        //StartCoroutine(MovementDelayActivation());
+        //    }
+        //    else
+        //    {
+        //        //AudioManager.Instance.StopAudioSource(audioSourcePlayer);
+        //        playerInput.actions["Move"].Disable();
+        //        processMovement = false;
+        //    }
+        //}
     }
 }
