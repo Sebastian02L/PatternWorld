@@ -18,6 +18,7 @@ namespace ObjectPoolMinigame
             if (bulletsPool == null) bulletsPool = FindAnyObjectByType<GameManager>().GetBulletsPool();
             PlayerCanvas playerCanvas = GameObject.FindAnyObjectByType<PlayerCanvas>();
             playerCanvas.SubscribeToCurrentWeapon(this);
+            bulletBehaviour = new EnergyPistolBulletBehaviour();
         }
 
         public override void SetWeaponData(WeaponData weaponData)
@@ -47,6 +48,7 @@ namespace ObjectPoolMinigame
                 if (bullet != null)
                 {
                     (bullet as BulletManager).SetWeaponData(weaponData);
+                    (bullet as BulletManager).SetBulletBehaviour(bulletBehaviour);
                     GameObject bulletGO = bullet.GetGameObject();
                     bulletGO.GetComponentInChildren<BulletCollisionManager>().isPlayerBullet = true;
                     bulletGO.GetComponentInChildren<MeshFilter>().mesh = bulletMesh;

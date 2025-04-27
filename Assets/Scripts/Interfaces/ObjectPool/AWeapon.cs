@@ -18,7 +18,7 @@ namespace ObjectPoolMinigame
         protected float timer;
         protected int ammo;
         protected bool firstTime = true;
-
+        protected IBulletBehaviour bulletBehaviour;
         public event Action<int> onAmmoChange;
         public event Action<float> onReloadWeapon;
 

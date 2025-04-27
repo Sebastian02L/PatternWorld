@@ -50,7 +50,7 @@ namespace ObjectPoolMinigame
         }
         private void OnTriggerEnter(Collider other)
         {
-            if (/*other.tag == "Player" ||*/ other.tag == "Enemy") other.GetComponent<HealthManager>().GetDamage(weaponData.bulletDamage);
+            if (other.tag == "Enemy") other.GetComponent<HealthManager>().GetDamage(weaponData.bulletDamage);
         }
     }
 }

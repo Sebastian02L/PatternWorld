@@ -6,6 +6,7 @@ namespace ObjectPoolMinigame
     {
         WeaponData weaponData;
         IObjectPool bulletsPool;
+        IBulletBehaviour bulletBehaviour;
 
         void Start()
         {
@@ -24,6 +25,10 @@ namespace ObjectPoolMinigame
             gameObject.transform.position += gameObject.transform.forward * weaponData.bulletSpeed * Time.deltaTime;
         }
 
+        public void SetBulletBehaviour(IBulletBehaviour bulletBehaviour)
+        {
+            this.bulletBehaviour = bulletBehaviour;
+        }
         // // // // // IPoolableObject Methods // // // // //
         public bool IsDirty { get; set;}
 
@@ -46,8 +51,7 @@ namespace ObjectPoolMinigame
 
         public void OnCollision(Collider other)
         {
-            if(other.tag == "Player" || other.tag == "Enemy") other.GetComponent<HealthManager>().GetDamage(weaponData.bulletDamage);
-            Release();
+            bulletBehaviour.OnCollisionBehaviour(other, weaponData.bulletDamage, Release);
         }
     }
 }
