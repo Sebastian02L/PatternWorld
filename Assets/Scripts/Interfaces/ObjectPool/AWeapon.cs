@@ -43,7 +43,7 @@ namespace ObjectPoolMinigame
         }
 
         //Reloads the weapon
-        public void Reload()
+        public virtual void Reload()
         {
             onReloadWeapon?.Invoke(weaponData.realoadTime);
             canShoot = false;
@@ -106,6 +106,11 @@ namespace ObjectPoolMinigame
         protected void InvokeAmmoChange()
         {
             onAmmoChange?.Invoke(ammo);
+        }
+
+        protected void InvokeReload()
+        {
+            onReloadWeapon?.Invoke(weaponData.realoadTime);
         }
     }
 }
