@@ -51,7 +51,7 @@ namespace ObjectPoolMinigame
 
         public void OnCollision(Collider other)
         {
-            bulletBehaviour.OnCollisionBehaviour(other, weaponData.bulletDamage, Release);
+            bulletBehaviour.OnCollisionBehaviour(other, weaponData.bulletDamage, Release, gameObject);
         }
     }
 }
