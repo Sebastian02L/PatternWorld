@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: StandardEnemyWeapon
   m_EditorClassIdentifier: 
   objectPoolRequired: 1
-  maxAmmo: 10
-  bulletPerSecond: 2
-  bulletSpeed: 10
-  bulletDamage: 5
+  maxAmmo: 15
+  bulletPerSecond: 4
+  bulletSpeed: 12
+  bulletDamage: 10
   bulletRange: 0
-  realoadTime: 3
+  realoadTime: 5
   weaponPrefab: {fileID: 0}
   bulletPrefab: {fileID: 7172639506888598500, guid: 9b8ecf4db8f080b42a643a91ad52b107, type: 3}
   lightColor: {r: 1, g: 0.25882354, b: 0, a: 0}

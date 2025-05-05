@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a6373dc0bd5c254a82f4b47a97f5e21, type: 3}
+  m_Name: 2
+  m_EditorClassIdentifier: 
+  weaponsData:
+  - {fileID: 11400000, guid: e58ad83c32b06d843aa5d1b60643e0cd, type: 2}
+  - {fileID: 11400000, guid: 33edd3f5be0e5b54493bae63da1d057b, type: 2}
+  weakEnemyData: {fileID: 11400000, guid: e4806e99981488a42811a10e1d0ee2af, type: 2}
+  standardEnemyData: {fileID: 11400000, guid: 67fc9cbf45b845240b7354ce351c5912, type: 2}
+  strongEnemyData: {fileID: 11400000, guid: 1e8a537f4110b6a479c01e28296c2e94, type: 2}
+  enemiesToEliminate: 10
+  numberOfEnemies: 6
+  weakEnemyProportion: 0.25
+  standardEnemyProportion: 0.5
+  strongEnemyProportion: 0.25
+  eliminationsPerWeapon: 5
+  genericBullet: {fileID: 7172639506888598500, guid: cb44251a0dca9fd45803cfc2503073ab, type: 3}
+  genericEnemy: {fileID: 8058137261491702815, guid: b3f8a5662806dd0468f88349a28fc0c7, type: 3}

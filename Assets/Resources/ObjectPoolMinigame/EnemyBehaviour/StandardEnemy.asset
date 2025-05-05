@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b1fdcfa786db2941bb4edfb53af8bd4, type: 3}
   m_Name: StandardEnemy
   m_EditorClassIdentifier: 
-  maxHealht: 100
-  moveSpeed: 5
-  idleTime: 7
-  FOV: 60
-  visionDistance: 20
+  maxHealht: 200
+  moveSpeed: 3.5
+  idleTime: 5
+  FOV: 45
+  visionDistance: 25
   weapon: {fileID: 11400000, guid: 189ae2468f2c8df4997a7d9ba49fc03b, type: 2}
   gunTexture: {fileID: 2800000, guid: 15463805d371abd43870d36e16d37ca0, type: 3}

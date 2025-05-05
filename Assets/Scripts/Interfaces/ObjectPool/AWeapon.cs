@@ -45,6 +45,7 @@ namespace ObjectPoolMinigame
         //Reloads the weapon
         public virtual void Reload()
         {
+            if (ammo == weaponData.maxAmmo) return;
             onReloadWeapon?.Invoke(weaponData.realoadTime);
             canShoot = false;
             reloading = true;
