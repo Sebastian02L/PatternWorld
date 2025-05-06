@@ -4,8 +4,8 @@ using UnityEngine;
 public class PauseController : MonoBehaviour
 {
     [SerializeField] GameObject pausePanel;
-    bool gamePaused = false;
-    public bool IsGamePaused => gamePaused;
+    static bool gamePaused = false;
+    public static bool IsGamePaused => gamePaused;
     
     bool processInput = true;
     bool canPause = false;

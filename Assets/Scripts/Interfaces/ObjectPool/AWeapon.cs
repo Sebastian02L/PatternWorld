@@ -22,8 +22,13 @@ namespace ObjectPoolMinigame
         public event Action<int> onAmmoChange;
         public event Action<float> onReloadWeapon;
 
+        protected AudioSource shootAudioSource;
+        protected AudioSource reloadAudioSource;
+
         protected virtual void Start()
         {
+            shootAudioSource = GetComponents<AudioSource>()[0];
+            reloadAudioSource = GetComponents<AudioSource>()[1];
             playerCamera = Camera.main;
             shootInterval = 1f / weaponData.bulletPerSecond;
         }

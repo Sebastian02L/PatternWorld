@@ -45,7 +45,7 @@ public class HealthManager : MonoBehaviour
         healthLifeBar.fillAmount = Mathf.Max(0, Mathf.Min(1, health/maxHealth));
         healthText.text = $"{(int)health}/{maxHealth}";
         if(health <= 0) OnHealthChange?.Invoke(0);
-        else OnHealthChange?.Invoke(1);
+        else if(health != maxHealth) OnHealthChange?.Invoke(1);
     }
 
     private void Update()

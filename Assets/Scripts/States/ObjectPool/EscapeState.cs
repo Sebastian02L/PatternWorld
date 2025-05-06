@@ -15,6 +15,7 @@ namespace ObjectPoolMinigame
 
         public override void Enter()
         {
+            AudioManager.Instance.PlaySoundEffect(agentGameObject.GetComponent<AudioSource>(), "OPM_EnemyMoving", 1, false, true);
             Debug.Log("entrando al estado de huir");
             navMeshAgent = agentGameObject.GetComponent<NavMeshAgent>();
             navMeshAgent.isStopped = false;
@@ -57,6 +58,7 @@ namespace ObjectPoolMinigame
 
         public override void Exit()
         {
+            AudioManager.Instance.StopAudioSource(agentGameObject.GetComponent<AudioSource>());
             navMeshAgent.isStopped = true;
             navMeshAgent.speed /= 2;
         }

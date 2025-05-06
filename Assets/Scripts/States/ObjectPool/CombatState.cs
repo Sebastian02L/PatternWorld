@@ -17,6 +17,7 @@ namespace ObjectPoolMinigame
         {
             Debug.Log("Entrando al estado de disparar");
             animator.SetTrigger("Shoot");
+            AudioManager.Instance.PlaySoundEffect(agentGameObject.GetComponent<AudioSource>(), "OPM_PlayerSpotted", 0.5f);
             playerDirection = playerHead.transform.position - agentHead.transform.position;
             playerDirection.y = 0;
             agentGameObject.transform.forward = playerDirection.normalized;

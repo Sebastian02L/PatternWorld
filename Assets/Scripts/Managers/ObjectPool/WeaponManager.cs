@@ -66,17 +66,17 @@ namespace ObjectPoolMinigame
 
         void ShootWeapon()
         {
-            currentWeapon.Shoot();
+           if(!PauseController.IsGamePaused) currentWeapon.Shoot();
         }
 
         void CancelShoot()
         {
-            currentWeapon.ShootCanceled();
+            if (!PauseController.IsGamePaused) currentWeapon.ShootCanceled();
         }
 
         void RealoadWeapon(InputAction.CallbackContext ctx) 
         {
-            currentWeapon.Reload();
+            if (!PauseController.IsGamePaused) currentWeapon.Reload();
         }
 
         public IWeapon GetCurrentWeapon()

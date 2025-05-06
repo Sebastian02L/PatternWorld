@@ -95,6 +95,10 @@ namespace ObjectPoolMinigame
             {
                 GameOver(false);
             }
+            else if(healthManager.GetHealth != healthManager.GetMaxHealth)
+            {
+                AudioManager.Instance.PlaySoundEffect(GetComponent<AudioSource>(), "OPM_PlayerHitted", 0.5f);
+            }
         }
 
         void EnemyDefeated(int defeatedEnemies)

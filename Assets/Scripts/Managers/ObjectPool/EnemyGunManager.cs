@@ -65,12 +65,18 @@ namespace ObjectPoolMinigame
                     bulletGO.SetActive(true);
                     ammo--;
                     InvokeAmmoChange();
+                    AudioManager.Instance.PlaySoundEffect(shootAudioSource, "OPM_EnemyShoot", 0.5f);
                 }
             }
             else if (ammo == 0)
             { 
                 Reload();
             }
+        }
+
+        public override void Reload()
+        {
+            base.Reload();
         }
 
         protected override Vector3 CalculateBulletDirection()

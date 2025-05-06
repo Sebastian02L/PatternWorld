@@ -59,7 +59,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         if (soundEffectsDict.TryGetValue(clipName, out AudioClip clip))
         {
-            if(audioSource.isPlaying && waitFinish) return;
+            if (audioSource.isPlaying && waitFinish) return;
 
             audioSource.volume = volume;
             audioSource.loop = needToLoop;
@@ -122,8 +122,22 @@ public class AudioManager : Singleton<AudioManager>
         {
             Debug.Log("No Clip or AudioSource with that name was found.");
         }
-    } 
+    }
 
+    public AudioClip GetAudioClip(string clipName)
+    {
+        foreach(AudioClip clip in soundEffectsDict.Values)
+        {
+            if(clip.name.Equals(clipName)) return clip;
+        }
+
+        foreach (AudioClip clip in musicDict.Values)
+        {
+            if (clip.name.Equals(clipName)) return clip;
+        }
+
+        return null;
+    }
     //Stop the sound effect or the music played by the given audiosource.
     public void StopAudioSource(AudioSource audioSource)
     {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -28,7 +29,9 @@ namespace ObjectPoolMinigame
                     enemy.GetComponent<HealthManager>().GetDamage(damage);
                 }
             }
-
+            
+            AudioClip explosionClip = AudioManager.Instance.GetAudioClip("OPM_FlareRifleExplosion");
+            AudioSource.PlayClipAtPoint(explosionClip, bulletGO.transform.position);
             callback();
         }
     }

@@ -82,6 +82,7 @@ namespace ObjectPoolMinigame
                     ammo--;
                     shootedBullets++;
                     InvokeAmmoChange();
+                    AudioManager.Instance.PlaySoundEffect(shootAudioSource, "OPM_ShieldShoot", 0.5f);
                 }
             }
             else if (shootedBullets >= weaponData.maxAmmo)
@@ -103,6 +104,7 @@ namespace ObjectPoolMinigame
             {
                 ammo++;
                 InvokeAmmoChange();
+                AudioManager.Instance.PlaySoundEffect(shootAudioSource, "OPM_ShieldAddAmmo", 0.5f);
             }
         }
 
@@ -113,6 +115,7 @@ namespace ObjectPoolMinigame
             canShoot = false;
             reloading = true;
             shootedBullets = 0;
+            AudioManager.Instance.PlaySoundEffect(shootAudioSource, "OPM_ShieldCooldown", 0.5f);
         }
 
         public override void ShootCanceled()

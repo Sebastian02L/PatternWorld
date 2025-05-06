@@ -71,12 +71,19 @@ namespace ObjectPoolMinigame
                     bulletGO.SetActive(true);
                     ammo--;
                     InvokeAmmoChange();
+                    AudioManager.Instance.PlaySoundEffect(shootAudioSource, "OPM_EnergyPistolShoot", 0.5f);
                 }
             }
             else if (ammo == 0)
             { 
                 Reload();
             }
+        }
+
+        public override void Reload()
+        {
+            base.Reload();
+            AudioManager.Instance.PlaySoundEffect(reloadAudioSource, "OPM_EnergyPistolReload", 0.5f);
         }
 
         public override void ShootCanceled()

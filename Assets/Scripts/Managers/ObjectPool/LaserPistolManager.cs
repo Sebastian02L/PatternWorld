@@ -59,6 +59,7 @@ namespace ObjectPoolMinigame
                 }
                 ammo--;
                 InvokeAmmoChange();
+                AudioManager.Instance.PlaySoundEffect(shootAudioSource, "OPM_LaserPistolShoot", 0.5f, true);
             }
             else if (ammo == 0)
             { 
@@ -67,11 +68,18 @@ namespace ObjectPoolMinigame
                 Reload();
             }
         }
+        public override void Reload()
+        {
+            base.Reload();
+            AudioManager.Instance.StopAudioSource(shootAudioSource);
+            AudioManager.Instance.PlaySoundEffect(reloadAudioSource, "OPM_LaserPistolReload", 0.5f);
+        }
 
         public override void ShootCanceled()
         {
             bullet.SetActive(false);
             bulletManager.EndShoot();
+            AudioManager.Instance.StopAudioSource(shootAudioSource);
         }
     }
 }

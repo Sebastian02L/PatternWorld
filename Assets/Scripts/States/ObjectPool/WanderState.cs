@@ -21,6 +21,7 @@ namespace ObjectPoolMinigame
 
         public override void Enter()
         {
+            AudioManager.Instance.PlaySoundEffect(agentGameObject.GetComponent<AudioSource>(), "OPM_EnemyMoving", 1, true, true);
             navMeshAgent.isStopped = false;
             animator.SetTrigger("WanderState");
             waypointsManager.CalculateRandomIndex();
@@ -61,6 +62,7 @@ namespace ObjectPoolMinigame
         public override void Exit()
         {
             navMeshAgent.isStopped = true;
+            AudioManager.Instance.StopAudioSource(agentGameObject.GetComponent<AudioSource>());
         }
 
         public override void FixedUpdate()
