@@ -17,7 +17,7 @@ public class HealthManager : MonoBehaviour
     public float GetMaxHealth => maxHealth;
     public float GetHealth => health;
 
-    public event Action<int> OnHealthChange;
+    public event Action<int> OnGetDamage;
     public void SetMaxHeahlt(float value)
     {
         maxHealth = value;
@@ -32,6 +32,8 @@ public class HealthManager : MonoBehaviour
     {
         health -= damage;
         UpdateHealthVisuals();
+        if(health <= 0) OnGetDamage?.Invoke(0);
+        else OnGetDamage?.Invoke(1);
         timer = 0f;
     }
 
@@ -46,8 +48,6 @@ public class HealthManager : MonoBehaviour
         healthLifeBar.fillAmount = Mathf.Max(0, Mathf.Min(1, health/maxHealth));
         healthText.text = $"{(int)health}/{maxHealth}";
         if (playerRedScreen != null) ShouldActiveRedScreen();
-        if(health <= 0) OnHealthChange?.Invoke(0);
-        else if(health != maxHealth) OnHealthChange?.Invoke(1);
     }
 
     void ShouldActiveRedScreen()

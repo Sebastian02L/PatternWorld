@@ -7,6 +7,7 @@ namespace ObjectPoolMinigame
     {
         public float maxHealht;
         public float moveSpeed;
+        public float runSpeed;
         public float idleTime;
         public float FOV;
         public float visionDistance;

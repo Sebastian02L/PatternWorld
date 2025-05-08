@@ -112,6 +112,7 @@ namespace ObjectPoolMinigame
 
         public override void Reload()
         {
+            if (reloading) return;
             if (shootedBullets == 0) return;
             InvokeReload();
             canShoot = false;

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealht: 200
   moveSpeed: 3.5
+  runSpeed: 4
   idleTime: 5
   FOV: 45
   visionDistance: 25

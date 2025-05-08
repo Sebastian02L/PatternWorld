@@ -51,14 +51,14 @@ namespace ObjectPoolMinigame
             playerHead = player.transform.Find("Head").gameObject;
             GetComponent<WaypointsManager>().SetWaypoints(GameObject.FindAnyObjectByType<NavMeshSurface>().GetComponent<NavMeshWaypointManager>().GetWaypoints());
             healthManager = GetComponent<HealthManager>();
-            healthManager.OnHealthChange += OnGetDamaged;
+            healthManager.OnGetDamage += OnGetDamaged;
             TutorialController.OnTutorialClosed += SetUpBehaviour;
             gameObject.SetActive(false);
         }
 
         private void OnDestroy()
         {
-            healthManager.OnHealthChange -= OnGetDamaged;
+            healthManager.OnGetDamage -= OnGetDamaged;
             TutorialController.OnTutorialClosed -= SetUpBehaviour;
         }
 
@@ -87,15 +87,20 @@ namespace ObjectPoolMinigame
 
         void OnGetDamaged(int state)
         {
+            enemiesManager.AlertNearbyAllies(this);
             if (state == 0)
             {
-                Debug.Log("ENEMIGO MUERTOOOO");
                 Release();
             }
             else if (currentState.GetType() != typeof(CombatState) && currentState.GetType() != typeof(EscapeState))
             {
-                SetState(new CombatState(this, enemyData, player, gameObject, GetComponent<Animator>(), playerHead, enemyHead, gunManager));
+                EnterCombatState();
             }
+        }
+
+        public void EnterCombatState()
+        {
+            SetState(new CombatState(this, enemyData, player, gameObject, GetComponent<Animator>(), playerHead, enemyHead, gunManager));
         }
 
         public GameObject GetGameObject()

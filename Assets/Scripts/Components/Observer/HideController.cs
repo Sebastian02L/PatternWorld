@@ -57,6 +57,7 @@ namespace ObserverMinigame
 
         private void HidePlayer(InputAction.CallbackContext context)
         {
+            if (PauseController.IsGamePaused) return;
             if (isPlayerHidden)
             {
                 

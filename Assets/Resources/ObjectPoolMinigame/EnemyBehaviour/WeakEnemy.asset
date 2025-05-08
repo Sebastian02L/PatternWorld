@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: WeakEnemy
   m_EditorClassIdentifier: 
   maxHealht: 100
-  moveSpeed: 5
+  moveSpeed: 4.5
+  runSpeed: 5
   idleTime: 7
   FOV: 60
   visionDistance: 20

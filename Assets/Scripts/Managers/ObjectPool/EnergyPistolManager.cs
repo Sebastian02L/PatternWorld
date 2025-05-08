@@ -83,8 +83,9 @@ namespace ObjectPoolMinigame
 
         public override void Reload()
         {
-            base.Reload();
+            if (ammo == weaponData.maxAmmo) return;
             AudioManager.Instance.PlaySoundEffect(reloadAudioSource, "OPM_EnergyPistolReload", 0.5f);
+            base.Reload();
         }
 
         public override void ShootCanceled()

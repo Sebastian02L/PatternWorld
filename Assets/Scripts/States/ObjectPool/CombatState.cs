@@ -7,6 +7,7 @@ namespace ObjectPoolMinigame
         HealthManager healthManager;
         Vector3 playerDirection;
         float timer = 0f;
+        float lostViewTimer = 1.5f;
 
         public CombatState(IContext context, EnemyData agentData, GameObject player, GameObject agent, Animator animator, GameObject playerHead, GameObject agentHead, EnemyGunManager gunManager)
             : base(context, player, agent, agentData, animator, playerHead, agentHead, gunManager)
@@ -38,7 +39,7 @@ namespace ObjectPoolMinigame
             else
             {
                 timer += Time.deltaTime;
-                if(timer > 3)
+                if(timer > lostViewTimer)
                 {
                     context.SetState(new WanderState(context, player, agentGameObject, agentData, animator, playerHead, agentHead, gunManager));
                 }

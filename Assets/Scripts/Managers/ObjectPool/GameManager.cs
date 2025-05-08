@@ -45,7 +45,7 @@ namespace ObjectPoolMinigame
 
             enemiesManager = new EnemiesManager(enemiesPool, spawnPoints, minigameData, EnemyDefeated);
             healthManager = GetComponent<HealthManager>();
-            healthManager.OnHealthChange += OnPlayerDamage;
+            healthManager.OnGetDamage += OnPlayerDamage;
             healthManager.SetMaxHeahlt(100);
             playerInput = GetComponent<PlayerInput>();
 
@@ -60,7 +60,7 @@ namespace ObjectPoolMinigame
                 if(playerWeapon.objectPoolRequired) numberOfBullets += playerWeapon.maxAmmo;
             }
 
-            numberOfBullets += minigameData.weakEnemyData.weapon.maxAmmo * Mathf.CeilToInt((float)(minigameData.numberOfEnemies * minigameData.weakEnemyProportion));
+            if (minigameData.weakEnemyData != null) numberOfBullets += minigameData.weakEnemyData.weapon.maxAmmo * Mathf.CeilToInt((float)(minigameData.numberOfEnemies * minigameData.weakEnemyProportion));
             if (minigameData.standardEnemyData != null) numberOfBullets += minigameData.standardEnemyData.weapon.maxAmmo * Mathf.CeilToInt((float)(minigameData.numberOfEnemies * minigameData.standardEnemyProportion));
             if (minigameData.strongEnemyData != null) numberOfBullets += minigameData.strongEnemyData.weapon.maxAmmo * Mathf.CeilToInt((float)(minigameData.numberOfEnemies * minigameData.strongEnemyProportion));
             
@@ -95,7 +95,7 @@ namespace ObjectPoolMinigame
             {
                 GameOver(false);
             }
-            else if(healthManager.GetHealth != healthManager.GetMaxHealth)
+            else 
             {
                 AudioManager.Instance.PlaySoundEffect(GetComponent<AudioSource>(), "OPM_PlayerHitted", 0.5f);
             }

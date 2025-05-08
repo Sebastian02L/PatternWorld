@@ -47,6 +47,7 @@ namespace ObserverMinigame
 
         void InteractConsole(InputAction.CallbackContext context)
         {
+            if(PauseController.IsGamePaused) return;
             if(consoleUI.isSliderActive) return;
             player.GetComponent<PlayerObserverMovement>().MovementIsActive(consoleActive);
             string clipName = consoleActive ? "OM_CloseConsole" : "OM_OpenConsole";

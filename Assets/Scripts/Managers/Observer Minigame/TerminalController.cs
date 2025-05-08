@@ -47,6 +47,7 @@ namespace ObserverMinigame
 
         void InteractTerminal(InputAction.CallbackContext context)
         {
+            if (PauseController.IsGamePaused) return;
             player.GetComponent<PlayerObserverMovement>().MovementIsActive(consoleActive);
             string clipName = consoleActive ? "OM_CloseConsole" : "OM_OpenConsole";
             AudioManager.Instance.PlaySoundEffect(audioSourceTerminal, clipName, 0.5f, false);

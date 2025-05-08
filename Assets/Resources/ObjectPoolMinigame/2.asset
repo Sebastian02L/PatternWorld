@@ -19,7 +19,7 @@ MonoBehaviour:
   standardEnemyData: {fileID: 11400000, guid: 67fc9cbf45b845240b7354ce351c5912, type: 2}
   strongEnemyData: {fileID: 11400000, guid: 1e8a537f4110b6a479c01e28296c2e94, type: 2}
   enemiesToEliminate: 10
-  numberOfEnemies: 6
+  numberOfEnemies: 12
   weakEnemyProportion: 0.25
   standardEnemyProportion: 0.5
   strongEnemyProportion: 0.25

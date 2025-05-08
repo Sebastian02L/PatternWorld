@@ -8,6 +8,7 @@ namespace ObjectPoolMinigame
     {
         Transform[] waypoints;
         NavMeshAgent navMeshAgent;
+
         public EscapeState(IContext context, EnemyData agentData, GameObject player, GameObject agent, Animator animator, GameObject playerHead, GameObject agentHead, EnemyGunManager gunManager)
             : base(context, player, agent, agentData, animator, playerHead, agentHead, gunManager)
         {
@@ -19,13 +20,19 @@ namespace ObjectPoolMinigame
             Debug.Log("entrando al estado de huir");
             navMeshAgent = agentGameObject.GetComponent<NavMeshAgent>();
             navMeshAgent.isStopped = false;
-            navMeshAgent.speed *= 2; 
+            navMeshAgent.speed = agentData.runSpeed; 
             waypoints = agentGameObject.GetComponent<WaypointsManager>().GetWaypoints();
 
-            Transform destiny = CalculateFardestTransform();
-            navMeshAgent.SetDestination(destiny.transform.position);
+            Transform destinationZone = CalculateFardestTransform();
+            Vector3 destiny = ExtractRandomPointFromSphere(destinationZone.GetComponent<SphereCollider>());
+            navMeshAgent.SetDestination(destiny);
             Debug.Log("destino fijado");
 
+        }
+        Vector3 ExtractRandomPointFromSphere(SphereCollider collider)
+        {
+            Vector3 direccion = Random.insideUnitSphere;
+            return collider.transform.position + direccion * collider.radius * collider.transform.lossyScale.x;
         }
 
         public override void Update()
@@ -60,7 +67,7 @@ namespace ObjectPoolMinigame
         {
             AudioManager.Instance.StopAudioSource(agentGameObject.GetComponent<AudioSource>());
             navMeshAgent.isStopped = true;
-            navMeshAgent.speed /= 2;
+            navMeshAgent.speed = agentData.moveSpeed;
         }
 
         public override void FixedUpdate()

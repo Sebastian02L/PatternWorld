@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Splines;
 
 namespace ObjectPoolMinigame
 {
@@ -15,7 +17,9 @@ namespace ObjectPoolMinigame
         int numberOfStandards;
         int numberOfStrongs;
         int defeatedEnemies;
+        int nearbyAttentionDistance = 2;
         Action<int> onEnemyDefeated;
+        List<EnemyBrain> nearbyAllies = new List<EnemyBrain>();
 
         public EnemiesManager(ObjectPool enemiesPool, List<Transform> spawnPoints, ObjectPoolRoundData minigameData, Action<int> onEnemyDefeated)
         {
@@ -102,6 +106,23 @@ namespace ObjectPoolMinigame
                 }
             }
             return spawnPoint.position;
+        }
+
+        public void AlertNearbyAllies(EnemyBrain agent)
+        {
+            nearbyAllies.Clear();
+            nearbyAllies = GameObject.FindObjectsByType<EnemyBrain>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).ToList<EnemyBrain>();
+
+            float distance = float.MaxValue;
+            foreach (EnemyBrain allie in nearbyAllies)
+            {
+                if(allie != agent && allie.GetState().GetType() != typeof(CombatState) && allie.GetState().GetType() != typeof(EscapeState))
+                {
+                    distance = (allie.transform.position - agent.transform.position).magnitude;
+                    if (distance <= nearbyAttentionDistance) allie.EnterCombatState();
+                    distance = float.MaxValue;
+                }
+            }
         }
     }
 }

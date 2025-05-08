@@ -20,8 +20,8 @@ MonoBehaviour:
   strongEnemyData: {fileID: 0}
   enemiesToEliminate: 10
   numberOfEnemies: 6
-  weakEnemyProportion: 0.75
-  standardEnemyProportion: 0.25
+  weakEnemyProportion: 0.66
+  standardEnemyProportion: 0.33
   strongEnemyProportion: 0
   eliminationsPerWeapon: 5
   genericBullet: {fileID: 7172639506888598500, guid: cb44251a0dca9fd45803cfc2503073ab, type: 3}

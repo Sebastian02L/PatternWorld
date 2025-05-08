@@ -27,6 +27,7 @@ public class PauseController : MonoBehaviour
     private void OnDestroy()
     {
         TutorialController.OnTutorialClosed -= ActivatePauseFunction;
+        gamePaused = false;
     }
 
     void Update()
