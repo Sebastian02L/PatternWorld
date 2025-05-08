@@ -18,6 +18,7 @@ namespace ObjectPoolMinigame
             if(bulletsPool == null) bulletsPool = FindAnyObjectByType<GameManager>().GetBulletsPool();
             ammo = weaponData.maxAmmo;
             bulletBehaviour = new EnemyBulletBehaviour();
+            shootVFX.startColor = weaponData.lightColor;
         }
 
         public override void SetWeaponData(WeaponData weaponData)
@@ -43,6 +44,7 @@ namespace ObjectPoolMinigame
         {
             if (canShoot && ammo > 0)
             {
+                gunLight.enabled = true;
                 canShoot = false;
                 IPoolableObject bullet = bulletsPool.Get();
 
@@ -66,11 +68,13 @@ namespace ObjectPoolMinigame
                     ammo--;
                     InvokeAmmoChange();
                     AudioManager.Instance.PlaySoundEffect(shootAudioSource, "OPM_EnemyShoot", 0.5f);
+                    shootVFX.Play();
                 }
             }
             else if (ammo == 0)
             { 
                 Reload();
+                gunLight.enabled = false;
             }
         }
 

@@ -72,6 +72,7 @@ namespace ObjectPoolMinigame
                     ammo--;
                     InvokeAmmoChange();
                     AudioManager.Instance.PlaySoundEffect(shootAudioSource, "OPM_FlareRifleShoot", 0.5f);
+                    shootVFX.Play();
                 }
             }
             else if (ammo == 0)

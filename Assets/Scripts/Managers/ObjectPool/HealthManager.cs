@@ -9,6 +9,7 @@ public class HealthManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] float healingActivationTime;
     [SerializeField] float healthRecuperationRate;
+    [SerializeField] RedScreenAnimation playerRedScreen;
     float maxHealth;
     float health;
     float timer = 0f;
@@ -44,8 +45,21 @@ public class HealthManager : MonoBehaviour
     {
         healthLifeBar.fillAmount = Mathf.Max(0, Mathf.Min(1, health/maxHealth));
         healthText.text = $"{(int)health}/{maxHealth}";
+        if (playerRedScreen != null) ShouldActiveRedScreen();
         if(health <= 0) OnHealthChange?.Invoke(0);
         else if(health != maxHealth) OnHealthChange?.Invoke(1);
+    }
+
+    void ShouldActiveRedScreen()
+    {
+        if(health <= 30 && !playerRedScreen.isRedScreenActive)
+        {
+            playerRedScreen.activateAnim = true;
+        }
+        else if (health > 30 && playerRedScreen.isRedScreenActive)
+        {
+            playerRedScreen.activateAnim = true;
+        }
     }
 
     private void Update()

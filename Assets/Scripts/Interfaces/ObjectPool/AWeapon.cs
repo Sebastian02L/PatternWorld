@@ -24,6 +24,9 @@ namespace ObjectPoolMinigame
 
         protected AudioSource shootAudioSource;
         protected AudioSource reloadAudioSource;
+        protected ParticleSystem shootVFX;
+        protected ParticleSystem reloadFVX;
+        protected Animator animator;
 
         protected virtual void Start()
         {
@@ -31,6 +34,10 @@ namespace ObjectPoolMinigame
             reloadAudioSource = GetComponents<AudioSource>()[1];
             playerCamera = Camera.main;
             shootInterval = 1f / weaponData.bulletPerSecond;
+            ParticleSystem[] particleSystems = GetComponentsInChildren<ParticleSystem>();
+            shootVFX = particleSystems[0];
+            reloadFVX = particleSystems[1];
+            animator = GetComponent<Animator>();
         }
 
         public virtual void SetWeaponData(WeaponData weaponData)

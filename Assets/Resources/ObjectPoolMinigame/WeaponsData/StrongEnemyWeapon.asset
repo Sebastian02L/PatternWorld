@@ -21,4 +21,4 @@ MonoBehaviour:
   realoadTime: 8
   weaponPrefab: {fileID: 0}
   bulletPrefab: {fileID: 7172639506888598500, guid: 77cc64cde1af2914997d319649309662, type: 3}
-  lightColor: {r: 0.47377205, g: 0, b: 1, a: 0}
+  lightColor: {r: 0.47377205, g: 0, b: 1, a: 1}

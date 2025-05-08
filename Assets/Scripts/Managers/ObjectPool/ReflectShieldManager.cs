@@ -83,6 +83,7 @@ namespace ObjectPoolMinigame
                     shootedBullets++;
                     InvokeAmmoChange();
                     AudioManager.Instance.PlaySoundEffect(shootAudioSource, "OPM_ShieldShoot", 0.5f);
+                    shootVFX.Play();
                 }
             }
             else if (shootedBullets >= weaponData.maxAmmo)
@@ -105,6 +106,7 @@ namespace ObjectPoolMinigame
                 ammo++;
                 InvokeAmmoChange();
                 AudioManager.Instance.PlaySoundEffect(shootAudioSource, "OPM_ShieldAddAmmo", 0.5f);
+                reloadFVX.Play();
             }
         }
 

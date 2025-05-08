@@ -7,6 +7,8 @@ namespace ObjectPoolMinigame
         WeaponData weaponData;
         IObjectPool bulletsPool;
         IBulletBehaviour bulletBehaviour;
+        float automaticReleaseTime = 5f;
+        float timer = 0;
 
         void Start()
         {
@@ -23,6 +25,12 @@ namespace ObjectPoolMinigame
         void Update()
         {
             gameObject.transform.position += gameObject.transform.forward * weaponData.bulletSpeed * Time.deltaTime;
+            timer += Time.deltaTime;
+            if (timer > automaticReleaseTime)
+            {
+                timer = 0;
+                Release();
+            }
         }
 
         public void SetBulletBehaviour(IBulletBehaviour bulletBehaviour)

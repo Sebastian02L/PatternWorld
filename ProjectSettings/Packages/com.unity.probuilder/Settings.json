@@ -159,7 +159,7 @@
             {
                 "type": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "ShapeBuilder.ActiveShapeIndex",
-                "value": "{\"m_Value\":9}"
+                "value": "{\"m_Value\":7}"
             },
             {
                 "type": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
@@ -204,7 +204,7 @@
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Cylinder",
-                "value": "{\"m_Value\":{\"x\":0.0411224365234375,\"y\":0.1508597731590271,\"z\":0.040160179138183597}}"
+                "value": "{\"m_Value\":{\"x\":0.046334266662597659,\"y\":0.07729637622833252,\"z\":-0.04463481903076172}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -329,7 +329,7 @@
             {
                 "type": "UnityEngine.ProBuilder.SelectMode, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "s_SelectMode",
-                "value": "{\"m_Value\":4}"
+                "value": "{\"m_Value\":1}"
             },
             {
                 "type": "UnityEngine.ProBuilder.ExtrudeMethod, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
