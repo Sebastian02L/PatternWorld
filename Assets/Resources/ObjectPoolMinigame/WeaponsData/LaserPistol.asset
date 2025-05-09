@@ -22,3 +22,5 @@ MonoBehaviour:
   weaponPrefab: {fileID: 788756247770406593, guid: d2d4b12c68bef2f458625f3d8a5fefe9, type: 3}
   bulletPrefab: {fileID: 5742524600089856608, guid: 7e970348174afe34495b07b96e9d80b0, type: 3}
   lightColor: {r: 0, g: 0, b: 0, a: 0}
+  description: "La pistola l\xE1ser dispara un potente rayo con un alcance m\xE1ximo
+    de 10 metros. Tiene un tiempo de recarga de 10 segundos."

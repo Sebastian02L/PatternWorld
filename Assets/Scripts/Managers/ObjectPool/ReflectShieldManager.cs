@@ -83,6 +83,7 @@ namespace ObjectPoolMinigame
                     shootedBullets++;
                     InvokeAmmoChange();
                     AudioManager.Instance.PlaySoundEffect(shootAudioSource, "OPM_ShieldShoot", 0.5f);
+                    animator.SetTrigger("Shoot");
                     shootVFX.Play();
                 }
             }
@@ -106,6 +107,7 @@ namespace ObjectPoolMinigame
                 ammo++;
                 InvokeAmmoChange();
                 AudioManager.Instance.PlaySoundEffect(shootAudioSource, "OPM_ShieldAddAmmo", 0.5f);
+                animator.SetTrigger("AddAmmo");
                 reloadFVX.Play();
             }
         }
@@ -119,6 +121,7 @@ namespace ObjectPoolMinigame
             reloading = true;
             shootedBullets = 0;
             AudioManager.Instance.PlaySoundEffect(shootAudioSource, "OPM_ShieldCooldown", 0.5f);
+            animator.SetTrigger("Reload");
         }
 
         public override void ShootCanceled()

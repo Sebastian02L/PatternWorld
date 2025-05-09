@@ -15,5 +15,6 @@ namespace ObjectPoolMinigame
         public GameObject weaponPrefab;
         public GameObject bulletPrefab;
         public Color lightColor;
+        public string description;
     }
 }

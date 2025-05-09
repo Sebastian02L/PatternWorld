@@ -60,6 +60,7 @@ namespace ObjectPoolMinigame
                 ammo--;
                 InvokeAmmoChange();
                 AudioManager.Instance.PlaySoundEffect(shootAudioSource, "OPM_LaserPistolShoot", 0.5f, true);
+                animator.SetTrigger("Shoot");
                 shootVFX.Play();
             }
             else if (ammo == 0)
@@ -67,6 +68,7 @@ namespace ObjectPoolMinigame
                 bullet.SetActive(false);
                 bulletManager.EndShoot();
                 shootVFX.Stop();
+                animator.SetTrigger("ShootCanceled");
                 Reload();
             }
         }
@@ -75,6 +77,8 @@ namespace ObjectPoolMinigame
             if (ammo == weaponData.maxAmmo) return;
             AudioManager.Instance.StopAudioSource(shootAudioSource);
             AudioManager.Instance.PlaySoundEffect(reloadAudioSource, "OPM_LaserPistolReload", 0.5f);
+            animator.SetTrigger("Reload");
+            reloadFVX.Play();
             base.Reload();
         }
 
@@ -83,6 +87,7 @@ namespace ObjectPoolMinigame
             bullet.SetActive(false);
             bulletManager.EndShoot();
             AudioManager.Instance.StopAudioSource(shootAudioSource);
+            animator.SetTrigger("ShootCanceled");
             shootVFX.Stop();
         }
     }

@@ -180,6 +180,15 @@ public partial class @ObjectPoolControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowInfo"",
+                    ""type"": ""Button"",
+                    ""id"": ""87c88735-f975-4b45-a368-d79347751eef"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -204,6 +213,17 @@ public partial class @ObjectPoolControls: IInputActionCollection2, IDisposable
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6950f0a9-03ea-4425-837c-c6c715682d11"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowInfo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -217,6 +237,7 @@ public partial class @ObjectPoolControls: IInputActionCollection2, IDisposable
         m_Interactions = asset.FindActionMap("Interactions", throwIfNotFound: true);
         m_Interactions_Shoot = m_Interactions.FindAction("Shoot", throwIfNotFound: true);
         m_Interactions_Reload = m_Interactions.FindAction("Reload", throwIfNotFound: true);
+        m_Interactions_ShowInfo = m_Interactions.FindAction("ShowInfo", throwIfNotFound: true);
     }
 
     ~@ObjectPoolControls()
@@ -396,6 +417,7 @@ public partial class @ObjectPoolControls: IInputActionCollection2, IDisposable
     private List<IInteractionsActions> m_InteractionsActionsCallbackInterfaces = new List<IInteractionsActions>();
     private readonly InputAction m_Interactions_Shoot;
     private readonly InputAction m_Interactions_Reload;
+    private readonly InputAction m_Interactions_ShowInfo;
     /// <summary>
     /// Provides access to input actions defined in input action map "Interactions".
     /// </summary>
@@ -415,6 +437,10 @@ public partial class @ObjectPoolControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Interactions/Reload".
         /// </summary>
         public InputAction @Reload => m_Wrapper.m_Interactions_Reload;
+        /// <summary>
+        /// Provides access to the underlying input action "Interactions/ShowInfo".
+        /// </summary>
+        public InputAction @ShowInfo => m_Wrapper.m_Interactions_ShowInfo;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -447,6 +473,9 @@ public partial class @ObjectPoolControls: IInputActionCollection2, IDisposable
             @Reload.started += instance.OnReload;
             @Reload.performed += instance.OnReload;
             @Reload.canceled += instance.OnReload;
+            @ShowInfo.started += instance.OnShowInfo;
+            @ShowInfo.performed += instance.OnShowInfo;
+            @ShowInfo.canceled += instance.OnShowInfo;
         }
 
         /// <summary>
@@ -464,6 +493,9 @@ public partial class @ObjectPoolControls: IInputActionCollection2, IDisposable
             @Reload.started -= instance.OnReload;
             @Reload.performed -= instance.OnReload;
             @Reload.canceled -= instance.OnReload;
+            @ShowInfo.started -= instance.OnShowInfo;
+            @ShowInfo.performed -= instance.OnShowInfo;
+            @ShowInfo.canceled -= instance.OnShowInfo;
         }
 
         /// <summary>
@@ -533,5 +565,12 @@ public partial class @ObjectPoolControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnReload(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ShowInfo" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnShowInfo(InputAction.CallbackContext context);
     }
 }

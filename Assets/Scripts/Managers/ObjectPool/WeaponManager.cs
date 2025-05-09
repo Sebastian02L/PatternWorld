@@ -13,14 +13,18 @@ namespace ObjectPoolMinigame
         List<WeaponData> weaponsData = new List<WeaponData>();
         List<GameObject> weapons = new List<GameObject>();
         GameObject currentWeaponGO;
+        WeaponData currentWeaponData;
         IWeapon currentWeapon;
 
         PlayerInput input;
+        WeaponInfoCanvasManager weaponInfoCanvasManager;
 
         private void Awake()
         {
             input = GetComponent<PlayerInput>();
+            weaponInfoCanvasManager = FindAnyObjectByType<WeaponInfoCanvasManager>();
             input.actions["Reload"].performed += RealoadWeapon;
+            input.actions["ShowInfo"].performed += ShowWeaponInfo;
         }
 
         private void Start()
@@ -31,6 +35,7 @@ namespace ObjectPoolMinigame
         private void OnDestroy()
         {
             input.actions["Reload"].performed -= RealoadWeapon;
+            input.actions["ShowInfo"].performed -= ShowWeaponInfo;
         }
 
         private void Update()
@@ -41,12 +46,13 @@ namespace ObjectPoolMinigame
             } else if (input.actions["Shoot"].WasReleasedThisFrame())
             {
                 CancelShoot();
-            }
+            } 
         }
 
         void InstantiateWeapon(int weaponTurn)
         {
             currentWeaponGO = Instantiate(weapons[weaponTurn], weaponsOrigin);
+            currentWeaponData = weaponsData[weaponTurn];
             currentWeapon = currentWeaponGO.GetComponent<IWeapon>();
             currentWeapon.SetWeaponData(weaponsData[weaponTurn]);
         }
@@ -66,7 +72,7 @@ namespace ObjectPoolMinigame
 
         void ShootWeapon()
         {
-           if(!PauseController.IsGamePaused) currentWeapon.Shoot();
+           if(!PauseController.IsGamePaused && !weaponInfoCanvasManager.isPaneActive) currentWeapon.Shoot();
         }
 
         void CancelShoot()
@@ -76,7 +82,12 @@ namespace ObjectPoolMinigame
 
         void RealoadWeapon(InputAction.CallbackContext ctx) 
         {
-            if (!PauseController.IsGamePaused) currentWeapon.Reload();
+            if (!PauseController.IsGamePaused && !weaponInfoCanvasManager.isPaneActive) currentWeapon.Reload();
+        }
+
+        void ShowWeaponInfo(InputAction.CallbackContext ctx)
+        {
+            weaponInfoCanvasManager.EvaluaPanelVisualization(currentWeaponData.description);
         }
 
         public IWeapon GetCurrentWeapon()

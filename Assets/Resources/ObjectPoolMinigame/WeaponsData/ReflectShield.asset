@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ReflectShield
   m_EditorClassIdentifier: 
   objectPoolRequired: 1
-  maxAmmo: 10
+  maxAmmo: 20
   bulletPerSecond: 5
   bulletSpeed: 35
   bulletDamage: 15
@@ -22,3 +22,6 @@ MonoBehaviour:
   weaponPrefab: {fileID: 916454621778862129, guid: 7c780430aebff324390116fe1f12cd17, type: 3}
   bulletPrefab: {fileID: 7172639506888598500, guid: 39501a7142d44fd428e4eac16f918184, type: 3}
   lightColor: {r: 0, g: 0, b: 0, a: 0}
+  description: "El escudo absorbente atrapa y crea munici\xF3n con cada proyectil
+    enemigo que impacta con \xE9l. Luego de disparar 10 proyectiles deben pasar 2.5
+    segundos para regenerarse. Cada proyectil hace 15 de da\xF1o."

@@ -16,7 +16,7 @@ MonoBehaviour:
   moveSpeed: 4
   runSpeed: 5
   idleTime: 3
-  FOV: 60
+  FOV: 30
   visionDistance: 18
   weapon: {fileID: 11400000, guid: 6e7d8b7b2bdf40745ae0d701e60a1143, type: 2}
   gunTexture: {fileID: 2800000, guid: a94794b4e473afa4ea6a87f2c47da744, type: 3}

@@ -13,12 +13,15 @@ MonoBehaviour:
   m_Name: RefrigeratedSword
   m_EditorClassIdentifier: 
   objectPoolRequired: 1
-  maxAmmo: 6
+  maxAmmo: 9
   bulletPerSecond: 1
   bulletSpeed: 40
-  bulletDamage: 9
+  bulletDamage: 12
   bulletRange: 0
   realoadTime: 5
   weaponPrefab: {fileID: 916454621778862129, guid: 10f45c673cea70447836be6f689bf640, type: 3}
   bulletPrefab: {fileID: 7172639506888598500, guid: ec564d4f585fe2d42a710044ac2ee193, type: 3}
   lightColor: {r: 0, g: 0, b: 0, a: 0}
+  description: "La espada refrigerada dispara una l\xE1mina de hielo que atraviesa
+    enemigos. Por cada enemigo atravesado, aumenta ligeramente su da\xF1o. Tiene
+    un tiempo de recarga de 5 segundos."

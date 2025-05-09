@@ -16,9 +16,10 @@ MonoBehaviour:
   maxAmmo: 15
   bulletPerSecond: 4
   bulletSpeed: 12
-  bulletDamage: 10
+  bulletDamage: 6
   bulletRange: 0
   realoadTime: 5
   weaponPrefab: {fileID: 0}
   bulletPrefab: {fileID: 7172639506888598500, guid: 9b8ecf4db8f080b42a643a91ad52b107, type: 3}
   lightColor: {r: 1, g: 0.25882354, b: 0, a: 1}
+  description: 

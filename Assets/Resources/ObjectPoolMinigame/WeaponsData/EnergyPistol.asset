@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecb9967bea3406d419c7e607d1750b08, type: 3}
   m_Name: EnergyPistol
   m_EditorClassIdentifier: 
+  objectPoolRequired: 1
   maxAmmo: 12
   bulletPerSecond: 3
   bulletSpeed: 20
@@ -20,3 +21,6 @@ MonoBehaviour:
   realoadTime: 2
   weaponPrefab: {fileID: 916454621778862129, guid: 9b9ff5d747364bd4daaa82773d490ea0, type: 3}
   bulletPrefab: {fileID: 7172639506888598500, guid: d8bedd290098262408e98a3d9a88338d, type: 3}
+  lightColor: {r: 0, g: 0, b: 0, a: 0}
+  description: "La pistola de energ\xEDa es un arma de cadencia media que hace 10
+    de da\xF1o por cada bala impactada. Su tiempo de recarga es de 2 segundos."

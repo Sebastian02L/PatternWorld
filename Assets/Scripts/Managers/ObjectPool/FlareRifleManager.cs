@@ -72,6 +72,7 @@ namespace ObjectPoolMinigame
                     ammo--;
                     InvokeAmmoChange();
                     AudioManager.Instance.PlaySoundEffect(shootAudioSource, "OPM_FlareRifleShoot", 0.5f);
+                    animator.SetTrigger("Shoot");
                     shootVFX.Play();
                 }
             }
@@ -85,6 +86,8 @@ namespace ObjectPoolMinigame
         {
             if (ammo == weaponData.maxAmmo) return;
             AudioManager.Instance.PlaySoundEffect(reloadAudioSource, "OPM_FlareRifleReload", 0.5f);
+            animator.SetTrigger("Reload");
+            reloadFVX.Play();
             base.Reload();
         }
 

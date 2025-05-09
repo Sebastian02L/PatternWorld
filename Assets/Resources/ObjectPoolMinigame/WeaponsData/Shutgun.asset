@@ -22,3 +22,5 @@ MonoBehaviour:
   weaponPrefab: {fileID: 916454621778862129, guid: 08b68e98eea916c4082841d2c142c5eb, type: 3}
   bulletPrefab: {fileID: 7172639506888598500, guid: ce90a69c5ec90954aad73fad80505878, type: 3}
   lightColor: {r: 0, g: 0, b: 0, a: 0}
+  description: "La escopeta de perdigones dispara 8 perdigones por cada disparo,
+    causando 5 de da\xF1o por cada una. Su tiempo de recarga es de 3 segundos."

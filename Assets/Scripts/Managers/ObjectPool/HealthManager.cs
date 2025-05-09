@@ -32,7 +32,7 @@ public class HealthManager : MonoBehaviour
     {
         health -= damage;
         UpdateHealthVisuals();
-        if(health <= 0) OnGetDamage?.Invoke(0);
+        if(health < 1) OnGetDamage?.Invoke(0);
         else OnGetDamage?.Invoke(1);
         timer = 0f;
     }
