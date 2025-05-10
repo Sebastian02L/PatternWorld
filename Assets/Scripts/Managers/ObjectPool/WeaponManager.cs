@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Networking.PlayerConnection;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -75,7 +73,7 @@ namespace ObjectPoolMinigame
            if(!PauseController.IsGamePaused && !weaponInfoCanvasManager.isPaneActive) currentWeapon.Shoot();
         }
 
-        void CancelShoot()
+        public void CancelShoot()
         {
             if (!PauseController.IsGamePaused) currentWeapon.ShootCanceled();
         }

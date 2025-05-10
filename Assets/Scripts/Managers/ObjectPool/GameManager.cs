@@ -111,6 +111,7 @@ namespace ObjectPoolMinigame
 
         void GameOver(bool hasWon)
         {
+            weaponManager.CancelShoot();
             playerInput.actions.Disable();
             gameObject.GetComponent<CharacterController>().enabled = false;
 

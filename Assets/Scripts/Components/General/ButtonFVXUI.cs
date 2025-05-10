@@ -11,6 +11,7 @@ public class ButtonFVXUI : MonoBehaviour, IButtonFVX
     {
         button = GetComponent<Button>();
         audioSourceIU = GameObject.Find("AS_UI").GetComponent<AudioSource>();
+        audioSourceIU.ignoreListenerPause = true;
     }
     public void OnPointerClick(PointerEventData eventData)
     {

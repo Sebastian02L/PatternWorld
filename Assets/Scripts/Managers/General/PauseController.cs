@@ -42,6 +42,7 @@ public class PauseController : MonoBehaviour
         {
             CursorVisibility.ShowCursor();
             Time.timeScale = 0.0f;
+            AudioListener.pause = true;
             pausePanel.SetActive(true);
             gamePaused = true;
         }
@@ -49,6 +50,7 @@ public class PauseController : MonoBehaviour
         {
             CursorVisibility.HideCursor();
             Time.timeScale = 1.0f;
+            AudioListener.pause = false;
             pausePanel.SetActive(false);
             gamePaused = false;
         }

@@ -28,6 +28,11 @@ namespace ObjectPoolMinigame
 
         public override void Update()
         {
+            if (healthManager.GetHealth < (healthManager.GetMaxHealth / 3))
+            {
+                context.SetState(new EscapeState(context, agentData, player, agentGameObject, animator, playerHead, agentHead, gunManager));
+            }
+
             if (CheckPlayerInFOV()) 
             {
                 playerDirection = playerHead.transform.position - agentHead.transform.position;
@@ -43,11 +48,6 @@ namespace ObjectPoolMinigame
                 {
                     context.SetState(new WanderState(context, player, agentGameObject, agentData, animator, playerHead, agentHead, gunManager));
                 }
-            }
-
-            if (healthManager.GetHealth < (healthManager.GetMaxHealth / 3))
-            {
-                context.SetState(new EscapeState(context, agentData, player, agentGameObject, animator, playerHead, agentHead, gunManager));
             }
         }
 
