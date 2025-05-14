@@ -16,5 +16,5 @@ MonoBehaviour:
   maker: Androtics
   modelVersion: OW-12
   texture: {fileID: 2800000, guid: 8fa4c8b40199a674ea2ea2dc4fbfeb8b, type: 3}
-  value: 20
+  value: 35
   render: {fileID: 21300000, guid: b0f8c4e89bb37be4698b3e71b0e441f5, type: 3}

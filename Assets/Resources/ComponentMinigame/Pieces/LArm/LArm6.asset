@@ -16,5 +16,5 @@ MonoBehaviour:
   maker: Vienadron
   modelVersion: WT-68
   texture: {fileID: 2800000, guid: c850f8fb82ff5f840a5c37f925a327cd, type: 3}
-  value: 20
+  value: 35
   render: {fileID: 21300000, guid: e41209c17c04e9a43a04bc55d64de02a, type: 3}

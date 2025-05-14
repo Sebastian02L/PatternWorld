@@ -16,5 +16,5 @@ MonoBehaviour:
   maker: Robotech
   modelVersion: N-86
   texture: {fileID: 2800000, guid: d363d6e67e8f7cc4a8a972cee8ee1d28, type: 3}
-  value: 15
+  value: 25
   render: {fileID: 21300000, guid: e4f31f441e129ae4cb5b3592ae3f4b4c, type: 3}

@@ -16,5 +16,5 @@ MonoBehaviour:
   maker: Wheeldroid
   modelVersion: Y-13
   texture: {fileID: 2800000, guid: 0b1b436749aa14145b7afdef374e69da, type: 3}
-  value: 10
+  value: 35
   render: {fileID: 21300000, guid: 3ff1dffccc629da45a4da72739d7eac0, type: 3}
