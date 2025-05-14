@@ -5,6 +5,7 @@ namespace ObjectPoolMinigame
 {
     public class ObjectPool : IObjectPool
     {
+        //List and prototype 
         List<IPoolableObject> objectPoolList;
         GameObject prefab;
 
@@ -19,6 +20,7 @@ namespace ObjectPoolMinigame
             }
         }
 
+        //Return a clean clone of the prefab if is possible
         public IPoolableObject Get()
         {
             foreach (var poolableObject in objectPoolList)
@@ -33,6 +35,7 @@ namespace ObjectPoolMinigame
             return null;
         }
 
+        //Retstar the state of a used clone
         public void Release(IPoolableObject obj)
         {
             obj.IsDirty = false;

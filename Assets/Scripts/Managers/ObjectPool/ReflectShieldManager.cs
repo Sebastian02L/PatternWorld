@@ -7,34 +7,13 @@ namespace ObjectPoolMinigame
 {
     public class ReflectShieldManager : AWeapon
     {
-        IObjectPool bulletsPool;
-
-        Mesh bulletMesh;
-        Material bulletMaterial;
         bool firstFrame = true;
-        bool needToWait = false;
         int shootedBullets = 0;
 
-        protected override void Start()
+        protected void Start()
         {
-            base.Start();
-            AdjustShootOrientation();
-            if (bulletsPool == null) bulletsPool = FindAnyObjectByType<GameManager>().GetBulletsPool();
-            PlayerCanvas playerCanvas = GameObject.FindAnyObjectByType<PlayerCanvas>();
-            playerCanvas.SubscribeToCurrentWeapon(this);
+            Started(true);
             bulletBehaviour = new ReflectBulletBehaviour(); 
-        }
-
-        public override void SetWeaponData(WeaponData weaponData)
-        {
-            base.SetWeaponData(weaponData);
-            SaveBulletVisuals();
-        }
-
-        void SaveBulletVisuals()
-        {
-            bulletMesh = weaponData.bulletPrefab.GetComponentInChildren<MeshFilter>().sharedMesh;
-            bulletMaterial = new Material(weaponData.bulletPrefab.GetComponentInChildren<MeshRenderer>().sharedMaterial);
         }
 
         protected override void Update()
@@ -53,38 +32,16 @@ namespace ObjectPoolMinigame
             if (canShoot && ammo > 0 && shootedBullets < weaponData.maxAmmo)
             {
                 canShoot = false;
-                IPoolableObject bullet = bulletsPool.Get();
+                IPoolableObject bullet =GetBulletFromPool();
 
                 if (bullet != null)
                 {
-                    (bullet as BulletManager).SetWeaponData(weaponData);
-                    (bullet as BulletManager).SetBulletBehaviour(bulletBehaviour);
-                    GameObject bulletGO = bullet.GetGameObject();
-                    bulletGO.GetComponentInChildren<BulletCollisionManager>().isPlayerBullet = true;
-                    bulletGO.GetComponentInChildren<MeshFilter>().mesh = bulletMesh;
-                    bulletGO.GetComponentInChildren<MeshRenderer>().material = bulletMaterial;
-                    
-                    bulletGO.transform.position = shootOrigin.position;
-
+                    GameObject bulletGO = SetUpBullet(bullet, true);
                     Vector3 impactPoint = CalculateBulletDirection();
-
-                    if (impactPoint != Vector3.zero)
-                    {
-                        bulletGO.transform.LookAt(impactPoint);
-                    }
-                    else
-                    {
-                        bulletGO.transform.rotation = shootOrigin.rotation;
-                    }
-
-                    bulletGO.transform.parent = null;
-                    bulletGO.SetActive(true);
-                    ammo--;
+                    AdjustAndActivateBullet(bulletGO, impactPoint);
                     shootedBullets++;
-                    InvokeAmmoChange();
                     AudioManager.Instance.PlaySoundEffect(shootAudioSource, "OPM_ShieldShoot", 0.5f);
                     animator.SetTrigger("Shoot");
-                    shootVFX.Play();
                 }
             }
             else if (shootedBullets >= weaponData.maxAmmo)

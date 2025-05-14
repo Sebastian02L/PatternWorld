@@ -5,16 +5,13 @@ namespace ObjectPoolMinigame
 {
     public class LaserPistolManager : AWeapon
     {
-
         [SerializeField] GameObject bullet;
         [SerializeField] LaserBulletManager bulletManager;
 
-        protected override void  Start()
+        protected void  Start()
         {
-            base.Start();
+            Started(true);
             AdjustShootOrientation();
-            PlayerCanvas playerCanvas = GameObject.FindAnyObjectByType<PlayerCanvas>();
-            playerCanvas.SubscribeToCurrentWeapon(this);
         }
 
         public override void SetWeaponData(WeaponData weaponData)

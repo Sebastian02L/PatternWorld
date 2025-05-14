@@ -2,24 +2,25 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Splines;
 
 namespace ObjectPoolMinigame
 {
     public class EnemiesManager
     {
+        //Game logic variables
         GameObject playerHead;
         ObjectPool enemiesPool;
         List<Transform> spawnPoints;
         ObjectPoolRoundData minigameData;
 
+        //Number of each enemy type in the match
         int numberOfWeaks;
         int numberOfStandards;
         int numberOfStrongs;
-        int defeatedEnemies;
-        int nearbyAttentionDistance = 2;
+
+        //Auxiliar variables
+        int defeatedEnemies = 0;
         Action<int> onEnemyDefeated;
-        List<EnemyBrain> nearbyAllies = new List<EnemyBrain>();
 
         public EnemiesManager(ObjectPool enemiesPool, List<Transform> spawnPoints, ObjectPoolRoundData minigameData, Action<int> onEnemyDefeated)
         {
@@ -28,13 +29,12 @@ namespace ObjectPoolMinigame
             this.minigameData = minigameData;
             this.onEnemyDefeated = onEnemyDefeated;
 
+            //Calculates the number of each enemy type using the proportion and total enemies number
             numberOfWeaks = Mathf.FloorToInt((float)minigameData.numberOfEnemies * minigameData.weakEnemyProportion);
             numberOfStandards = Mathf.FloorToInt((float)minigameData.numberOfEnemies * minigameData.standardEnemyProportion);
             numberOfStrongs = Mathf.FloorToInt((float)minigameData.numberOfEnemies * minigameData.strongEnemyProportion);
 
             playerHead = GameObject.FindWithTag("Player").transform.Find("Head").gameObject;
-            defeatedEnemies = 0;
-
         }
 
         //Spawns the first wave of enemies at the beggining of the round
@@ -56,24 +56,27 @@ namespace ObjectPoolMinigame
                 FirstEnemySetUp(enemy, minigameData.strongEnemyData);
             }
         }
+        //First enemy set up, passing the enemy data, enemy pool and EnemiesManager references
         void FirstEnemySetUp(IPoolableObject enemy, EnemyData enemyData)
         {
             (enemy as EnemyBrain).SetEnemyData(enemyData);
-            SetEnemiesPool((enemy as EnemyBrain));
-            SetEnemiesManager((enemy as EnemyBrain));
+            (enemy as EnemyBrain).SetEnemiesPool(enemiesPool);
+            (enemy as EnemyBrain).SetEnemiesManager(this);
             enemy.GetGameObject().transform.position = ChooseSpawnPoint();
             enemy.GetGameObject().SetActive(true);
         }
 
-        //Spawn enemies during the duration of the round
+        //Spawn enemies during the duration of the round. Called when the player eliminates an enemy
         public void SpawnEnemy(EnemyData lastEnemyData)
         {
             defeatedEnemies += 1;
             onEnemyDefeated(defeatedEnemies);
+
             IPoolableObject enemy = enemiesPool.Get();
             ResetEnemy(enemy, lastEnemyData);
             (enemy as EnemyBrain).SetUpBehaviour();
         }
+        //SetUp the spawned enemy with the data of the eliminated one.
         void ResetEnemy(IPoolableObject enemy, EnemyData enemyData)
         {
             (enemy as EnemyBrain).SetEnemyData(enemyData);
@@ -81,48 +84,24 @@ namespace ObjectPoolMinigame
             enemy.GetGameObject().SetActive(true);
         }
 
-        void SetEnemiesPool(EnemyBrain enemy)
-        {
-            enemy.SetEnemiesPool(enemiesPool);
-        }
-        void SetEnemiesManager(EnemyBrain enemy)
-        {
-            enemy.SetEnemiesManager(this);
-        }
-
+        //Calculates the spawn poitn of the enemy
         Vector3 ChooseSpawnPoint()
         {
             Transform spawnPoint = null;
             Vector3 playerSpawnVector;
             bool found = false;
 
+            //Search an spawn point that cant be seen by the player or is far away of him
             while (!found) 
             {
                 spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Count)];
                 playerSpawnVector = (playerHead.transform.position - spawnPoint.transform.position);
-                if (Vector3.Angle(playerHead.transform.forward, playerSpawnVector) > 90f || playerSpawnVector.magnitude > 5f) 
+                if (Vector3.Angle(playerHead.transform.forward, playerSpawnVector) > 180f || playerSpawnVector.magnitude > 10f) 
                 {
                     found = true;
                 }
             }
             return spawnPoint.position;
-        }
-
-        public void AlertNearbyAllies(EnemyBrain agent)
-        {
-            nearbyAllies.Clear();
-            nearbyAllies = GameObject.FindObjectsByType<EnemyBrain>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).ToList<EnemyBrain>();
-
-            float distance = float.MaxValue;
-            foreach (EnemyBrain allie in nearbyAllies)
-            {
-                if(allie != agent && allie.GetState().GetType() != typeof(CombatState) && allie.GetState().GetType() != typeof(EscapeState))
-                {
-                    distance = (allie.transform.position - agent.transform.position).magnitude;
-                    if (distance <= nearbyAttentionDistance) allie.EnterCombatState();
-                    distance = float.MaxValue;
-                }
-            }
         }
     }
 }

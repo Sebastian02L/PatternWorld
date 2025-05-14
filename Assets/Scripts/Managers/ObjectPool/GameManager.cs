@@ -11,21 +11,19 @@ namespace ObjectPoolMinigame
     {
         [SerializeField] List<Transform> spawnPoints;
         ObjectPoolRoundData minigameData;
-        ObjectPool bulletsPool;
-        ObjectPool enemiesPool;
 
-        int currentRound = 1;
-
-        WeaponManager weaponManager;
+        //References to other Managers
+        WeaponManager playerWeaponManager;
         EnemiesManager enemiesManager;
-
-        bool firstTime = true;
-
         HealthManager healthManager;
-        PlayerCanvas playerCanvas;
         PlayerInput playerInput;
 
+        //Auxiliar variables
         public event Action<int, int> OnEnemyDefeated;
+        int currentRound = 1;
+        bool firstTime = true;
+        ObjectPool bulletsPool;
+        ObjectPool enemiesPool;
 
         void Awake()
         {
@@ -37,20 +35,24 @@ namespace ObjectPoolMinigame
             //Loads the round configuration
             minigameData = Resources.Load<ObjectPoolRoundData>(SceneManager.GetActiveScene().name + "/" + currentRound);
 
-            weaponManager = GetComponent<WeaponManager>();
-            weaponManager.SetWeaponsData(minigameData.weaponsData);
+            //Send the player weapons data to WeaponManager
+            playerWeaponManager = GetComponent<WeaponManager>();
+            playerWeaponManager.SetWeaponsData(minigameData.weaponsData);
 
-            CreateBulletPool();
-            CreateEnemiesPool();
-
-            enemiesManager = new EnemiesManager(enemiesPool, spawnPoints, minigameData, EnemyDefeated);
+            //Setup the player's HealthManager
             healthManager = GetComponent<HealthManager>();
             healthManager.OnGetDamage += OnPlayerDamage;
             healthManager.SetMaxHeahlt(100);
-            playerInput = GetComponent<PlayerInput>();
 
+            //Creates the enemy pool and setup the EnemiesManager
+            CreateEnemiesPool();
+            enemiesManager = new EnemiesManager(enemiesPool, spawnPoints, minigameData, EnemyDefeated);
+
+            playerInput = GetComponent<PlayerInput>();
+            CreateBulletPool();
         }
 
+        //Creates the generic bullets pool to be used by the player and the enemies
         void CreateBulletPool()
         {
             int numberOfBullets = 0;
@@ -67,13 +69,14 @@ namespace ObjectPoolMinigame
             bulletsPool = new ObjectPool(numberOfBullets, minigameData.genericBullet);
         }
 
+        //Creates the generic enemie pool to be used by the EnemiesManager
         void CreateEnemiesPool()
         {
             int numberOfEnemies = Mathf.CeilToInt((float)minigameData.numberOfEnemies + (minigameData.numberOfEnemies / 2));
             enemiesPool = new ObjectPool(numberOfEnemies, minigameData.genericEnemy);  
         }
 
-        // Update is called once per frame
+        //In the first frame, the enemies are Spawned and the PlayerCanvas is updated showing "0 / X enemies to eliminate"
         void Update()
         {
             if (firstTime)
@@ -89,9 +92,10 @@ namespace ObjectPoolMinigame
             return bulletsPool;
         }
 
-        void OnPlayerDamage(int state)
+        //Called when the player gets damage.
+        void OnPlayerDamage(bool isPlayerEliminated)
         {
-            if (state == 0)
+            if (isPlayerEliminated)
             {
                 GameOver(false);
             }
@@ -101,17 +105,20 @@ namespace ObjectPoolMinigame
             }
         }
 
+        //Called when one enemy is defeated by the player.
         void EnemyDefeated(int defeatedEnemies)
         {
             OnEnemyDefeated?.Invoke(defeatedEnemies, minigameData.enemiesToEliminate);
 
-            if (defeatedEnemies == (minigameData.enemiesToEliminate / 2)) weaponManager.ChangeWeapon(playerInput);
+            if (defeatedEnemies == (minigameData.enemiesToEliminate / 2)) playerWeaponManager.ChangeWeapon(playerInput);
             if (defeatedEnemies == minigameData.enemiesToEliminate) GameOver(true);
         }
 
+        //Called when the players wins or lose the round
         void GameOver(bool hasWon)
         {
-            weaponManager.CancelShoot();
+            //Deactivate players actions and movements
+            playerWeaponManager.CancelShoot();
             playerInput.actions.Disable();
             gameObject.GetComponent<CharacterController>().enabled = false;
 

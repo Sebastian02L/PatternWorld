@@ -7,31 +7,11 @@ namespace ObjectPoolMinigame
     public class ShutgunManager : AWeapon
     {
         [SerializeField] float maxAngleDeviation = 10f;
-        IObjectPool bulletsPool;
 
-        Mesh bulletMesh;
-        Material bulletMaterial;
-
-        protected override void Start()
+        protected void Start()
         {
-            base.Start();
-            AdjustShootOrientation();
-            if (bulletsPool == null) bulletsPool = FindAnyObjectByType<GameManager>().GetBulletsPool();
-            PlayerCanvas playerCanvas = GameObject.FindAnyObjectByType<PlayerCanvas>();
-            playerCanvas.SubscribeToCurrentWeapon(this);
+            Started(true);
             bulletBehaviour = new ShutgunBulletBehaviour();
-        }
-
-        public override void SetWeaponData(WeaponData weaponData)
-        {
-            base.SetWeaponData(weaponData);
-            SaveBulletVisuals();
-        }
-
-        void SaveBulletVisuals()
-        {
-            bulletMesh = weaponData.bulletPrefab.GetComponentInChildren<MeshFilter>().sharedMesh;
-            bulletMaterial = new Material(weaponData.bulletPrefab.GetComponentInChildren<MeshRenderer>().sharedMaterial);
         }
 
         protected override void Update()
@@ -49,38 +29,19 @@ namespace ObjectPoolMinigame
 
                 while(currentBullets.Count != 8)
                 {
-                    IPoolableObject bullet = bulletsPool.Get();
+                    IPoolableObject bullet = GetBulletFromPool();
                     if(bullet != null) currentBullets.Add(bullet);
                 }
 
                 foreach(IPoolableObject bullet in currentBullets)
                 {
-                    (bullet as BulletManager).SetWeaponData(weaponData);
-                    (bullet as BulletManager).SetBulletBehaviour(bulletBehaviour);
-                    GameObject bulletGO = bullet.GetGameObject();
-                    bulletGO.GetComponentInChildren<BulletCollisionManager>().isPlayerBullet = true;
-                    bulletGO.GetComponentInChildren<MeshFilter>().mesh = bulletMesh;
-                    bulletGO.GetComponentInChildren<MeshRenderer>().material = bulletMaterial;
-                    
-                    bulletGO.transform.position = shootOrigin.position;
-
+                    GameObject bulletGO = SetUpBullet(bullet, true);
                     Vector3 impactPoint = CalculateBulletDirection();
-
-                    if (impactPoint != Vector3.zero)
-                    {
-                        bulletGO.transform.LookAt(impactPoint);
-                    }
-                    else
-                    {
-                        bulletGO.transform.rotation = shootOrigin.rotation;
-                    }
+                    bulletGO.transform.LookAt(impactPoint);
 
                     float randomAngle = UnityEngine.Random.Range(-maxAngleDeviation, maxAngleDeviation);
-                    //Generamos un eje aleatorio de longitud 1 para aplicar la rotacion
                     Vector3 ramdonAxis = UnityEngine.Random.onUnitSphere;
-                    //Creamos y guardamos la rotacion entorno al eje obtenido con los grados de rotacion obtenidos antes
                     Quaternion rotation = Quaternion.AngleAxis(randomAngle, ramdonAxis);
-                    //Aplicamos la rotacion al eje up que, es la direccion de la bala sin desviar
                     bulletGO.transform.rotation *= rotation;
 
                     bulletGO.transform.parent = null;

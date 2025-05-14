@@ -7,15 +7,10 @@ namespace ObjectPoolMinigame
     public class EnemyGunManager : AWeapon
     {
         [SerializeField] Light gunLight;
-        IObjectPool bulletsPool;
-
-        Mesh bulletMesh;
-        Material bulletMaterial;
 
         void SetUp()
         {
-            base.Start();
-            if(bulletsPool == null) bulletsPool = FindAnyObjectByType<GameManager>().GetBulletsPool();
+            Started(false);
             ammo = weaponData.maxAmmo;
             bulletBehaviour = new EnemyBulletBehaviour();
             shootVFX.startColor = weaponData.lightColor;
@@ -24,15 +19,8 @@ namespace ObjectPoolMinigame
         public override void SetWeaponData(WeaponData weaponData)
         {
             base.SetWeaponData(weaponData);
-            SaveBulletVisuals();
             gunLight.color = weaponData.lightColor;
             SetUp();
-        }
-
-        void SaveBulletVisuals()
-        {
-            bulletMesh = weaponData.bulletPrefab.GetComponentInChildren<MeshFilter>().sharedMesh;
-            bulletMaterial = new Material(weaponData.bulletPrefab.GetComponentInChildren<MeshRenderer>().sharedMaterial);
         }
 
         protected override void Update()
@@ -46,29 +34,14 @@ namespace ObjectPoolMinigame
             {
                 gunLight.enabled = true;
                 canShoot = false;
-                IPoolableObject bullet = bulletsPool.Get();
+                IPoolableObject bullet = GetBulletFromPool();
 
                 if (bullet != null)
                 {
-                    (bullet as BulletManager).SetWeaponData(weaponData);
-                    (bullet as BulletManager).SetBulletBehaviour(bulletBehaviour);
-                    GameObject bulletGO = bullet.GetGameObject();
-                    bulletGO.GetComponentInChildren<BulletCollisionManager>().isPlayerBullet = false;
-                    bulletGO.GetComponentInChildren<MeshFilter>().mesh = bulletMesh;
-                    bulletGO.GetComponentInChildren<MeshRenderer>().material = bulletMaterial;
-
-                    bulletGO.transform.position = shootOrigin.position;
-
+                    GameObject bulletGO = SetUpBullet(bullet, false);
                     Vector3 impactPoint = CalculateBulletDirection();
-
-                    bulletGO.transform.LookAt(impactPoint);
-
-                    bulletGO.transform.parent = null;
-                    bulletGO.SetActive(true);
-                    ammo--;
-                    InvokeAmmoChange();
+                    AdjustAndActivateBullet(bulletGO, impactPoint);
                     AudioManager.Instance.PlaySoundEffect(shootAudioSource, "OPM_EnemyShoot", 0.5f);
-                    shootVFX.Play();
                 }
             }
             else if (ammo == 0)

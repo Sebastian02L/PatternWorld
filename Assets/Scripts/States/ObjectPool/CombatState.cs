@@ -32,23 +32,26 @@ namespace ObjectPoolMinigame
             {
                 context.SetState(new EscapeState(context, agentData, player, agentGameObject, animator, playerHead, agentHead, gunManager));
             }
-
-            if (CheckPlayerInFOV()) 
-            {
-                playerDirection = playerHead.transform.position - agentHead.transform.position;
-                playerDirection.y = 0;
-                agentGameObject.transform.forward = playerDirection.normalized;
-                gunManager.Shoot();
-                timer = 0f;
-            }
             else
             {
-                timer += Time.deltaTime;
-                if(timer > lostViewTimer)
+                if (CheckPlayerInFOV())
                 {
-                    context.SetState(new WanderState(context, player, agentGameObject, agentData, animator, playerHead, agentHead, gunManager));
+                    playerDirection = playerHead.transform.position - agentHead.transform.position;
+                    playerDirection.y = 0;
+                    agentGameObject.transform.forward = playerDirection.normalized;
+                    gunManager.Shoot();
+                    timer = 0f;
+                }
+                else
+                {
+                    timer += Time.deltaTime;
+                    if (timer > lostViewTimer)
+                    {
+                        context.SetState(new WanderState(context, player, agentGameObject, agentData, animator, playerHead, agentHead, gunManager));
+                    }
                 }
             }
+            
         }
 
         public override void Exit()
