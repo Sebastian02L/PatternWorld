@@ -8,46 +8,50 @@ namespace ObjectPoolMinigame
         Vector3 playerDirection;
         float timer = 0f;
         float lostViewTimer = 1.5f;
+        EnemyGunManager gunManager;
 
-        public CombatState(IContext context, EnemyData agentData, GameObject player, GameObject agent, Animator animator, GameObject playerHead, GameObject agentHead, EnemyGunManager gunManager)
-            : base(context, player, agent, agentData, animator, playerHead, agentHead, gunManager)
+        public CombatState(IContext context, EnemyData agentData, Animator animator, GameObject playerHead, GameObject agentEyes)
+            : base(context, agentData, animator, playerHead, agentEyes)
         {
         }
 
+        //Look into player's direction
         public override void Enter()
         {
-            Debug.Log("Entrando al estado de disparar");
             animator.SetTrigger("Shoot");
-            AudioManager.Instance.PlaySoundEffect(agentGameObject.GetComponent<AudioSource>(), "OPM_PlayerSpotted", 0.5f);
-            playerDirection = playerHead.transform.position - agentHead.transform.position;
+            gunManager = context.GetGameObject().GetComponentInChildren<EnemyGunManager>();
+            AudioManager.Instance.PlaySoundEffect(context.GetGameObject().GetComponent<AudioSource>(), "OPM_PlayerSpotted", 0.5f);
+            playerDirection = playerHead.transform.position - agentEyes.transform.position;
             playerDirection.y = 0;
-            agentGameObject.transform.forward = playerDirection.normalized;
+            context.GetGameObject().transform.forward = playerDirection.normalized;
 
-            healthManager = agentGameObject.GetComponent<HealthManager>();
+            healthManager = context.GetGameObject().GetComponent<HealthManager>();
         }
 
         public override void Update()
         {
+            //When the enemy haves low health
             if (healthManager.GetHealth < (healthManager.GetMaxHealth / 3))
             {
-                context.SetState(new EscapeState(context, agentData, player, agentGameObject, animator, playerHead, agentHead, gunManager));
+                context.SetState(new EscapeState(context, agentData, animator, playerHead, agentEyes));
             }
             else
             {
-                if (CheckPlayerInFOV())
+                if (CheckPlayerInFOV()) //If teh enemy sees the player, he can shoot him
                 {
-                    playerDirection = playerHead.transform.position - agentHead.transform.position;
+                    playerDirection = playerHead.transform.position - agentEyes.transform.position;
                     playerDirection.y = 0;
-                    agentGameObject.transform.forward = playerDirection.normalized;
+                    context.GetGameObject().transform.forward = playerDirection.normalized;
                     gunManager.Shoot();
                     timer = 0f;
                 }
                 else
                 {
+                    //If the enemy looses the player
                     timer += Time.deltaTime;
                     if (timer > lostViewTimer)
                     {
-                        context.SetState(new WanderState(context, player, agentGameObject, agentData, animator, playerHead, agentHead, gunManager));
+                        context.SetState(new WanderState(context, agentData, animator, playerHead, agentEyes));
                     }
                 }
             }
@@ -57,7 +61,6 @@ namespace ObjectPoolMinigame
         public override void Exit()
         {
         }
-
         public override void FixedUpdate()
         {
         }

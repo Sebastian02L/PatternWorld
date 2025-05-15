@@ -5,6 +5,8 @@ namespace ObjectPoolMinigame
     {
         IState GetState();
         void SetState(IState state);
+
+        public GameObject GetGameObject();
     }
 
 }

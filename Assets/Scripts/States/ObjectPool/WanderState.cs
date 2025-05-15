@@ -9,18 +9,19 @@ namespace ObjectPoolMinigame
         WaypointsManager waypointsManager;
         NavMeshAgent navMeshAgent;
 
-        public WanderState(IContext context, GameObject player, GameObject agent, EnemyData agentData, Animator animator, GameObject playerHead, GameObject agentHead, EnemyGunManager gunManager) 
-            :base(context, player, agent, agentData, animator, playerHead, agentHead, gunManager)
+        public WanderState(IContext context, EnemyData agentData, Animator animator, GameObject playerHead, GameObject agentEyes) 
+            :base(context, agentData, animator, playerHead, agentEyes)
         {
-            navMeshAgent = agentGameObject.GetComponent<NavMeshAgent>();
+            navMeshAgent = context.GetGameObject().GetComponent<NavMeshAgent>();
             navMeshAgent.speed = agentData.moveSpeed;
             navMeshAgent.angularSpeed = 360f;
-            waypointsManager = agentGameObject.GetComponent<WaypointsManager>();   
+            waypointsManager = context.GetGameObject().GetComponent<WaypointsManager>();   
         }
 
+        //Calculates a random waypoint and start to walk to his area
         public override void Enter()
         {
-            AudioManager.Instance.PlaySoundEffect(agentGameObject.GetComponent<AudioSource>(), "OPM_EnemyMoving", 1, true, true);
+            AudioManager.Instance.PlaySoundEffect(context.GetGameObject().GetComponent<AudioSource>(), "OPM_EnemyMoving", 1, true, true);
             navMeshAgent.isStopped = false;
             animator.SetTrigger("WanderState");
             waypointsManager.CalculateRandomIndex();
@@ -28,12 +29,14 @@ namespace ObjectPoolMinigame
             navMeshAgent.SetDestination(destiny);
         }
 
+        //Calculates and return a random point inside the waypoint sphere collider
         Vector3 ExtractRandomPointFromSphere(SphereCollider collider)
         {
             Vector3 direccion = Random.insideUnitSphere; 
             return collider.transform.position + direccion * collider.radius * collider.transform.lossyScale.x;
         }
 
+        //Returns if the current destiny has been reached
         bool PointReached()
         {
             return navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
@@ -45,23 +48,21 @@ namespace ObjectPoolMinigame
 
             if (CheckPlayerInFOV())
             {
-                //agentGameObject.GetComponent<SoundEffectsController>().Movement(true);
-                context.SetState(new CombatState(context, agentData, player, agentGameObject, animator, playerHead, agentHead, gunManager));
+                context.SetState(new CombatState(context, agentData, animator, playerHead, agentEyes));
             }
             else
             {
                 if (PointReached())
                 {
-                    context.SetState(new IdleState(context, agentData, player, agentGameObject, animator, playerHead, agentHead, gunManager));
+                    context.SetState(new IdleState(context, agentData, animator, playerHead, agentEyes));
                 }
             }
-            
         }
 
         public override void Exit()
         {
             navMeshAgent.isStopped = true;
-            AudioManager.Instance.StopAudioSource(agentGameObject.GetComponent<AudioSource>());
+            AudioManager.Instance.StopAudioSource(context.GetGameObject().GetComponent<AudioSource>());
         }
 
         public override void FixedUpdate()

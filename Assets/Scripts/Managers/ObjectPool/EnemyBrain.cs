@@ -8,17 +8,13 @@ namespace ObjectPoolMinigame
 {
     public class EnemyBrain : MonoBehaviour, IContext, IPoolableObject
     {
-        EnemyData enemyData;
         [SerializeField] MeshRenderer gunRenderer;
         [SerializeField] EnemyGunManager gunManager;
-        [SerializeField] GameObject enemyHead;
+        [SerializeField] GameObject enemyEyes;
+
+        //Enemy behaviour logic variables
+        EnemyData enemyData;
         HealthManager healthManager;
-        IState currentState;
-
-        GameObject player;
-        GameObject playerHead;
-        bool settedUp = false;
-
         ObjectPool enemiesPool;
         EnemiesManager enemiesManager;
 
@@ -26,7 +22,14 @@ namespace ObjectPoolMinigame
         List<EnemyBrain> nearbyAllies = new List<EnemyBrain>();
         int nearbyAttentionDistance = 3;
 
+        //ObjectPool and State related variables
         public bool IsDirty { get; set; }
+        IState currentState;
+
+        //Auxiliar variables
+        GameObject player;
+        GameObject playerHead;
+        bool settedUp = false;
 
         //Returns the current state of the enemy FSM
         public IState GetState()
@@ -48,6 +51,14 @@ namespace ObjectPoolMinigame
                 currentState = state;
                 currentState.Enter();
             }
+        }
+
+        //Send the enemy to the enemies pool and order a new one to spawn
+        public void Release()
+        {
+            gameObject.SetActive(false);
+            enemiesPool.Release(this);
+            enemiesManager.SpawnEnemy(enemyData);
         }
 
 
@@ -96,7 +107,7 @@ namespace ObjectPoolMinigame
         {
             if (!gameObject.activeSelf) return;
 
-            SetState(new WanderState(this, player, gameObject, enemyData, GetComponent<Animator>(), playerHead, enemyHead, gunManager));
+            SetState(new WanderState(this, enemyData, GetComponent<Animator>(), playerHead, enemyEyes));
             healthManager.SetMaxHeahlt(enemyData.maxHealht);
 
             //Changes the enemies gun material
@@ -136,20 +147,12 @@ namespace ObjectPoolMinigame
         //Makes the enemy FSM to enter in CombatState
         public void EnterCombatState()
         {
-            SetState(new CombatState(this, enemyData, player, gameObject, GetComponent<Animator>(), playerHead, enemyHead, gunManager));
+            SetState(new CombatState(this, enemyData, GetComponent<Animator>(), playerHead, enemyEyes));
         }
 
         public GameObject GetGameObject()
         {
             return gameObject;
-        }
-
-        //Send the enemy to the enemies pool and order a new one to spawn
-        public void Release()
-        {
-            gameObject.SetActive(false);
-            enemiesPool.Release(this);
-            enemiesManager.SpawnEnemy(enemyData);
         }
 
         //Called when an enemy gets damage, calcultes which allies are nearby and make them enter in combat state.

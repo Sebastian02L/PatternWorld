@@ -7,6 +7,7 @@ namespace ObjectPoolMinigame
 {
     public class PlayerCanvas : MonoBehaviour
     {
+        [Header("Player UI Elements")]
         [SerializeField] TextMeshProUGUI ammoText;
         [SerializeField] TextMeshProUGUI superiorText;
         [SerializeField] TextMeshProUGUI reloadingText;
@@ -19,21 +20,25 @@ namespace ObjectPoolMinigame
             GameObject.FindAnyObjectByType<GameManager>().OnEnemyDefeated += UpdateSuperiorText;
         }
 
+        //Invoked when the players shoots or reload a weapon
         void UpdateAmmoText(int ammoAmount)
         {
             ammoText.text = $"Munición: {ammoAmount.ToString()}";
         }
 
+        //Invoked when the player eliminates someone
         void UpdateSuperiorText(int defeatedEnemies, int totalEnemiesToWin)
         {
             superiorText.text = $"OBJETIVOS ELIMINADOS: {defeatedEnemies} DE {totalEnemiesToWin}";
         }
 
+        //Invoked when the player reaload his weapon
         void UpdateReloadUI(float reloadTime)
         {
             reloadCoroutine = StartCoroutine(ReloadAnimation(reloadTime));
         }
 
+        //Plays the reload UI animation
         IEnumerator ReloadAnimation(float reloadTime)
         {
             float timer = 0;
@@ -50,6 +55,7 @@ namespace ObjectPoolMinigame
             reloadCoroutine = null;
         }
 
+        //Subscribe the PlayerCanvas to the current player's weapon events
         public void SubscribeToCurrentWeapon(IWeapon currentWeapon)
         {
             currentWeapon.onAmmoChange += UpdateAmmoText;

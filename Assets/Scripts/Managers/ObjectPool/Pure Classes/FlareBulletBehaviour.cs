@@ -14,21 +14,23 @@ namespace ObjectPoolMinigame
 
         public override void OnCollisionBehaviour(Collider other, float damage, Action callback, GameObject bulletGO)
         {
+            //Plays the explosion sound effect on the bullet collision position
             AudioClip explosionClip = AudioManager.Instance.GetAudioClip("OPM_FlareRifleExplosion");
             AudioSource.PlayClipAtPoint(explosionClip, bulletGO.transform.position);
+
+            //Instantiates an GameObject with only one ParticleSystem with the explosion visuals
             GameObject vfx = GameObject.Instantiate(Resources.Load<GameObject>(SceneManager.GetActiveScene().name + "/" + "ExplosionFVX"), bulletGO.transform);
             vfx.transform.parent = null;
 
+            //Calculates how many enemies are in the explosion area reduces the health value of each one
             activeEnemies.Clear();
             activeEnemies = GameObject.FindObjectsByType<EnemyBrain>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).ToList<EnemyBrain>();
-            //Debug.Log("Se han encontrado " + activeEnemies.Count + " enemigos");
 
             float enemyDistance = float.MaxValue;
 
             foreach (EnemyBrain enemy in activeEnemies)
             {
                 float enemyBulletDistance = (enemy.transform.position - bulletGO.transform.position).magnitude;
-                //Debug.Log("Enemigo a esta distancia de la bala: " +  enemyBulletDistance);
 
                 if(enemyBulletDistance <= explosionRadius)
                 {

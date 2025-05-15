@@ -11,8 +11,8 @@ namespace ObjectPoolMinigame
         float timer;
 
 
-        public IdleState(IContext context, EnemyData agentData, GameObject player, GameObject agent, Animator animator, GameObject playerHead, GameObject agentHead, EnemyGunManager gunManager) 
-            : base(context, player, agent, agentData, animator, playerHead, agentHead, gunManager)
+        public IdleState(IContext context, EnemyData agentData, Animator animator, GameObject playerHead, GameObject agentEyes) 
+            : base(context, agentData, animator, playerHead, agentEyes)
         {
             maxIdleDurationTime = agentData.idleTime;
             timer = 0f;
@@ -22,28 +22,24 @@ namespace ObjectPoolMinigame
         {
             if (CheckPlayerInFOV())
             {
-                //agentGameObject.GetComponent<SoundEffectsController>().Movement(true);
-                context.SetState(new CombatState(context, agentData, player, agentGameObject, animator, playerHead, agentHead, gunManager));
+                context.SetState(new CombatState(context, agentData, animator, playerHead, agentEyes));
             }
             else
             {
                 timer += Time.deltaTime;
                 if (timer >= maxIdleDurationTime)
                 {
-                    //if(agentData.enemyType == EnemyData.EnemyType.Turret) context.SetState(new RotateState(context, agentData, player, agentGameObject, notify));
-                    context.SetState(new WanderState(context, player, agentGameObject, agentData, animator, playerHead, agentHead, gunManager));
+                    context.SetState(new WanderState(context, agentData, animator, playerHead, agentEyes));
                 }
             }
         }
 
         public override void Enter()
         {
-            Debug.Log("Entrando al estado de idle");
-            //animator.SetTrigger("IdleState");
+            animator.SetTrigger("IdleState");
         }
         public override void Exit()
         {
-            Debug.Log("Saliendo del estado de idle");
         }
         public override void FixedUpdate()
         {

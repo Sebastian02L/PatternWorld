@@ -29,6 +29,7 @@ namespace ObjectPoolMinigame
             TutorialController.OnTutorialClosed += SetUp;
         }
 
+        //Enables the player controls when the Tutorial gets closed by the player
         void SetUp()
         {
             playerInput.actions.Enable();
@@ -61,6 +62,7 @@ namespace ObjectPoolMinigame
 
                 Vector3 move = (forward * moveDirection.y + right * moveDirection.x) * moveSpeed * Time.deltaTime;
 
+                //Gravity simulation
                 if (!charController.isGrounded) 
                 {
                     speedY += gravity * Time.deltaTime;
@@ -74,21 +76,5 @@ namespace ObjectPoolMinigame
                 charController.Move(move);
             }
         }
-
-        //Turns off/on the movement of the player
-        //public void MovementIsActive(bool value)
-        //{
-        //    if (value)
-        //    {
-        //        playerInput.actions["Move"].Enable();
-        //        //StartCoroutine(MovementDelayActivation());
-        //    }
-        //    else
-        //    {
-        //        //AudioManager.Instance.StopAudioSource(audioSourcePlayer);
-        //        playerInput.actions["Move"].Disable();
-        //        processMovement = false;
-        //    }
-        //}
     }
 }

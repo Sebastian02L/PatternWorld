@@ -7,6 +7,7 @@ namespace ObjectPoolMinigame
         WeaponData weaponData;
         IObjectPool bulletsPool;
         IBulletBehaviour bulletBehaviour;
+
         float automaticReleaseTime = 5f;
         float timer = 0;
 
@@ -22,6 +23,7 @@ namespace ObjectPoolMinigame
             GetComponentInChildren<BulletCollisionManager>().onCollision -= OnCollision;
         }
 
+        //Moves teh bullet and counts the release time in no collision case
         void Update()
         {
             gameObject.transform.position += gameObject.transform.forward * weaponData.bulletSpeed * Time.deltaTime;

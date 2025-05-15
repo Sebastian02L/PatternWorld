@@ -9,26 +9,27 @@ namespace ObjectPoolMinigame
         Transform[] waypoints;
         NavMeshAgent navMeshAgent;
 
-        public EscapeState(IContext context, EnemyData agentData, GameObject player, GameObject agent, Animator animator, GameObject playerHead, GameObject agentHead, EnemyGunManager gunManager)
-            : base(context, player, agent, agentData, animator, playerHead, agentHead, gunManager)
+        public EscapeState(IContext context, EnemyData agentData, Animator animator, GameObject playerHead, GameObject agentEyes)
+            : base(context, agentData, animator, playerHead, agentEyes)
         {
         }
 
+        //The velocity of the agent increase and starts to calculate the fardest waypoint from the player
         public override void Enter()
         {
-            AudioManager.Instance.PlaySoundEffect(agentGameObject.GetComponent<AudioSource>(), "OPM_EnemyMoving", 1, false, true);
-            Debug.Log("entrando al estado de huir");
-            navMeshAgent = agentGameObject.GetComponent<NavMeshAgent>();
+            AudioManager.Instance.PlaySoundEffect(context.GetGameObject().GetComponent<AudioSource>(), "OPM_EnemyMoving", 1, false, true);
+
+            waypoints = context.GetGameObject().GetComponent<WaypointsManager>().GetWaypoints();
+            navMeshAgent = context.GetGameObject().GetComponent<NavMeshAgent>();
             navMeshAgent.isStopped = false;
             navMeshAgent.speed = agentData.runSpeed; 
-            waypoints = agentGameObject.GetComponent<WaypointsManager>().GetWaypoints();
 
             Transform destinationZone = CalculateFardestTransform();
             Vector3 destiny = ExtractRandomPointFromSphere(destinationZone.GetComponent<SphereCollider>());
             navMeshAgent.SetDestination(destiny);
-            Debug.Log("destino fijado");
-
         }
+
+        //Calculates and return a random point inside the waypoint sphere collider
         Vector3 ExtractRandomPointFromSphere(SphereCollider collider)
         {
             Vector3 direccion = Random.insideUnitSphere;
@@ -41,10 +42,11 @@ namespace ObjectPoolMinigame
 
             if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
             {
-                context.SetState(new WanderState(context, player, agentGameObject, agentData, animator, playerHead, agentHead, gunManager));
+                context.SetState(new WanderState(context, agentData, animator, playerHead, agentEyes));
             }
         }
 
+        //Search the fardest waypoint from player position
         Transform CalculateFardestTransform()
         {
             Transform tranform = null;
@@ -52,7 +54,7 @@ namespace ObjectPoolMinigame
 
             foreach (Transform t in waypoints) 
             { 
-                float distance = (player.transform.position - t.position).magnitude;
+                float distance = (playerHead.transform.parent.transform.position - t.position).magnitude;
                 if (distance > fardestDistance) 
                 { 
                     tranform = t;
@@ -63,9 +65,10 @@ namespace ObjectPoolMinigame
             return tranform;
         }
 
+        //Sets the velocity of the agent to the normal one
         public override void Exit()
         {
-            AudioManager.Instance.StopAudioSource(agentGameObject.GetComponent<AudioSource>());
+            AudioManager.Instance.StopAudioSource(context.GetGameObject().GetComponent<AudioSource>());
             navMeshAgent.isStopped = true;
             navMeshAgent.speed = agentData.moveSpeed;
         }

@@ -14917,9 +14917,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthLifeBar: {fileID: 582551895139495739}
   healthText: {fileID: 725888687556852318}
+  playerRedScreen: {fileID: 0}
   healingActivationTime: 15
   healthRecuperationRate: 5
-  playerRedScreen: {fileID: 0}
 --- !u!114 &159437715956735457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14934,7 +14934,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunRenderer: {fileID: 4928527396530615470}
   gunManager: {fileID: 890976731382664466}
-  enemyHead: {fileID: 1208718367031430292}
+  enemyEyes: {fileID: 1208718367031430292}
 --- !u!114 &5374116031127723680
 MonoBehaviour:
   m_ObjectHideFlags: 0
