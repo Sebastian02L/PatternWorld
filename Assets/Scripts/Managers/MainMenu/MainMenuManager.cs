@@ -14,6 +14,7 @@ public class MainMenuManager : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        AudioListener.pause = false;
 
         bookManager = GetComponent<BookManager>();
         pocketManager = GetComponent<PocketManager>();

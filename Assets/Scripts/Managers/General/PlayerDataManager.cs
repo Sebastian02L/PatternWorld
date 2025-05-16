@@ -13,6 +13,7 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     float globalVolume;
     float soundEffectsVolume;
     float musicVolume;
+
     //For each minigame, we store a list of bools that represent the rounds that have been completed.
     List<List<bool>> minigamesData = new List<List<bool>>(numberOfMinigames);
 
@@ -20,6 +21,8 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     public float GetGlobalVolume => globalVolume;
     public float GetSoundEffectsVolume => soundEffectsVolume;
     public float GetMusicVolume => musicVolume;
+
+    public int SelectedRound { get; set; } 
 
     public List<List<bool>> GetMinigameRounds()
     {
@@ -83,7 +86,7 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         //TEMPORARY INSTRUCTONS TO MODIFY DATA
         SetMinigameRound(0, new List<bool>() { true, true, true });
         SetMinigameRound(1, new List<bool>() { true, true, true });
-        //SetMinigameRound(2, new List<bool>() { true, true, false });
+        //SetMinigameRound(2, new List<bool>() { true, true, true });
     }
 
     ///////////////////////////

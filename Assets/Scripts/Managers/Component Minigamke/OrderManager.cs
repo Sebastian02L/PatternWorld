@@ -18,13 +18,15 @@ public class OrderManager : MonoBehaviour
     [SerializeField] TimerComponent gameTimer;
     OrderScreenController screenController;
 
-    int currentRound = 1;
+    int currentRound;
+    int completedRounds = 0;
     void Start()
     {
         //Determinates the current round of the minigame
         List<bool> minigameRounds = PlayerDataManager.Instance.GetMinigameRounds()[0];
-        foreach (bool succededRound in minigameRounds) if (succededRound) currentRound += 1;
-        if(currentRound > 3) currentRound = 3;
+        foreach (bool succededRound in minigameRounds) if (succededRound) completedRounds += 1;
+
+        currentRound = PlayerDataManager.Instance.SelectedRound;
 
         //Loads the round configuration
         minigameData = Resources.Load<ComponentRoundData>(SceneManager.GetActiveScene().name + "/" + currentRound);
@@ -90,14 +92,17 @@ public class OrderManager : MonoBehaviour
         //Check win or lose round
         if (earningsScreenController.GetCurrentEarnings >= minigameData.quota)
         {
-            List<bool> newMinigameData = new List<bool>();
-            for(int i = 0; i < 3; i++)
+            if (currentRound > completedRounds) 
             {
-                if(i < currentRound) newMinigameData.Add(true);
-                else newMinigameData.Add(false);
+                List<bool> newMinigameData = new List<bool>();
+                for (int i = 0; i < 3; i++)
+                {
+                    if (i < currentRound) newMinigameData.Add(true);
+                    else newMinigameData.Add(false);
+                }
+                //Save data
+                PlayerDataManager.Instance.SetMinigameRound(0, newMinigameData);
             }
-            //Save data
-            PlayerDataManager.Instance.SetMinigameRound(0, newMinigameData);
             endGameController.EnablePanel(true, currentRound);
         }
         else

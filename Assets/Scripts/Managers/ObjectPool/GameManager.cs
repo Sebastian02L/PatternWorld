@@ -20,7 +20,8 @@ namespace ObjectPoolMinigame
 
         //Auxiliar variables
         public event Action<int, int> OnEnemyDefeated;
-        int currentRound = 1;
+        int currentRound;
+        int completedRounds = 0;
         bool firstTime = true;
         ObjectPool bulletsPool;
         ObjectPool enemiesPool;
@@ -29,8 +30,10 @@ namespace ObjectPoolMinigame
         {
             //Determinates the current round of the minigame
             List<bool> minigameRounds = PlayerDataManager.Instance.GetMinigameRounds()[2];
-            foreach (bool succededRound in minigameRounds) if (succededRound) currentRound += 1;
-            if (currentRound > 3) currentRound = 3;
+            foreach (bool succededRound in minigameRounds) if (succededRound) completedRounds += 1;
+
+            currentRound = PlayerDataManager.Instance.SelectedRound;
+            Debug.Log("ronda actual: " + currentRound);
 
             //Loads the round configuration
             minigameData = Resources.Load<ObjectPoolRoundData>(SceneManager.GetActiveScene().name + "/" + currentRound);
@@ -124,14 +127,17 @@ namespace ObjectPoolMinigame
 
             if (hasWon) 
             {
-                List<bool> newMinigameData = new List<bool>();
-                for (int i = 0; i < 3; i++)
+                if (currentRound > completedRounds) 
                 {
-                    if (i < currentRound) newMinigameData.Add(true);
-                    else newMinigameData.Add(false);
+                    List<bool> newMinigameData = new List<bool>();
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (i < currentRound) newMinigameData.Add(true);
+                        else newMinigameData.Add(false);
+                    }
+                    //Save data
+                    PlayerDataManager.Instance.SetMinigameRound(2, newMinigameData);
                 }
-                //Save data
-                PlayerDataManager.Instance.SetMinigameRound(2, newMinigameData);
             }
 
             GameObject.FindAnyObjectByType<EndGameController>().EnablePanel(hasWon, currentRound);
