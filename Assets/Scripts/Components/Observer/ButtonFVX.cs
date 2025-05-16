@@ -24,5 +24,8 @@ namespace ObserverMinigame
             AudioManager.Instance.PlayOneShotSoundEffect(audioSourceIU, "OM_ButtonHover", 1f);
         }
 
+        public void OnPointerExit(PointerEventData eventData)
+        {
+        }
     }
 }

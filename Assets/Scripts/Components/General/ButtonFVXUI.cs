@@ -25,6 +25,13 @@ public class ButtonFVXUI : MonoBehaviour, IButtonFVX
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (!button.interactable) return;
+        button.gameObject.transform.localScale *= 1.10f;
         AudioManager.Instance.PlayOneShotSoundEffect(audioSourceIU, "UI_OnSelect", 1f);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (!button.interactable) return;
+        button.gameObject.transform.localScale /= 1.10f;
     }
 }
