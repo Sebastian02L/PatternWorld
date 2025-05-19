@@ -32,9 +32,6 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     public void Awake()
     {
         base.Awake();
-        ////TEMPORARY INSTRUCTIONS TO DELETE ALL DATA
-        //PlayerPrefs.DeleteAll();
-        //return;
 
         //List of List initialization
         for (int i = 0; i < numberOfMinigames; i++)

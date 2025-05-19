@@ -5,6 +5,6 @@ public class GameVersionController : MonoBehaviour
 {
     void Start()
     {
-        gameObject.GetComponent<TextMeshProUGUI>().text = "v" + Application.version;
+        gameObject.GetComponent<TextMeshProUGUI>().text = "Alpha v" + Application.version;
     }
 }

@@ -21,7 +21,7 @@ public class MainMenuManager : MonoBehaviour
 
         List<List<bool>> minigamesRounds = PlayerDataManager.Instance.GetMinigameRounds();
 
-        for (int i = 0; i < gameModePanels.Count; i++)
+        for (int i = 0; i < gameModePanels.Count / 2; i++)
         {
             bool isMinigameCompleted = CheckMinigameProgress(i, minigamesRounds[i]);
 
