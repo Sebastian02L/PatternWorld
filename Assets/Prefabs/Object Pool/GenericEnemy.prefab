@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2170259108397342996}
   - component: {fileID: 7851504608437010055}
   - component: {fileID: 5634437365621903101}
+  - component: {fileID: 3562783739395654612}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -64,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f90411b636a639c458e3fda6cd35bfc3, type: 2}
+  - {fileID: 2100000, guid: fdf266aaffbc1f048a7b377d86c46ec1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -86,6 +87,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3562783739395654612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40184137044595850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09749c6b52bc7d34797f39cf0764e7f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texture: {fileID: 2800000, guid: 0b069d4ddd5b16b42ae7e1005e012358, type: 3}
+  colorMult: {r: 0, g: 0, b: 0, a: 0}
+  usesColorMult: 1
 --- !u!1 &257230942170249437
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,6 +118,7 @@ GameObject:
   - component: {fileID: 890976731382664466}
   - component: {fileID: 7799034793032952673}
   - component: {fileID: 182397025866223650}
+  - component: {fileID: 9098343108177911444}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -8552,7 +8569,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 75f3328a5fd521b4b9bf0b800a89c8e6, type: 2}
+  - {fileID: 2100000, guid: fdf266aaffbc1f048a7b377d86c46ec1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8812,6 +8829,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &9098343108177911444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257230942170249437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09749c6b52bc7d34797f39cf0764e7f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texture: {fileID: 2800000, guid: c90405c7044819549a8fc110095e18cd, type: 3}
+  colorMult: {r: 0, g: 0, b: 0, a: 0}
+  usesColorMult: 0
 --- !u!1 &800381570496064014
 GameObject:
   m_ObjectHideFlags: 0
@@ -8992,6 +9024,7 @@ GameObject:
   - component: {fileID: 917291828133062320}
   - component: {fileID: 3564213838470591193}
   - component: {fileID: 8859456184341753213}
+  - component: {fileID: 5902330043959025085}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -9045,7 +9078,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f90411b636a639c458e3fda6cd35bfc3, type: 2}
+  - {fileID: 2100000, guid: fdf266aaffbc1f048a7b377d86c46ec1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9067,6 +9100,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5902330043959025085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714955201128436124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09749c6b52bc7d34797f39cf0764e7f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texture: {fileID: 2800000, guid: 0b069d4ddd5b16b42ae7e1005e012358, type: 3}
+  colorMult: {r: 0, g: 0, b: 0, a: 0}
+  usesColorMult: 1
 --- !u!1 &2330249380669994907
 GameObject:
   m_ObjectHideFlags: 0
@@ -9156,6 +9204,7 @@ GameObject:
   - component: {fileID: 7889597479558687698}
   - component: {fileID: 4726782986234417480}
   - component: {fileID: 2197709249076812749}
+  - component: {fileID: 9057006865535184700}
   m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Untagged
@@ -9209,7 +9258,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f90411b636a639c458e3fda6cd35bfc3, type: 2}
+  - {fileID: 2100000, guid: fdf266aaffbc1f048a7b377d86c46ec1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9231,6 +9280,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &9057006865535184700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2920474779255258178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09749c6b52bc7d34797f39cf0764e7f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texture: {fileID: 2800000, guid: 0b069d4ddd5b16b42ae7e1005e012358, type: 3}
+  colorMult: {r: 0, g: 0, b: 0, a: 0}
+  usesColorMult: 1
 --- !u!1 &3067379422931355718
 GameObject:
   m_ObjectHideFlags: 0
@@ -9242,6 +9306,7 @@ GameObject:
   - component: {fileID: 2093645751048231373}
   - component: {fileID: 7683657882428115848}
   - component: {fileID: 890678773542818263}
+  - component: {fileID: 4963962067184572636}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -9295,7 +9360,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f90411b636a639c458e3fda6cd35bfc3, type: 2}
+  - {fileID: 2100000, guid: fdf266aaffbc1f048a7b377d86c46ec1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9317,6 +9382,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4963962067184572636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3067379422931355718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09749c6b52bc7d34797f39cf0764e7f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texture: {fileID: 2800000, guid: 0b069d4ddd5b16b42ae7e1005e012358, type: 3}
+  colorMult: {r: 0, g: 0, b: 0, a: 0}
+  usesColorMult: 1
 --- !u!1 &3938253829589870082
 GameObject:
   m_ObjectHideFlags: 0
@@ -14162,6 +14242,7 @@ GameObject:
   - component: {fileID: 8344037760196952047}
   - component: {fileID: 5153264800268246544}
   - component: {fileID: 8157608168037810150}
+  - component: {fileID: 1225307186569192860}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -14222,7 +14303,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fd467049286a3544a82f794f92fab8c8, type: 2}
+  - {fileID: 2100000, guid: fdf266aaffbc1f048a7b377d86c46ec1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14244,6 +14325,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1225307186569192860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4423457907859314864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09749c6b52bc7d34797f39cf0764e7f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texture: {fileID: 2800000, guid: 5c5e454272113034abf9931434432164, type: 3}
+  colorMult: {r: 0, g: 0, b: 0, a: 0}
+  usesColorMult: 0
 --- !u!1 &5076897579574959742
 GameObject:
   m_ObjectHideFlags: 0
@@ -14255,6 +14351,7 @@ GameObject:
   - component: {fileID: 6463943643166717494}
   - component: {fileID: 1988230924798531743}
   - component: {fileID: 687532427876050200}
+  - component: {fileID: 1199997533372999493}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -14308,7 +14405,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f90411b636a639c458e3fda6cd35bfc3, type: 2}
+  - {fileID: 2100000, guid: fdf266aaffbc1f048a7b377d86c46ec1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14330,6 +14427,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1199997533372999493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5076897579574959742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09749c6b52bc7d34797f39cf0764e7f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texture: {fileID: 2800000, guid: 0b069d4ddd5b16b42ae7e1005e012358, type: 3}
+  colorMult: {r: 0, g: 0, b: 0, a: 0}
+  usesColorMult: 1
 --- !u!1 &5094249798738173917
 GameObject:
   m_ObjectHideFlags: 0
@@ -14342,6 +14454,7 @@ GameObject:
   - component: {fileID: 5124897830140477029}
   - component: {fileID: 2696481892963547704}
   - component: {fileID: 10136210741528291}
+  - component: {fileID: 2087380970513003670}
   m_Layer: 0
   m_Name: Body
   m_TagString: Player
@@ -14407,7 +14520,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fd467049286a3544a82f794f92fab8c8, type: 2}
+  - {fileID: 2100000, guid: fdf266aaffbc1f048a7b377d86c46ec1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14429,6 +14542,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2087380970513003670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5094249798738173917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09749c6b52bc7d34797f39cf0764e7f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texture: {fileID: 2800000, guid: 5c5e454272113034abf9931434432164, type: 3}
+  colorMult: {r: 0, g: 0, b: 0, a: 0}
+  usesColorMult: 0
 --- !u!1 &5346955264126768513
 GameObject:
   m_ObjectHideFlags: 0
@@ -14677,6 +14805,7 @@ GameObject:
   - component: {fileID: 318541954459504077}
   - component: {fileID: 8101082575589268817}
   - component: {fileID: 552056931718584711}
+  - component: {fileID: 7564281929387550869}
   m_Layer: 0
   m_Name: Cylinder (2)
   m_TagString: Untagged
@@ -14730,7 +14859,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f90411b636a639c458e3fda6cd35bfc3, type: 2}
+  - {fileID: 2100000, guid: fdf266aaffbc1f048a7b377d86c46ec1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14752,6 +14881,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7564281929387550869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6245926213049194554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09749c6b52bc7d34797f39cf0764e7f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texture: {fileID: 2800000, guid: 0b069d4ddd5b16b42ae7e1005e012358, type: 3}
+  colorMult: {r: 0, g: 0, b: 0, a: 0}
+  usesColorMult: 1
 --- !u!1 &7024329573389937478
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,6 +20,7 @@ public class OrderManager : MonoBehaviour
 
     int currentRound;
     int completedRounds = 0;
+    bool canCheatCode = true;
     void Start()
     {
         //Determinates the current round of the minigame
@@ -43,6 +44,14 @@ public class OrderManager : MonoBehaviour
         earningsScreenController.quota = minigameData.quota;
     }
 
+    private void Update()  //This method is not necessary. This allows use cheat code to win
+    {
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.G) && canCheatCode)
+        {
+            canCheatCode = false;
+            earningsScreenController.AddMoney(99999999);
+        }
+    }
     private void OnDestroy()
     {
         gameTimer.onTimerEnd -= GameOver;

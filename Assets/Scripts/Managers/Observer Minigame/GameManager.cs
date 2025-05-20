@@ -16,6 +16,7 @@ namespace ObserverMinigame
         int numberOfConsoles;
         int currentRound;
         int completedRounds = 0;
+        bool canCheatCode = true;
 
         void Awake()
         {
@@ -39,6 +40,26 @@ namespace ObserverMinigame
             subjecurityController.SetUp(numberOfConsoles);
         }
 
+        private void Update() //This method is not necessary. This allows use cheat code to win
+        {
+            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.G) && canCheatCode)
+            {
+                canCheatCode = false;
+                if (currentRound > completedRounds)
+                {
+                    List<bool> newMinigameData = new List<bool>();
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (i < currentRound) newMinigameData.Add(true);
+                        else newMinigameData.Add(false);
+                    }
+                    //Save data
+                    PlayerDataManager.Instance.SetMinigameRound(1, newMinigameData);
+                }
+                endGameController.EnablePanel(true, currentRound);
+                CursorVisibility.ShowCursor();
+            }
+        }
         //Enemies ask for the round data to initialize their behaviour
         public ObserverRoundData GetRoundData()
         {

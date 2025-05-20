@@ -2023,7 +2023,7 @@ MonoBehaviour:
     rgba: 4278190080
   m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
-  m_colorMode: 3
+  m_colorMode: 0
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
     topRight: {r: 1, g: 1, b: 1, a: 1}
@@ -2260,8 +2260,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 80.70337}
-  m_SizeDelta: {x: 1700, y: 735.0547}
+  m_AnchoredPosition: {x: -0.3186, y: 111}
+  m_SizeDelta: {x: 1846.0962, y: 785.6201}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1588809448
 MonoBehaviour:
@@ -2285,11 +2285,12 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\xA1Hola, muchas gracias por participar en la prueba Alpha de Pattern
     World, un videojuego que busca dar a conocer los patrones de dise\xF1o a actuales
-    y futuros programadores de la industria!\n\nDado que el videojuego actualmente
-    se encuentra en fase Alpha, el arte del mismo no es el definitivo y es posible
-    que te encuentres con errores, bugs o glitches.\n\nJuega los tres minijuegos
-    disponibles y cuando termines, rellena el formulario que podr\xE1s consultar
-    en el bot\xF3n \"Formulario\" del men\xFA principal!\n\nNuevamente, much\xEDsimas
+    y futuros programadores de la industria!\n\nEl arte del videojuego no es el definitivo
+    y es posible que te encuentres con errores, bugs o glitches.\n\nCompleta cada
+    minijuego, consulta su apartado en el bot\xF3n \"Libro\" y rellena el formulario
+    que podr\xE1s consultar en el bot\xF3n \"Formulario\". \xA1Ambos bot\xF3nes se
+    encuentran en el men\xFA principal!\n\nPara saber c\xF3mo progresar en el juego,
+    pulsa el bot\xF3n \"Ayuda\" del men\xFA principal.\n\nNuevamente, much\xEDsimas
     gracias por aportar tu opini\xF3n para esta prueba.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ce53a5a39caa78f41997a8ae5883e7d1, type: 2}
@@ -2317,8 +2318,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 47
+  m_fontSizeBase: 47
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2355,7 +2356,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 2.1051025}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

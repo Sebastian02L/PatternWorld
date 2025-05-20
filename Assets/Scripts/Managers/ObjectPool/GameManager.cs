@@ -25,6 +25,7 @@ namespace ObjectPoolMinigame
         bool firstTime = true;
         ObjectPool bulletsPool;
         ObjectPool enemiesPool;
+        bool canCheatCode = true;
 
         void Awake()
         {
@@ -87,6 +88,12 @@ namespace ObjectPoolMinigame
                 enemiesManager.FirstEnemiesSpawn();
                 firstTime = false;
                 OnEnemyDefeated?.Invoke(0, minigameData.enemiesToEliminate);
+            }
+
+            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.G) && canCheatCode)
+            {
+                canCheatCode = false;
+                GameOver(true);
             }
         }
 
