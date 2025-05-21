@@ -93,19 +93,22 @@ Material:
     - _ColorThreshold: 500
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DephtThreshold: 0.04
+    - _DephtThreshold: 0.65
+    - _DepthDistanceActivation: 50
+    - _DepthLimitDistance: 20
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
+    - _Fullscreen_DepthWrite: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
     - _NormalThreshold: 1
     - _OcclusionStrength: 1
-    - _OutlineWidth: 0.95
+    - _OutlineWidth: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1

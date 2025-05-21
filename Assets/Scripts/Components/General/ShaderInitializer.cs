@@ -5,8 +5,8 @@ namespace Shaders
     public class ShaderInitializer : MonoBehaviour
     {
         [SerializeField] private Texture texture;
-        //[SerializeField] private Color colorMult;
-        //[SerializeField] private bool usesColorMult = false;
+        [SerializeField] private Color colorMult;
+        [SerializeField] private bool usesColorMult = false;
         private Renderer rend;
 
         void Awake()
@@ -16,7 +16,7 @@ namespace Shaders
             rend.materials[0] = new Material(rend.materials[0]);
             //Se asignan las propiedades deseadas
             if (texture != null) rend.materials[0].SetTexture("_Texture", texture);
-            //if (usesColorMult) rend.materials[2].SetColor("_Color", colorMult);
+            if (usesColorMult) rend.materials[0].SetColor("_Color", colorMult);
         }
 
         public void SetTexture(Texture texture)

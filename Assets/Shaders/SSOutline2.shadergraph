@@ -17,6 +17,9 @@
         },
         {
             "m_Id": "52aa1b433b704c0794c1233b50f4e657"
+        },
+        {
+            "m_Id": "967484137bf64b5d863fb92cf7decc3d"
         }
     ],
     "m_Keywords": [],
@@ -374,6 +377,9 @@
         },
         {
             "m_Id": "260e0ca911da449c9ca96160a1cd632e"
+        },
+        {
+            "m_Id": "b8c65e411b434d05816d1e93c2855a22"
         }
     ],
     "m_GroupDatas": [
@@ -1756,6 +1762,20 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "b8c65e411b434d05816d1e93c2855a22"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "fd199605066b4270865afcd920931d3c"
+                },
+                "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "ba5dd891dca24266b83390cfae806762"
                 },
                 "m_SlotId": 2
@@ -2952,6 +2972,21 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "0da2b78a60104b24919cf181fc88b5ee",
+    "m_Id": 0,
+    "m_DisplayName": "DepthLimitDistance",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
 }
 
 {
@@ -5304,6 +5339,9 @@
         },
         {
             "m_Id": "52aa1b433b704c0794c1233b50f4e657"
+        },
+        {
+            "m_Id": "967484137bf64b5d863fb92cf7decc3d"
         }
     ]
 }
@@ -5600,7 +5638,7 @@
     "m_StencilDepthFailOperation": 0,
     "m_DepthWrite": false,
     "m_depthWriteMode": 0,
-    "m_AllowMaterialOverride": false,
+    "m_AllowMaterialOverride": true,
     "m_DepthTestMode": 0
 }
 
@@ -6551,7 +6589,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "B",
     "m_StageCapability": 3,
-    "m_Value": 2.0,
+    "m_Value": 50.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
 }
@@ -9140,6 +9178,34 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "967484137bf64b5d863fb92cf7decc3d",
+    "m_Guid": {
+        "m_GuidSerialized": "89deebed-6897-40e6-b0b4-097aa7a37b55"
+    },
+    "m_Name": "DepthLimitDistance",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "DepthLimitDistance",
+    "m_DefaultReferenceName": "_DepthLimitDistance",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 50.0,
+    "m_FloatType": 0,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    }
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector2Node",
     "m_ObjectId": "975a06553f0b4e3ea6f1ad2f2314d84f",
@@ -10719,6 +10785,42 @@
         "e31": 0.0,
         "e32": 0.0,
         "e33": 1.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "b8c65e411b434d05816d1e93c2855a22",
+    "m_Group": {
+        "m_Id": "f9a1210834e0485cba8b83b1181e6531"
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 621.9999389648438,
+            "y": 2688.999755859375,
+            "width": 203.99993896484376,
+            "height": 34.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "0da2b78a60104b24919cf181fc88b5ee"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "967484137bf64b5d863fb92cf7decc3d"
     }
 }
 
