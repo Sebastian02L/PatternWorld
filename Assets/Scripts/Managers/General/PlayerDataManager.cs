@@ -81,8 +81,8 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         }
 
         //TEMPORARY INSTRUCTONS TO MODIFY DATA
-        SetMinigameRound(0, new List<bool>() { true, true, true });
-        SetMinigameRound(1, new List<bool>() { true, true, true });
+        //SetMinigameRound(0, new List<bool>() { true, true, true });
+        //SetMinigameRound(1, new List<bool>() { true, true, true });
         //SetMinigameRound(2, new List<bool>() { true, true, true });
     }
 

@@ -112,8 +112,7 @@ namespace ObjectPoolMinigame
 
             //Changes the enemies gun material
             Material material = new Material(gunRenderer.material);
-            material.mainTexture = enemyData.gunTexture;
-            gunRenderer.material.SetTexture("_Texture", material.mainTexture);
+            gunRenderer.material.SetTexture("_Texture", enemyData.gunTexture);
 
             settedUp = true;
         }

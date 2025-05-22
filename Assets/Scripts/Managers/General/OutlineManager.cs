@@ -7,7 +7,8 @@ public class OutlineManager : MonoBehaviour
     [Header("Outline Scene Configuration")]
     [SerializeField] float normalThreshold;
     [SerializeField] float colorThreshold;
-    [SerializeField] float depthThreshold;
+    [SerializeField] float depthNearThreshold;
+    [SerializeField] float depthFarThreshold;
     [SerializeField] float depthLimitDistance;
     [SerializeField] float outlineWidth;
 
@@ -16,7 +17,8 @@ public class OutlineManager : MonoBehaviour
     {
         screenSpaceOutlineMaterial.SetFloat("_NormalThreshold", normalThreshold);
         screenSpaceOutlineMaterial.SetFloat("_ColorThreshold", colorThreshold);
-        screenSpaceOutlineMaterial.SetFloat("_DephtThreshold", depthThreshold);
+        screenSpaceOutlineMaterial.SetFloat("_DepthNearThreshold", depthNearThreshold);
+        screenSpaceOutlineMaterial.SetFloat("_DephtFarThreshold", depthFarThreshold);
         screenSpaceOutlineMaterial.SetFloat("_DepthLimitDistance", depthLimitDistance);
         screenSpaceOutlineMaterial.SetFloat("_OutlineWidth", outlineWidth);
     }
