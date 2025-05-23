@@ -4856,7 +4856,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: cd8ab4aaed7499d4ea282a57a624ef61, type: 3}
   m_Resource: {fileID: 8300000, guid: cd8ab4aaed7499d4ea282a57a624ef61, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -42685,6 +42685,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 92969697271623360, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 268755130498535636, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 1
@@ -42747,6 +42751,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4266538561343448240, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
       propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4754281516634932384, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012420844657759432, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6129451176473321259, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
@@ -42902,7 +42914,9 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2530870376100843647, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
+    - {fileID: 5555530630303034279, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
