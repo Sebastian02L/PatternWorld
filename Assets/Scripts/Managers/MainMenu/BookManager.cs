@@ -8,6 +8,7 @@ public class BookManager : MonoBehaviour
     [SerializeField] List<BookEntryController> minigamesBookEntryButton;
 
     [Header("Information UI Elements")]
+    [SerializeField] Image medalImage;
     [SerializeField] Image explanationImage;
     [SerializeField] Image usagesImage;
     [SerializeField] Image diagramImage;
@@ -23,6 +24,7 @@ public class BookManager : MonoBehaviour
     {
         PatternData patternData = Resources.Load<PatternData>("MainMenu/" + minigameName);
 
+        medalImage.sprite = patternData.medalImage;
         explanationImage.sprite = patternData.explanation;
         usagesImage.sprite = patternData.usages;
         diagramImage.sprite = patternData.diagram;

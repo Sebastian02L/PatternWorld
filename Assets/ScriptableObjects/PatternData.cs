@@ -4,6 +4,7 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "PatternData", menuName = "Scriptable Objects/PatternData")]
 public class PatternData : ScriptableObject
 {
+    public Sprite medalImage;
     public string minigameName;
     public Material lockMaterial;
     public Material unlockedMaterial;

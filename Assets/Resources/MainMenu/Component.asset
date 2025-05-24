@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e58e94a10b49b8d40a929601f60ca64a, type: 3}
   m_Name: Component
   m_EditorClassIdentifier: 
+  medalImage: {fileID: 21300000, guid: 1db5dee73a0acb84ca27d973e727f613, type: 3}
   minigameName: Component
   lockMaterial: {fileID: 2100000, guid: 08096904cd1f24f40957fcdf480a6f2e, type: 2}
   unlockedMaterial: {fileID: 2100000, guid: 85f2ae5342dd3114795af927a05c8ed2, type: 2}
