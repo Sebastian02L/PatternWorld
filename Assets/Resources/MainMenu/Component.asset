@@ -15,6 +15,6 @@ MonoBehaviour:
   minigameName: Component
   lockMaterial: {fileID: 2100000, guid: 08096904cd1f24f40957fcdf480a6f2e, type: 2}
   unlockedMaterial: {fileID: 2100000, guid: 85f2ae5342dd3114795af927a05c8ed2, type: 2}
-  explanation: {fileID: 21300000, guid: 8dd28be6616497c47bf47b94c3576c65, type: 3}
-  usages: {fileID: 21300000, guid: 30ca130014f3b5448b2055bac457d64e, type: 3}
-  diagram: {fileID: 21300000, guid: 952e21aa32c812f4e97eb93874693e99, type: 3}
+  explanation: {fileID: 21300000, guid: ee0da802648a1ba4bb07c3ddfdba64d6, type: 3}
+  usages: {fileID: 21300000, guid: 64a28045302b16a4eae0c75268e96274, type: 3}
+  diagram: {fileID: 21300000, guid: 902720844ecd7414da1c67b2ee2d6ac0, type: 3}

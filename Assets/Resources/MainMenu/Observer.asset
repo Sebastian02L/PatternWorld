@@ -15,6 +15,6 @@ MonoBehaviour:
   minigameName: Observer
   lockMaterial: {fileID: 2100000, guid: 08096904cd1f24f40957fcdf480a6f2e, type: 2}
   unlockedMaterial: {fileID: 2100000, guid: 85f2ae5342dd3114795af927a05c8ed2, type: 2}
-  explanation: {fileID: 0}
-  usages: {fileID: 0}
-  diagram: {fileID: 0}
+  explanation: {fileID: 21300000, guid: f9b7408aa8d3b8b4a95543502632a501, type: 3}
+  usages: {fileID: 21300000, guid: 6c040efcedfecce4fa64b1df152f747e, type: 3}
+  diagram: {fileID: 21300000, guid: 9f27c258aac7cf04ca162d41452887a3, type: 3}

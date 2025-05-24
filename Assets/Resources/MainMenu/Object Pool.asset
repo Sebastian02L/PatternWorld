@@ -15,6 +15,6 @@ MonoBehaviour:
   minigameName: Object Pool
   lockMaterial: {fileID: 2100000, guid: 08096904cd1f24f40957fcdf480a6f2e, type: 2}
   unlockedMaterial: {fileID: 2100000, guid: 85f2ae5342dd3114795af927a05c8ed2, type: 2}
-  explanation: {fileID: 0}
-  usages: {fileID: 0}
-  diagram: {fileID: 0}
+  explanation: {fileID: 21300000, guid: 33091739f8960df418725882a5f4f02e, type: 3}
+  usages: {fileID: 21300000, guid: b80d7948d563467419465db7f3970c93, type: 3}
+  diagram: {fileID: 21300000, guid: 4e99644743a8af84a8f816b18bda52ea, type: 3}
