@@ -64,6 +64,7 @@ public class StoryManager : MonoBehaviour
                 storyTextUI.text = writtingText;
                 yield return new WaitForSeconds(typingSpeed);
             }
+            completeTyping = true;
 
             if(skipStory) break;
             NextButtonSetActive(true);

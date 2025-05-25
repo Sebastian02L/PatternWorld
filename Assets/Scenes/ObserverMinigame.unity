@@ -2227,6 +2227,10 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1673551937422700210, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
+      propertyPath: isLoadingBarNecessary
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2332299030270106281, guid: 73678fbd29a94d54fb8586f28ba419c8, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

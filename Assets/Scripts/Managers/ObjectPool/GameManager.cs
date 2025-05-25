@@ -46,7 +46,7 @@ namespace ObjectPoolMinigame
             //Setup the player's HealthManager
             healthManager = GetComponent<HealthManager>();
             healthManager.OnGetDamage += OnPlayerDamage;
-            healthManager.SetMaxHeahlt(100);
+            healthManager.SetMaxHealth(100);
 
             //Creates the enemy pool and setup the EnemiesManager
             CreateEnemiesPool();

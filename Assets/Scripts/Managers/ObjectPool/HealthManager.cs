@@ -43,7 +43,7 @@ namespace ObjectPoolMinigame
         }
 
         //Sets the max health value of the character
-        public void SetMaxHeahlt(float value)
+        public void SetMaxHealth(float value)
         {
             maxHealth = value;
             SetHealth(value);

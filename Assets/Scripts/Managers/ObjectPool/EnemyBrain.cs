@@ -108,7 +108,7 @@ namespace ObjectPoolMinigame
             if (!gameObject.activeSelf) return;
 
             SetState(new WanderState(this, enemyData, GetComponent<Animator>(), playerHead, enemyEyes));
-            healthManager.SetMaxHeahlt(enemyData.maxHealht);
+            healthManager.SetMaxHealth(enemyData.maxHealht);
 
             //Changes the enemies gun material
             Material material = new Material(gunRenderer.material);
