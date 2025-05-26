@@ -2939,10 +2939,10 @@ MonoBehaviour:
     y futuros programadores de la industria!\n\nEl arte del videojuego no es el definitivo
     y es posible que te encuentres con errores, bugs o glitches.\n\nCompleta cada
     minijuego, consulta su apartado en el bot\xF3n \"Libro\" y rellena el formulario
-    que podr\xE1s consultar en el bot\xF3n \"Formulario\". \xA1Ambos bot\xF3nes se
-    encuentran en el men\xFA principal!\n\nPara saber c\xF3mo progresar en el juego,
-    pulsa el bot\xF3n \"Ayuda\" del men\xFA principal.\n\nNuevamente, much\xEDsimas
-    gracias por aportar tu opini\xF3n para esta prueba.\n"
+    que podr\xE1s consultar en el bot\xF3n \"Formulario\". \xA1Ambos botones se encuentran
+    en el men\xFA principal!\n\nPara saber c\xF3mo progresar en el juego, pulsa el
+    bot\xF3n \"Ayuda\" del men\xFA principal.\n\nNuevamente, much\xEDsimas gracias
+    por aportar tu opini\xF3n para esta prueba.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ce53a5a39caa78f41997a8ae5883e7d1, type: 2}
   m_sharedMaterial: {fileID: -8203114767101564272, guid: ce53a5a39caa78f41997a8ae5883e7d1, type: 2}
