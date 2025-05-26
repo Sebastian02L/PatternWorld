@@ -7,11 +7,18 @@ public class ButtonFVXUI : MonoBehaviour, IButtonFVX
 {
     Button button;
     AudioSource audioSourceIU;
+    Vector3 originalScale;
     private void Start()
     {
         button = GetComponent<Button>();
+        originalScale = transform.localScale;
         audioSourceIU = GameObject.Find("AS_UI").GetComponent<AudioSource>();
         audioSourceIU.ignoreListenerPause = true;
+    }
+
+    private void OnDisable()
+    {
+        if( originalScale != Vector3.zero) button.gameObject.transform.localScale = originalScale;
     }
     public void OnPointerClick(PointerEventData eventData)
     {
