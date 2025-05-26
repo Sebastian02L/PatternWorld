@@ -15,8 +15,8 @@ MonoBehaviour:
   objectPoolRequired: 1
   maxAmmo: 9
   bulletPerSecond: 1
-  bulletSpeed: 30
-  bulletDamage: 12
+  bulletSpeed: 25
+  bulletDamage: 15
   bulletRange: 0
   realoadTime: 5
   weaponPrefab: {fileID: 916454621778862129, guid: 10f45c673cea70447836be6f689bf640, type: 3}

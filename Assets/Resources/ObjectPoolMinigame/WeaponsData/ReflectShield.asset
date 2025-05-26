@@ -15,7 +15,7 @@ MonoBehaviour:
   objectPoolRequired: 1
   maxAmmo: 20
   bulletPerSecond: 5
-  bulletSpeed: 35
+  bulletSpeed: 30
   bulletDamage: 15
   bulletRange: 10
   realoadTime: 2.5

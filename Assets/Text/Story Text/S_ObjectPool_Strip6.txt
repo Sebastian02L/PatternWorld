@@ -1,1 +1,1 @@
-Este ligero cambio permitió que el ordenador no llegará a su límite durante la simulación, logrando poder probar las armas correctamente.
+Este ligero cambio permitió que el ordenador no llegara a su límite durante la simulación, logrando hacer posible la realización de las pruebas de las armas.

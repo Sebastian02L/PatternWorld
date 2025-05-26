@@ -59,7 +59,7 @@ namespace ObjectPoolMinigame
         protected override Vector3 CalculateBulletDirection()
         {
             RaycastHit hit;
-            if (Physics.Raycast(shootOrigin.transform.position, ((playerCamera.transform.position - new Vector3(0f, 0.362f, 0f)) - shootOrigin.transform.position), out hit))
+            if (Physics.Raycast(shootOrigin.transform.position, ((playerCamera.transform.position - new Vector3(0f, 0.362f, 0f)) - shootOrigin.transform.position), out hit, 100f, ~(1 << 8)))
             {
                 return hit.point;
             }
